@@ -34,6 +34,20 @@
                ReferencedContainer = "container:Impressive.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "496284AE1A9C5DE600FCBCDD"
+               BuildableName = "RecipeModelTests.xctest"
+               BlueprintName = "RecipeModelTests"
+               ReferencedContainer = "container:Impressive.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -49,6 +63,16 @@
                BlueprintIdentifier = "4995D3A41A94084400FA30A3"
                BuildableName = "ImpressiveTests.xctest"
                BlueprintName = "ImpressiveTests"
+               ReferencedContainer = "container:Impressive.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "496284AE1A9C5DE600FCBCDD"
+               BuildableName = "RecipeModelTests.xctest"
+               BlueprintName = "RecipeModelTests"
                ReferencedContainer = "container:Impressive.xcodeproj">
             </BuildableReference>
          </TestableReference>

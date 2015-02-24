@@ -4,14 +4,49 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Glance - Impressive WatchKit App.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>Impressive WatchKit App.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>Impressive.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>Notification - Impressive WatchKit App.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>RecipeModel.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>496284A41A9C5DE600FCBCDD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>496284AE1A9C5DE600FCBCDD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4972BE7D1A9BE92C007B013D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>4995D38F1A94084300FA30A3</key>
 		<dict>
 			<key>primary</key>
