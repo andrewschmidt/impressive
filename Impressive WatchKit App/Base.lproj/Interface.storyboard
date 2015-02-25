@@ -5,20 +5,40 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3737"/>
     </dependencies>
     <scenes>
-        <!--Recipes-->
+        <!--Daily Press-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller identifier="Menu" title="Recipes" id="AgC-eL-Hgc" customClass="MenuInterfaceController" customModule="Impressive_WatchKit_Extension">
+                <controller identifier="Menu" title="Daily Press" id="AgC-eL-Hgc" customClass="MenuInterfaceController" customModule="Impressive_WatchKit_Extension">
                     <items>
+                        <group width="1" height="2" alignment="left" id="Lfr-HU-vfw"/>
+                        <button alignment="left" id="g3O-za-ER1">
+                            <group key="contentGroup" width="1" alignment="left" layout="vertical" radius="7" spacing="2" id="Dik-u2-1cz">
+                                <items>
+                                    <label width="105" height="20" alignment="left" text="Pick of the Day" textAlignment="left" id="OfV-ZY-Kff">
+                                        <color key="textColor" red="0.19175435599999999" green="0.091180220249999999" blue="0.075013443829999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                    </label>
+                                    <label alignment="center" text="Swork Surprise" textAlignment="left" id="WMm-4u-LAE">
+                                        <color key="textColor" red="1" green="1" blue="0.92043483257293701" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                    </label>
+                                </items>
+                                <color key="backgroundColor" red="0.51774001121520996" green="0.83363062143325806" blue="0.71302789449691772" alpha="1" colorSpace="calibratedRGB"/>
+                                <edgeInsets key="margins" left="6" right="6" top="2" bottom="8"/>
+                            </group>
+                        </button>
+                        <group width="1" height="2" alignment="left" layout="vertical" id="fbR-pb-O85"/>
                         <table alignment="left" id="tkp-c7-E3K">
                             <items>
                                 <tableRow identifier="MenuTableRowController" id="h0L-rM-ETW" customClass="MenuTableRowController" customModule="Impressive_WatchKit_Extension">
-                                    <group key="rootItem" width="1" alignment="left" id="axk-Vo-XYh">
+                                    <group key="rootItem" width="1" alignment="left" radius="7" id="axk-Vo-XYh">
                                         <items>
                                             <label alignment="center" verticalAlignment="center" text="Label" minimumScaleFactor="0.90000000000000002" id="qLa-PH-wcy">
+                                                <color key="textColor" red="1" green="1" blue="0.92043483260000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="font" style="UICTFontTextStyleBody"/>
                                             </label>
                                         </items>
+                                        <color key="backgroundColor" red="0.19175435602664948" green="0.091180220246315002" blue="0.075013443827629089" alpha="1" colorSpace="calibratedRGB"/>
                                     </group>
                                     <connections>
                                         <outlet property="recipeNameLabel" destination="qLa-PH-wcy" id="Wmd-xj-dOa"/>
@@ -32,14 +52,16 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="235" y="347"/>
+            <point key="canvasLocation" x="235" y="339"/>
         </scene>
         <!--StepsInterfaceController-->
         <scene sceneID="Hbf-Id-RcO">
             <objects>
                 <controller identifier="StepsInterfaceController" id="8Kz-Sq-ttO" customClass="StepsInterfaceController" customModule="Impressive_WatchKit_Extension">
                     <items>
-                        <label alignment="left" text="Label" id="MzW-Dx-z3q"/>
+                        <label alignment="left" text="Label" id="MzW-Dx-z3q">
+                            <color key="textColor" red="0.99997895960000005" green="0.99379038809999998" blue="0.88901942970000003" alpha="1" colorSpace="calibratedRGB"/>
+                        </label>
                     </items>
                     <connections>
                         <outlet property="actionLabel" destination="MzW-Dx-z3q" id="ASE-FL-jFP"/>
