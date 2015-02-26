@@ -7,12 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		496180E81A9D708F0077A6F8 /* DefaultRecipes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 496180E71A9D708F0077A6F8 /* DefaultRecipes.plist */; };
-		496284AA1A9C5DE600FCBCDD /* RecipeModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 496284A91A9C5DE600FCBCDD /* RecipeModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		496284B01A9C5DE700FCBCDD /* RecipeModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496284A51A9C5DE600FCBCDD /* RecipeModel.framework */; };
-		496284B91A9C5DE700FCBCDD /* RecipeModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496284B81A9C5DE700FCBCDD /* RecipeModelTests.swift */; };
-		496284BC1A9C5DE700FCBCDD /* RecipeModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496284A51A9C5DE600FCBCDD /* RecipeModel.framework */; };
-		496284BD1A9C5DE700FCBCDD /* RecipeModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 496284A51A9C5DE600FCBCDD /* RecipeModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49663A7C1A9E6D1300AC244A /* SpecialTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49663A7B1A9E6D1300AC244A /* SpecialTableRowController.swift */; };
 		4972BE751A9BE92C007B013D /* MenuInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4972BE741A9BE92C007B013D /* MenuInterfaceController.swift */; };
 		4972BE771A9BE92C007B013D /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4972BE761A9BE92C007B013D /* NotificationController.swift */; };
@@ -33,31 +27,11 @@
 		4995D39D1A94084400FA30A3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4995D39C1A94084400FA30A3 /* Images.xcassets */; };
 		4995D3A01A94084400FA30A3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4995D39E1A94084400FA30A3 /* LaunchScreen.xib */; };
 		4995D3AC1A94084400FA30A3 /* ImpressiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4995D3AB1A94084400FA30A3 /* ImpressiveTests.swift */; };
-		49BC2B1B1A9EE1360090FAC7 /* RecipeModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496284A51A9C5DE600FCBCDD /* RecipeModel.framework */; };
+		49BC2B221A9EEC670090FAC7 /* DefaultRecipes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49BC2B211A9EEC670090FAC7 /* DefaultRecipes.plist */; };
+		49BC2B251A9EEE3E0090FAC7 /* LoadSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BC2B241A9EEE3E0090FAC7 /* LoadSave.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		496284B11A9C5DE700FCBCDD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4995D3881A94084300FA30A3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 496284A41A9C5DE600FCBCDD;
-			remoteInfo = RecipeModel;
-		};
-		496284B31A9C5DE700FCBCDD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4995D3881A94084300FA30A3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4995D38F1A94084300FA30A3;
-			remoteInfo = Impressive;
-		};
-		496284BA1A9C5DE700FCBCDD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4995D3881A94084300FA30A3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 496284A41A9C5DE600FCBCDD;
-			remoteInfo = RecipeModel;
-		};
 		4972BE801A9BE92C007B013D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4995D3881A94084300FA30A3 /* Project object */;
@@ -82,17 +56,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		496284C31A9C5DE700FCBCDD /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				496284BD1A9C5DE700FCBCDD /* RecipeModel.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		4972BE931A9BE92C007B013D /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -107,15 +70,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		496180E71A9D708F0077A6F8 /* DefaultRecipes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = DefaultRecipes.plist; path = ../RecipeModel/DefaultRecipes.plist; sourceTree = "<group>"; };
 		496180E91A9D78500077A6F8 /* Impressive.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Impressive.entitlements; sourceTree = "<group>"; };
 		496180EA1A9D78EF0077A6F8 /* Impressive WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Impressive WatchKit Extension.entitlements"; sourceTree = "<group>"; };
-		496284A51A9C5DE600FCBCDD /* RecipeModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RecipeModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		496284A81A9C5DE600FCBCDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		496284A91A9C5DE600FCBCDD /* RecipeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecipeModel.h; sourceTree = "<group>"; };
-		496284AF1A9C5DE700FCBCDD /* RecipeModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecipeModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		496284B71A9C5DE700FCBCDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		496284B81A9C5DE700FCBCDD /* RecipeModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeModelTests.swift; sourceTree = "<group>"; };
 		49663A7B1A9E6D1300AC244A /* SpecialTableRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecialTableRowController.swift; sourceTree = "<group>"; };
 		4972BE6F1A9BE92C007B013D /* Impressive WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Impressive WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4972BE721A9BE92C007B013D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -128,8 +84,8 @@
 		4972BE841A9BE92C007B013D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4972BE861A9BE92C007B013D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		4972BE881A9BE92C007B013D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		4972BE941A9BF165007B013D /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Recipe.swift; path = "../Impressive WatchKit Extension/Recipe.swift"; sourceTree = "<group>"; };
-		4972BE961A9BF367007B013D /* Step.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Step.swift; path = "../Impressive WatchKit Extension/Step.swift"; sourceTree = "<group>"; };
+		4972BE941A9BF165007B013D /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		4972BE961A9BF367007B013D /* Step.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
 		4972BE981A9BF885007B013D /* SampleData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		4972BE9A1A9C09D9007B013D /* MenuTableRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableRowController.swift; sourceTree = "<group>"; };
 		4986467A1A9C287C00E8D7B8 /* StepsInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsInterfaceController.swift; sourceTree = "<group>"; };
@@ -143,29 +99,15 @@
 		4995D3A51A94084400FA30A3 /* ImpressiveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImpressiveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4995D3AA1A94084400FA30A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4995D3AB1A94084400FA30A3 /* ImpressiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpressiveTests.swift; sourceTree = "<group>"; };
+		49BC2B211A9EEC670090FAC7 /* DefaultRecipes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultRecipes.plist; sourceTree = "<group>"; };
+		49BC2B241A9EEE3E0090FAC7 /* LoadSave.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadSave.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		496284A11A9C5DE600FCBCDD /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		496284AC1A9C5DE600FCBCDD /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				496284B01A9C5DE700FCBCDD /* RecipeModel.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		4972BE6C1A9BE92C007B013D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49BC2B1B1A9EE1360090FAC7 /* RecipeModel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,7 +115,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				496284BC1A9C5DE700FCBCDD /* RecipeModel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,46 +128,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		496284A61A9C5DE600FCBCDD /* RecipeModel */ = {
-			isa = PBXGroup;
-			children = (
-				4972BE941A9BF165007B013D /* Recipe.swift */,
-				4972BE961A9BF367007B013D /* Step.swift */,
-				496284A91A9C5DE600FCBCDD /* RecipeModel.h */,
-				496284A71A9C5DE600FCBCDD /* Supporting Files */,
-			);
-			path = RecipeModel;
-			sourceTree = "<group>";
-		};
-		496284A71A9C5DE600FCBCDD /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				496284A81A9C5DE600FCBCDD /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		496284B51A9C5DE700FCBCDD /* RecipeModelTests */ = {
-			isa = PBXGroup;
-			children = (
-				496284B81A9C5DE700FCBCDD /* RecipeModelTests.swift */,
-				496284B61A9C5DE700FCBCDD /* Supporting Files */,
-			);
-			path = RecipeModelTests;
-			sourceTree = "<group>";
-		};
-		496284B61A9C5DE700FCBCDD /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				496284B71A9C5DE700FCBCDD /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		4972BE701A9BE92C007B013D /* Impressive WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
 				496180EA1A9D78EF0077A6F8 /* Impressive WatchKit Extension.entitlements */,
+				4972BE941A9BF165007B013D /* Recipe.swift */,
+				4972BE961A9BF367007B013D /* Step.swift */,
+				49BC2B241A9EEE3E0090FAC7 /* LoadSave.swift */,
 				4972BE981A9BF885007B013D /* SampleData.swift */,
 				4972BE741A9BE92C007B013D /* MenuInterfaceController.swift */,
 				4986467A1A9C287C00E8D7B8 /* StepsInterfaceController.swift */,
@@ -243,9 +151,9 @@
 		4972BE711A9BE92C007B013D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				496180E71A9D708F0077A6F8 /* DefaultRecipes.plist */,
 				4972BE721A9BE92C007B013D /* Info.plist */,
 				4972BE731A9BE92C007B013D /* PushNotificationPayload.apns */,
+				49BC2B211A9EEC670090FAC7 /* DefaultRecipes.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -275,8 +183,6 @@
 				4972BE701A9BE92C007B013D /* Impressive WatchKit Extension */,
 				4972BE821A9BE92C007B013D /* Impressive WatchKit App */,
 				4995D3A81A94084400FA30A3 /* ImpressiveTests */,
-				496284A61A9C5DE600FCBCDD /* RecipeModel */,
-				496284B51A9C5DE700FCBCDD /* RecipeModelTests */,
 				4995D3911A94084400FA30A3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -288,8 +194,6 @@
 				4995D3A51A94084400FA30A3 /* ImpressiveTests.xctest */,
 				4972BE6F1A9BE92C007B013D /* Impressive WatchKit Extension.appex */,
 				4972BE7E1A9BE92C007B013D /* Impressive WatchKit App.app */,
-				496284A51A9C5DE600FCBCDD /* RecipeModel.framework */,
-				496284AF1A9C5DE700FCBCDD /* RecipeModelTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -335,55 +239,7 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		496284A21A9C5DE600FCBCDD /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				496284AA1A9C5DE600FCBCDD /* RecipeModel.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
-		496284A41A9C5DE600FCBCDD /* RecipeModel */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 496284C21A9C5DE700FCBCDD /* Build configuration list for PBXNativeTarget "RecipeModel" */;
-			buildPhases = (
-				496284A01A9C5DE600FCBCDD /* Sources */,
-				496284A11A9C5DE600FCBCDD /* Frameworks */,
-				496284A21A9C5DE600FCBCDD /* Headers */,
-				496284A31A9C5DE600FCBCDD /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = RecipeModel;
-			productName = RecipeModel;
-			productReference = 496284A51A9C5DE600FCBCDD /* RecipeModel.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		496284AE1A9C5DE600FCBCDD /* RecipeModelTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 496284C41A9C5DE700FCBCDD /* Build configuration list for PBXNativeTarget "RecipeModelTests" */;
-			buildPhases = (
-				496284AB1A9C5DE600FCBCDD /* Sources */,
-				496284AC1A9C5DE600FCBCDD /* Frameworks */,
-				496284AD1A9C5DE600FCBCDD /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				496284B21A9C5DE700FCBCDD /* PBXTargetDependency */,
-				496284B41A9C5DE700FCBCDD /* PBXTargetDependency */,
-			);
-			name = RecipeModelTests;
-			productName = RecipeModelTests;
-			productReference = 496284AF1A9C5DE700FCBCDD /* RecipeModelTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		4972BE6E1A9BE92C007B013D /* Impressive WatchKit Extension */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4972BE921A9BE92C007B013D /* Build configuration list for PBXNativeTarget "Impressive WatchKit Extension" */;
@@ -425,13 +281,11 @@
 				4995D38D1A94084300FA30A3 /* Frameworks */,
 				4995D38E1A94084300FA30A3 /* Resources */,
 				4972BE931A9BE92C007B013D /* Embed App Extensions */,
-				496284C31A9C5DE700FCBCDD /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				4972BE8B1A9BE92C007B013D /* PBXTargetDependency */,
-				496284BB1A9C5DE700FCBCDD /* PBXTargetDependency */,
 			);
 			name = Impressive;
 			productName = Impressive;
@@ -465,13 +319,6 @@
 				LastUpgradeCheck = 0620;
 				ORGANIZATIONNAME = "Andrew Schmidt";
 				TargetAttributes = {
-					496284A41A9C5DE600FCBCDD = {
-						CreatedOnToolsVersion = 6.2;
-					};
-					496284AE1A9C5DE600FCBCDD = {
-						CreatedOnToolsVersion = 6.2;
-						TestTargetID = 4995D38F1A94084300FA30A3;
-					};
 					4972BE6E1A9BE92C007B013D = {
 						CreatedOnToolsVersion = 6.2;
 						DevelopmentTeam = WPKQJRMJAU;
@@ -516,33 +363,17 @@
 				4995D3A41A94084400FA30A3 /* ImpressiveTests */,
 				4972BE6E1A9BE92C007B013D /* Impressive WatchKit Extension */,
 				4972BE7D1A9BE92C007B013D /* Impressive WatchKit App */,
-				496284A41A9C5DE600FCBCDD /* RecipeModel */,
-				496284AE1A9C5DE600FCBCDD /* RecipeModelTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		496284A31A9C5DE600FCBCDD /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				496180E81A9D708F0077A6F8 /* DefaultRecipes.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		496284AD1A9C5DE600FCBCDD /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		4972BE6D1A9BE92C007B013D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				4972BE7B1A9BE92C007B013D /* Images.xcassets in Resources */,
+				49BC2B221A9EEC670090FAC7 /* DefaultRecipes.plist in Resources */,
 				4972BE7F1A9BE92C007B013D /* Impressive WatchKit App.app in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -576,21 +407,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		496284A01A9C5DE600FCBCDD /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		496284AB1A9C5DE600FCBCDD /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				496284B91A9C5DE700FCBCDD /* RecipeModelTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		4972BE6B1A9BE92C007B013D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -603,6 +419,7 @@
 				4972BE751A9BE92C007B013D /* MenuInterfaceController.swift in Sources */,
 				4972BE971A9BF367007B013D /* Step.swift in Sources */,
 				4972BE791A9BE92C007B013D /* GlanceController.swift in Sources */,
+				49BC2B251A9EEE3E0090FAC7 /* LoadSave.swift in Sources */,
 				4972BE951A9BF165007B013D /* Recipe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -627,21 +444,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		496284B21A9C5DE700FCBCDD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 496284A41A9C5DE600FCBCDD /* RecipeModel */;
-			targetProxy = 496284B11A9C5DE700FCBCDD /* PBXContainerItemProxy */;
-		};
-		496284B41A9C5DE700FCBCDD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4995D38F1A94084300FA30A3 /* Impressive */;
-			targetProxy = 496284B31A9C5DE700FCBCDD /* PBXContainerItemProxy */;
-		};
-		496284BB1A9C5DE700FCBCDD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 496284A41A9C5DE600FCBCDD /* RecipeModel */;
-			targetProxy = 496284BA1A9C5DE700FCBCDD /* PBXContainerItemProxy */;
-		};
 		4972BE811A9BE92C007B013D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 4972BE7D1A9BE92C007B013D /* Impressive WatchKit App */;
@@ -687,78 +489,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		496284BE1A9C5DE700FCBCDD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = RecipeModel/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		496284BF1A9C5DE700FCBCDD /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = RecipeModel/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		496284C01A9C5DE700FCBCDD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = RecipeModelTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Impressive.app/Impressive";
-			};
-			name = Debug;
-		};
-		496284C11A9C5DE700FCBCDD /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = RecipeModelTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Impressive.app/Impressive";
-			};
-			name = Release;
-		};
 		4972BE8D1A9BE92C007B013D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -967,24 +697,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		496284C21A9C5DE700FCBCDD /* Build configuration list for PBXNativeTarget "RecipeModel" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				496284BE1A9C5DE700FCBCDD /* Debug */,
-				496284BF1A9C5DE700FCBCDD /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		496284C41A9C5DE700FCBCDD /* Build configuration list for PBXNativeTarget "RecipeModelTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				496284C01A9C5DE700FCBCDD /* Debug */,
-				496284C11A9C5DE700FCBCDD /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		4972BE911A9BE92C007B013D /* Build configuration list for PBXNativeTarget "Impressive WatchKit App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

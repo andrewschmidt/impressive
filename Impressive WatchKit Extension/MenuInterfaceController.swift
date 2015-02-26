@@ -23,8 +23,13 @@ class MenuInterfaceController: WKInterfaceController {
         
         loadTableData()
 
-        let specialRecipeAsArray = specialRecipe.convertToArray()
+        let specialRecipeAsArray = specialRecipe.convertToNSArray()
         println(specialRecipeAsArray)
+        
+        let plistData = LoadSave.sharedInstance.loadPList("SavedRecipes.plist")
+        println(plistData)
+        
+        // LoadSave.sharedInstance.saveNSArray()
 
     }
     
