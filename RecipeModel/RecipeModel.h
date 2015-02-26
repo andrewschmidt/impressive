@@ -15,5 +15,3 @@ FOUNDATION_EXPORT double RecipeModelVersionNumber;
 FOUNDATION_EXPORT const unsigned char RecipeModelVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <RecipeModel/PublicHeader.h>
-
-

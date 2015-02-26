@@ -20,7 +20,21 @@ class StepsInterfaceController: WKInterfaceController {
         
         var currentStep = context as Step
         
-        actionLabel.setText(currentStep.action)
+        switch currentStep.type {
+        
+        case .Heat:
+            actionLabel.setText("Heat")
+        
+        case .Pour:
+            actionLabel.setText("Pour")
+        
+        case .Stir:
+            actionLabel.setText("Stir")
+        
+        case .Press:
+            actionLabel.setText("Press")
+        
+        }
         
     }
 

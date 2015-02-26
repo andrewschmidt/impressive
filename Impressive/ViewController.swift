@@ -12,6 +12,10 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let plistData = Recipe(name: "Marcos' Test", steps: [Step(.Press, howLong: 30)])
+        println(plistData)
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 

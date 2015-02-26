@@ -8,52 +8,53 @@
 
 import UIKit
 
+let specialRecipe = Recipe(
+    name: "Marco's Best",
+    steps: [
+        Step(StepType.Heat, howHotCelsius: 80.6),
+        Step(StepType.Pour, howMuch: 40),
+        Step(StepType.Stir, howLong: 15),
+        Step(StepType.Press, howLong: 75)]
+    )
+
 let savedRecipes = [
-    Recipe(
-        name: "Marco's Best",
-        steps: [
-            Step("Heat", howHotCelsius: 80.6),
-            Step("Pour", howMuch: 40),
-            Step("Stir", howLong: 15),
-            Step("Press", howLong: 75)]
-    ),
-    
+
     Recipe(
         name: "Andrew's Attempt",
         steps: [
-            Step("Heat", howHotFahrenheit: 212.0),
-            Step("Pour", howMuch: 10),
-            Step("Stir", howLong: 5),
-            Step("Pour", howMuch: 30),
-            Step("Stir", howLong: 15),
-            Step("Press", howLong: 65)]
+            Step(StepType.Heat, howHotFahrenheit: 212.0),
+            Step(StepType.Pour, howMuch: 10),
+            Step(StepType.Stir, howLong: 5),
+            Step(StepType.Pour, howMuch: 30),
+            Step(StepType.Stir, howLong: 15),
+            Step(StepType.Press, howLong: 65)]
     ),
     
     Recipe(
         name: "Lindsay's Latte",
         steps: [
-            Step("Heat", howHotFahrenheit: 200.0),
-            Step("Pour", howMuch: 35),
-            Step("Stir", howLong: 5),
-            Step("Press", howLong: 40)]
+            Step(StepType.Heat, howHotFahrenheit: 200.0),
+            Step(StepType.Pour, howMuch: 35),
+            Step(StepType.Stir, howLong: 5),
+            Step(StepType.Press, howLong: 40)]
     ),
     
     Recipe(
         name: "Brad's Boilin' Brew",
         steps: [
-            Step("Heat", howHotCelsius: 100.0),
-            Step("Pour", howMuch: 38),
-            Step("Stir", howLong: 7),
-            Step("Press", howLong: 50)]
+            Step(StepType.Heat, howHotCelsius: 100.0),
+            Step(StepType.Pour, howMuch: 38),
+            Step(StepType.Stir, howLong: 7),
+            Step(StepType.Press, howLong: 50)]
     ),
     
     Recipe(
         name: "Carlos' Cup",
         steps: [
-            Step("Heat", howHotCelsius: 78.0),
-            Step("Pour", howMuch: 5),
-            Step("Stir", howLong: 5),
-            Step("Pour", howMuch: 30),
-            Step("Press", howLong: 55)]
+            Step(StepType.Heat, howHotCelsius: 78.0),
+            Step(StepType.Pour, howMuch: 5),
+            Step(StepType.Stir, howLong: 5),
+            Step(StepType.Pour, howMuch: 30),
+            Step(StepType.Press, howLong: 55)]
     ),
 ]
