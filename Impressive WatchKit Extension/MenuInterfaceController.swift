@@ -26,12 +26,7 @@ class MenuInterfaceController: WKInterfaceController {
         
         loadTableData()
 
-//        let specialRecipeAsDictionary = specialRecipe.convertToNSDictionary()
-//        println(specialRecipeAsDictionary)
-        
-//        let plistData = LoadSave.sharedInstance.loadPList("SavedRecipes.plist")
-//        println(plistData)
-        
+//        BELOW IS IMPORTANT - NEEDS TO BE TURNED INTO A FUNCTION IN LOADSAVE:
 //        var newDefaultsAsArray = [NSDictionary]()
 //        
 //        for recipe in savedRecipes {

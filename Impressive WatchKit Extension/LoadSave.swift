@@ -91,8 +91,7 @@ class LoadSave: NSObject {
         
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
         let documentsDirectory = paths.objectAtIndex(0)as NSString
-        let path = documentsDirectory.stringByAppendingPathComponent(list)
-        
+        let path = documentsDirectory.stringByAppendingPathComponent("\(list).plist")
         let fileManager = NSFileManager.defaultManager()
         
         // Check if file exists:
@@ -105,7 +104,7 @@ class LoadSave: NSObject {
             var error: NSError?
             
             if (fileManager.copyItemAtPath(bundle!, toPath: path, error: &error)) {
-                println("LOADSAVE: Copied the file...")
+                println("LOADSAVE: Copied the file to \(path).")
             }
             else {
                 println("LOADSAVE: Failed to copy because \(error).")
@@ -113,17 +112,16 @@ class LoadSave: NSObject {
         }
         
         var data = NSArray(contentsOfFile: path)
-        println(data)
         return data!
     }
     
     
-    func saveNSArray(array: NSArray) {
+    func saveNSArray(array: NSArray, withName name: String) {
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
         let documentsDirectory = paths.objectAtIndex(0) as NSString
-        let path = documentsDirectory.stringByAppendingPathComponent("NewDefaults.plist")
-        println("LOADSAVE: About to attempt the save!")
+        let path = documentsDirectory.stringByAppendingPathComponent("\(name).plist")
         
         array.writeToFile(path, atomically: true)
+        println("LOADSAVE: Saved the array to \(path)")
     }
 }
