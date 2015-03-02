@@ -60,7 +60,7 @@ class Step: NSObject {
             stepAsDict["howMuch"] = self.measurement
         }
         if let checkTemperatureInCelsius = self.temperatureInCelsius {
-            stepAsDict["howHotCelsius"] = self.temperatureInCelsius
+            stepAsDict["howHotCelsius"] = self.temperatureInCelsius as Double!
         }
 
         return stepAsDict as NSDictionary

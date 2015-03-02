@@ -17,19 +17,18 @@ class Recipe: NSObject {
         self.steps = steps
     }
     
-    func convertToNSArray() -> NSArray {
+    func convertToNSDictionary() -> NSDictionary {
         
-        // Need to change this to return recipes as a NSDictionary with two keys: "name" and "steps".
-        var recipeAsArray = [[NSString: AnyObject]]()
+        var recipeAsDictionary = [NSString: AnyObject]()
         var stepsAsArray = [NSDictionary]()
         
-        recipeAsArray.append(["name": self.name])
+        recipeAsDictionary["name"] = self.name
         
         for step in self.steps {
             stepsAsArray.append(step.convertToNSDict())
         }
-        recipeAsArray.append(["steps": stepsAsArray])
+        recipeAsDictionary["steps"] = stepsAsArray
         
-        return recipeAsArray as NSArray
+        return recipeAsDictionary as NSDictionary
     }
 }

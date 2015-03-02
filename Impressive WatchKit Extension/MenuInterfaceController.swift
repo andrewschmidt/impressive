@@ -18,22 +18,38 @@ class MenuInterfaceController: WKInterfaceController {
 
     @IBOutlet weak var recipeTable: WKInterfaceTable!
     
+    var savedRecipes = [Recipe]()
+    var specialRecipe: Recipe!
+    
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
         loadTableData()
 
-        let specialRecipeAsArray = specialRecipe.convertToNSArray()
-        println(specialRecipeAsArray)
+//        let specialRecipeAsDictionary = specialRecipe.convertToNSDictionary()
+//        println(specialRecipeAsDictionary)
         
-        let plistData = LoadSave.sharedInstance.loadPList("SavedRecipes.plist")
-        println(plistData)
+//        let plistData = LoadSave.sharedInstance.loadPList("SavedRecipes.plist")
+//        println(plistData)
         
-        // LoadSave.sharedInstance.saveNSArray()
+//        var newDefaultsAsArray = [NSDictionary]()
+//        
+//        for recipe in savedRecipes {
+//            let recipeAsDictionary = recipe.convertToNSDictionary()
+//            newDefaultsAsArray.append(recipeAsDictionary)
+//        }
+//        println("The new defaults, as an array: \(newDefaultsAsArray)")
+//        
+//        LoadSave.sharedInstance.saveNSArray(newDefaultsAsArray as NSArray)
 
     }
     
     private func loadTableData() {
+        
+        // First let's load our pick of the day & saved recipes.
+        let specialRecipeArray = LoadSave.sharedInstance.getSavedRecipes("SpecialRecipe")
+        specialRecipe = specialRecipeArray[0]
+        savedRecipes = LoadSave.sharedInstance.getSavedRecipes("SavedRecipes")
         
         // Let's create an array of our row types. The first row is always our daily special:
         var rowTypes = ["SpecialTableRowController"]
