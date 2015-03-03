@@ -37,7 +37,7 @@ class Step: NSObject {
         self.temperatureInFahrenheit = (celsius! * 1.8) + 32.0
     }
     
-    func convertToNSDict() -> (NSDictionary) {
+    func convertToNSDict() -> NSDictionary {
         var stepAsDict = [NSString: AnyObject]()
         
         switch self.type {
