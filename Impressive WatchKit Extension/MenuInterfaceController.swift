@@ -26,25 +26,13 @@ class MenuInterfaceController: WKInterfaceController {
         
         loadTableData()
 
-//        BELOW IS IMPORTANT - NEEDS TO BE TURNED INTO A FUNCTION IN LOADSAVE:
-//        var newDefaultsAsArray = [NSDictionary]()
-//        
-//        for recipe in savedRecipes {
-//            let recipeAsDictionary = recipe.convertToNSDictionary()
-//            newDefaultsAsArray.append(recipeAsDictionary)
-//        }
-//        println("The new defaults, as an array: \(newDefaultsAsArray)")
-//        
-//        LoadSave.sharedInstance.saveNSArray(newDefaultsAsArray as NSArray)
-
     }
     
     private func loadTableData() {
         
         // First let's load our pick of the day & saved recipes.
-        let specialRecipeArray = LoadSave.sharedInstance.getSavedRecipes("SpecialRecipe")
-        specialRecipe = specialRecipeArray[0]
-        savedRecipes = LoadSave.sharedInstance.getSavedRecipes("SavedRecipes")
+        specialRecipe = LoadSave.sharedInstance.loadRecipe("SpecialRecipe")
+        savedRecipes = LoadSave.sharedInstance.loadRecipes("SavedRecipes")
         
         // Let's create an array of our row types. The first row is always our daily special:
         var rowTypes = ["SpecialTableRowController"]
