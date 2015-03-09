@@ -12,8 +12,10 @@ import Foundation
 
 class StepsInterfaceController: WKInterfaceController {
 
-
     @IBOutlet weak var actionLabel: WKInterfaceLabel!
+    
+    @IBOutlet weak var timerDoneLabel: WKInterfaceLabel!
+    
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
@@ -36,16 +38,31 @@ class StepsInterfaceController: WKInterfaceController {
         
         }
         
+        timerDoneLabel.setHidden(true)
     }
 
+    
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+        
+        // Let's test out our simple timer function.
+        setTimerForFunction("showLabel", seconds: 3)
+    }
+    
+    
+    func showLabel() {
+        timerDoneLabel.setHidden(false)
+    }
+    
+    
+    func setTimerForFunction(functionName: String, seconds: Double) {
+        var timer = NSTimer.scheduledTimerWithTimeInterval(Double(seconds), target: self, selector: Selector(functionName), userInfo: nil, repeats: false)
     }
 
+    
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
     }
-
 }

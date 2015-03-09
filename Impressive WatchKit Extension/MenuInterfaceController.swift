@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Andrew Schmidt. All rights reserved.
 //
 //  Colors
-//  Coffee Brown (buttons): #24120F, #311713, #563E33
+//  Coffee Brown (buttons): #3B1C18 (Current), #24120F, #311713, #563E33
 //  Soy Cream (text): #FFFFEB
 //  Lindsay Blue (accent): #84D5B6
 
@@ -15,11 +15,12 @@ import Foundation
 
 
 class MenuInterfaceController: WKInterfaceController {
-
+    
     @IBOutlet weak var recipeTable: WKInterfaceTable!
     
     var savedRecipes = [Recipe]()
     var specialRecipe: Recipe!
+    
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
@@ -27,6 +28,7 @@ class MenuInterfaceController: WKInterfaceController {
         loadTableData()
 
     }
+    
     
     private func loadTableData() {
         
@@ -61,6 +63,7 @@ class MenuInterfaceController: WKInterfaceController {
         }
     }
     
+    
     override func table(table: WKInterfaceTable, didSelectRowAtIndex rowIndex: Int) {
         
         var selectedRecipe: Recipe!
@@ -79,11 +82,13 @@ class MenuInterfaceController: WKInterfaceController {
 
     }
 
+    
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
     }
 
+    
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()

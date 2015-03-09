@@ -5,27 +5,27 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3737"/>
     </dependencies>
     <scenes>
-        <!--Daily Press-->
+        <!--Impress-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller identifier="Menu" title="Daily Press" id="AgC-eL-Hgc" customClass="MenuInterfaceController" customModule="Impressive_WatchKit_Extension">
+                <controller identifier="Menu" title="Impress" id="AgC-eL-Hgc" customClass="MenuInterfaceController" customModule="Impressive_WatchKit_Extension">
                     <items>
                         <table alignment="left" id="tkp-c7-E3K">
                             <items>
                                 <tableRow identifier="SpecialTableRowController" id="FPH-uN-Glg" userLabel="SpecialTableRowController" customClass="SpecialTableRowController" customModule="Impressive_WatchKit_Extension">
                                     <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" radius="7" spacing="2" id="eIt-fK-SfY">
                                         <items>
-                                            <label width="105" height="20" alignment="left" text="Pick of the Day" textAlignment="left" id="VlM-5z-fpu">
-                                                <color key="textColor" red="0.19215686274509805" green="0.090196078431372548" blue="0.074509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <label alignment="left" text="Pick of the Day" textAlignment="left" id="VlM-5z-fpu">
+                                                <color key="textColor" red="0.23137254901960785" green="0.10980392156862745" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                             </label>
-                                            <label alignment="center" text="Recipe Name" textAlignment="left" id="7Jo-AG-ZUM">
+                                            <label alignment="center" text="Recipe Name" textAlignment="center" minimumScaleFactor="0.90000000000000002" id="7Jo-AG-ZUM">
                                                 <color key="textColor" red="1" green="1" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                                <fontDescription key="font" type="system" weight="semibold" pointSize="20"/>
                                             </label>
                                         </items>
                                         <color key="backgroundColor" red="0.51764705879999995" green="0.83529411760000005" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <edgeInsets key="margins" left="6" right="6" top="2" bottom="8"/>
+                                        <edgeInsets key="margins" left="6" right="6" top="4" bottom="7"/>
                                     </group>
                                     <connections>
                                         <outlet property="specialNameLabel" destination="7Jo-AG-ZUM" id="7dr-tU-z2P"/>
@@ -39,7 +39,7 @@
                                                 <fontDescription key="font" style="UICTFontTextStyleBody"/>
                                             </label>
                                         </items>
-                                        <color key="backgroundColor" red="0.19215686274509805" green="0.090196078431372548" blue="0.074509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.23137254901960785" green="0.10980392156862745" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </group>
                                     <connections>
                                         <outlet property="recipeNameLabel" destination="qLa-PH-wcy" id="Wmd-xj-dOa"/>
@@ -55,22 +55,27 @@
             </objects>
             <point key="canvasLocation" x="235" y="339"/>
         </scene>
-        <!--StepsInterfaceController-->
+        <!--Back-->
         <scene sceneID="Hbf-Id-RcO">
             <objects>
-                <controller identifier="StepsInterfaceController" id="8Kz-Sq-ttO" customClass="StepsInterfaceController" customModule="Impressive_WatchKit_Extension">
+                <controller identifier="StepsInterfaceController" title="Back" id="8Kz-Sq-ttO" customClass="StepsInterfaceController" customModule="Impressive_WatchKit_Extension">
                     <items>
-                        <label alignment="center" text="Step Type" id="MzW-Dx-z3q">
-                            <color key="textColor" red="0.99997895960000005" green="0.99379038809999998" blue="0.88901942970000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <label alignment="right" text="Step Type" textAlignment="left" id="MzW-Dx-z3q">
+                            <color key="textColor" red="1" green="1" blue="0.92043483260000003" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                        </label>
+                        <label alignment="center" verticalAlignment="center" text="Timer's done" textAlignment="center" numberOfLines="0" id="gI5-V5-Uaf">
+                            <color key="textColor" red="0.51774001120000002" green="0.83363062139999999" blue="0.71302789450000004" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="font" type="system" pointSize="37"/>
                         </label>
                     </items>
                     <connections>
                         <outlet property="actionLabel" destination="MzW-Dx-z3q" id="ASE-FL-jFP"/>
+                        <outlet property="timerDoneLabel" destination="gI5-V5-Uaf" id="gdp-x4-AjO"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="433" y="346"/>
+            <point key="canvasLocation" x="442" y="339"/>
         </scene>
         <!--Glance Interface Controller-->
         <scene sceneID="BOz-TT-tkC">

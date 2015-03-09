@@ -9,13 +9,16 @@
 import Foundation
 
 class Recipe: NSObject {
+    
     var name: String
     var steps: [Step]
+    
     
     init(name: String, steps: [Step]) {
         self.name = name
         self.steps = steps
     }
+    
     
     func convertToNSDictionary() -> NSDictionary {
         

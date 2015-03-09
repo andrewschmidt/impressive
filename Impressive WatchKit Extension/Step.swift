@@ -9,21 +9,25 @@
 import Foundation
 
 class Step: NSObject {
+    
     let type: StepType
     let timer: Int?
     let measurement: Int?
     let temperatureInFahrenheit: Double?
     let temperatureInCelsius: Double?
     
+    
     init(_ type: StepType, howLong timer: Int?) {
         self.type = type
         self.timer = timer
     }
     
+    
     init(_ type: StepType, howMuch measurement: Int?) {
         self.type = type
         self.measurement = measurement
     }
+    
     
     init(_ type: StepType, howHotFahrenheit fahrenheit: Double?) {
         self.type = type
@@ -31,11 +35,13 @@ class Step: NSObject {
         self.temperatureInCelsius = (fahrenheit! - 32.0) / 1.8
     }
     
+    
     init(_ type: StepType, howHotCelsius celsius: Double?) {
         self.type = type
         self.temperatureInCelsius = celsius
         self.temperatureInFahrenheit = (celsius! * 1.8) + 32.0
     }
+    
     
     func convertToNSDict() -> NSDictionary {
         var stepAsDict = [NSString: AnyObject]()
@@ -67,6 +73,7 @@ class Step: NSObject {
     }
     
 }
+
 
 enum StepType {
     case Heat
