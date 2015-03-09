@@ -40,14 +40,14 @@ class StepsInterfaceController: WKInterfaceController {
         
         timerDoneLabel.setHidden(true)
     }
-
+    
     
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
         
         // Let's test out our simple timer function.
-        setTimerForFunction("showLabel", seconds: 3)
+        setTimerForFunction("showLabel", seconds: 1)
     }
     
     
