@@ -7,6 +7,7 @@
 //
 
 import WatchKit
+import ImpData
 
 class SpecialTableRowController: NSObject {
    

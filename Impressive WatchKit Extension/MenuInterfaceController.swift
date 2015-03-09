@@ -12,12 +12,12 @@
 
 import WatchKit
 import Foundation
-
+import ImpData
 
 class MenuInterfaceController: WKInterfaceController {
     
     @IBOutlet weak var recipeTable: WKInterfaceTable!
-    
+    var tester = Test(x: 4)
     var savedRecipes = [Recipe]()
     var specialRecipe: Recipe!
     

@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>3</integer>
 		</dict>
+		<key>ImpData.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
 		<key>Impressive WatchKit App.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -27,6 +32,16 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>4917E9151AAD382A00F984FD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4917E91F1AAD382A00F984FD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>4972BE7D1A9BE92C007B013D</key>
 		<dict>
 			<key>primary</key>

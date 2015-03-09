@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Step: NSObject {
+public class Step: NSObject {
     
     let type: StepType
     let timer: Int?
@@ -75,7 +75,7 @@ class Step: NSObject {
 }
 
 
-enum StepType {
+public enum StepType {
     case Heat
     case Pour
     case Stir

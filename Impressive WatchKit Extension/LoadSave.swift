@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoadSave: NSObject {
+public class LoadSave: NSObject {
     
     // Set this thing up as a singleton, so it's not all in the global space.
     // Accessible via LoadSave.sharedInstance.

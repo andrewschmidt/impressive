@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Recipe: NSObject {
+public class Recipe: NSObject {
     
     var name: String
     var steps: [Step]
