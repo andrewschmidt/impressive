@@ -1,5 +1,5 @@
 //
-//  Recipe2.swift
+//  Test.swift
 //  Impressive
 //
 //  Created by Andrew Schmidt on 3/8/15.
@@ -10,10 +10,14 @@ import Foundation
 
 public class Test: NSObject {
     
-    var x: Int
+    var x: Bool
     
-    public init(x: Int) {
-        println("Test worked!")
+    public init(_ x: Bool) {
         self.x = x
+        if self.x {
+            println("Framework is accessible!")
+        } else {
+            println("Framework is accessible!")
+        }
     }
 }

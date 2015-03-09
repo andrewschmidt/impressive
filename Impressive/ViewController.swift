@@ -14,7 +14,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let test = Test(x: 4)
+        
+        // Just checking to make sure everything's working:
+        let specialRecipe = LoadSave.sharedInstance.loadRecipe("SpecialRecipe")
+        println(specialRecipe.name)
     }
 
     override func didReceiveMemoryWarning() {
