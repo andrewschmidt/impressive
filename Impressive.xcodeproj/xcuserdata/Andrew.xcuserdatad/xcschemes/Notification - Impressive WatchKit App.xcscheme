@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   LastUpgradeVersion = "0620"
+   version = "2.0">
+   <BuildAction
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4972BE7D1A9BE92C007B013D"
+               BuildableName = "Impressive WatchKit App.app"
+               BlueprintName = "Impressive WatchKit App"
+               ReferencedContainer = "container:Impressive.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4995D38F1A94084300FA30A3"
+               BuildableName = "Impressive.app"
+               BlueprintName = "Impressive"
+               ReferencedContainer = "container:Impressive.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4972BE6E1A9BE92C007B013D"
+               BuildableName = "Impressive WatchKit Extension.appex"
+               BlueprintName = "Impressive WatchKit Extension"
+               ReferencedContainer = "container:Impressive.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4917E91F1AAD382A00F984FD"
+               BuildableName = "ImpDataTests.xctest"
+               BlueprintName = "ImpDataTests"
+               ReferencedContainer = "container:Impressive.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      buildConfiguration = "Debug">
+      <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4917E91F1AAD382A00F984FD"
+               BuildableName = "ImpDataTests.xctest"
+               BlueprintName = "ImpDataTests"
+               ReferencedContainer = "container:Impressive.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+      </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "4972BE7D1A9BE92C007B013D"
+            BuildableName = "Impressive WatchKit App.app"
+            BlueprintName = "Impressive WatchKit App"
+            ReferencedContainer = "container:Impressive.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+   </TestAction>
+   <LaunchAction
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      buildConfiguration = "Debug"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      allowLocationSimulation = "YES"
+      launchAutomaticallySubstyle = "8"
+      notificationPayloadFile = "Impressive WatchKit Extension/PushNotificationPayload.apns">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.springboard"
+         RemotePath = "/Impressive">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "4972BE7D1A9BE92C007B013D"
+            BuildableName = "Impressive WatchKit App.app"
+            BlueprintName = "Impressive WatchKit App"
+            ReferencedContainer = "container:Impressive.xcodeproj">
+         </BuildableReference>
+      </RemoteRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "4972BE7D1A9BE92C007B013D"
+            BuildableName = "Impressive WatchKit App.app"
+            BlueprintName = "Impressive WatchKit App"
+            ReferencedContainer = "container:Impressive.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+      <AdditionalOptions>
+      </AdditionalOptions>
+   </LaunchAction>
+   <ProfileAction
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      buildConfiguration = "Release"
+      debugDocumentVersioning = "YES">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.springboard"
+         RemotePath = "/Impressive">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "4972BE7D1A9BE92C007B013D"
+            BuildableName = "Impressive WatchKit App.app"
+            BlueprintName = "Impressive WatchKit App"
+            ReferencedContainer = "container:Impressive.xcodeproj">
+         </BuildableReference>
+      </RemoteRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "4972BE7D1A9BE92C007B013D"
+            BuildableName = "Impressive WatchKit App.app"
+            BlueprintName = "Impressive WatchKit App"
+            ReferencedContainer = "container:Impressive.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+   </ProfileAction>
+   <AnalyzeAction
+      buildConfiguration = "Debug">
+   </AnalyzeAction>
+   <ArchiveAction
+      buildConfiguration = "Release"
+      revealArchiveInOrganizer = "YES">
+   </ArchiveAction>
+</Scheme>
