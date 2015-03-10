@@ -147,37 +147,76 @@ public class LoadSave: NSObject {
     
     private func loadPlist(list: String) -> NSArray {
         
-        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
-        let documentsDirectory = paths.objectAtIndex(0)as NSString
-        let path = documentsDirectory.stringByAppendingPathComponent("\(list).plist")
         let fileManager = NSFileManager.defaultManager()
+        let url = fileManager.containerURLForSecurityApplicationGroupIdentifier("group.AndrewSchmidt.Impressive")
+        let file = url!.URLByAppendingPathComponent("\(list).plist")
         
         // Check if file exists:
-        if(!fileManager.fileExistsAtPath(path))
-        {
+        if !fileManager.fileExistsAtPath(file.path!) {
             // If it doesn't, copy it from the default file in the Resources folder:
             println("LOADSAVE: No existing data found, copying Default\(list).plist to the device.")
             let bundle = NSBundle.mainBundle().pathForResource("Default\(list)", ofType: "plist")
             
-            if (fileManager.copyItemAtPath(bundle!, toPath: path, error: nil)) {
-                println("LOADSAVE: Copied the file to \(path).")
+            if (fileManager.copyItemAtPath(bundle!, toPath: file.path!, error: nil)) {
+                println("LOADSAVE: Copied the file to \(file.path).")
             }
             else {
                 println("LOADSAVE: Failed to copy.")
             }
         }
         
-        var data = NSArray(contentsOfFile: path)
+        var data = NSArray(contentsOfFile: file.path!)
         return data!
+        
     }
     
     
     private func saveNSArray(array: NSArray, withName name: String) {
-        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
-        let documentsDirectory = paths.objectAtIndex(0) as NSString
-        let path = documentsDirectory.stringByAppendingPathComponent("\(name).plist")
         
-        array.writeToFile(path, atomically: true)
-//        println("LOADSAVE: Saved the array to \(path)")
+        let fileManager = NSFileManager.defaultManager()
+        let url = fileManager.containerURLForSecurityApplicationGroupIdentifier("group.AndrewSchmidt.Impressive")
+        let file = url!.URLByAppendingPathComponent("\(name).plist")
+        
+        array.writeToFile(file.path!, atomically: true)
+        println("LOADSAVE: Saved the array to \(file.path)")
+        
     }
+    
+    
+//    private func loadPlist(list: String) -> NSArray {
+//        
+//        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
+//        let documentsDirectory = paths.objectAtIndex(0)as NSString
+//        let path = documentsDirectory.stringByAppendingPathComponent("\(list).plist")
+//        let fileManager = NSFileManager.defaultManager()
+//        
+//        // Check if file exists:
+//        if(!fileManager.fileExistsAtPath(path))
+//        {
+//            // If it doesn't, copy it from the default file in the Resources folder:
+//            println("LOADSAVE: No existing data found, copying Default\(list).plist to the device.")
+//            let bundle = NSBundle.mainBundle().pathForResource("Default\(list)", ofType: "plist")
+//            
+//            if (fileManager.copyItemAtPath(bundle!, toPath: path, error: nil)) {
+//                println("LOADSAVE: Copied the file to \(path).")
+//            }
+//            else {
+//                println("LOADSAVE: Failed to copy.")
+//            }
+//        }
+//        
+//        var data = NSArray(contentsOfFile: path)
+//        return data!
+//    }
+    
+    
+//    private func saveNSArray(array: NSArray, withName name: String) {
+//        
+//        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
+//        let documentsDirectory = paths.objectAtIndex(0) as NSString
+//        let path = documentsDirectory.stringByAppendingPathComponent("\(name).plist")
+//        
+//        array.writeToFile(path, atomically: true)
+////        println("LOADSAVE: Saved the array to \(path)")
+//    }
 }

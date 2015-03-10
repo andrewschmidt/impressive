@@ -1005,6 +1005,7 @@
 				4917E9301AAD382B00F984FD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4917E9351AAD382B00F984FD /* Build configuration list for PBXNativeTarget "ImpDataTests" */ = {
 			isa = XCConfigurationList;
@@ -1013,6 +1014,7 @@
 				4917E9321AAD382B00F984FD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4972BE911A9BE92C007B013D /* Build configuration list for PBXNativeTarget "Impressive WatchKit App" */ = {
 			isa = XCConfigurationList;

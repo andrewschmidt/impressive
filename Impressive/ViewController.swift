@@ -18,6 +18,7 @@ class ViewController: UIViewController {
         // Just checking to make sure everything's working:
         let specialRecipe = LoadSave.sharedInstance.loadRecipe("SpecialRecipe")
         println(specialRecipe.name)
+        LoadSave.sharedInstance.overwriteRecipe("Andrew's Attempt", withRecipe: specialRecipe, inPlistNamed: "SavedRecipes")
     }
 
     override func didReceiveMemoryWarning() {
