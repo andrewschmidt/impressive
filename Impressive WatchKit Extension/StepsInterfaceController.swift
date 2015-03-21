@@ -13,10 +13,12 @@ import ImpData
 
 class StepsInterfaceController: WKInterfaceController {
 
-    @IBOutlet weak var actionLabel: WKInterfaceLabel!
     
+    @IBOutlet weak var stepGroup: WKInterfaceGroup!
+    @IBOutlet weak var actionLabel: WKInterfaceLabel!
     @IBOutlet weak var timerDoneLabel: WKInterfaceLabel!
     
+    var alreadySeen = false
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
@@ -27,19 +29,24 @@ class StepsInterfaceController: WKInterfaceController {
         
         case .Heat:
             actionLabel.setText("Heat")
+            stepGroup.setBackgroundImageNamed("TSwiftKarate")
         
         case .Pour:
             actionLabel.setText("Pour")
-        
+            stepGroup.setBackgroundImageNamed("TSwiftKarate")
+            
         case .Stir:
             actionLabel.setText("Stir")
-        
+            stepGroup.setBackgroundImageNamed("TSwiftKarate")
+            
         case .Press:
             actionLabel.setText("Press")
-        
+            stepGroup.setBackgroundImageNamed("TSwiftKarate")
+            
         }
         
         timerDoneLabel.setHidden(true)
+    
     }
     
     
@@ -47,8 +54,18 @@ class StepsInterfaceController: WKInterfaceController {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
         
-        // Let's test out our simple timer function.
-        setTimerForFunction("showLabel", seconds: 1)
+        // Kick off the animation, but only if we haven't seen it yet:
+        if !alreadySeen {
+            stepGroup.startAnimatingWithImagesInRange(
+                NSRange(location: 0, length: 7),
+                duration: 1,
+                repeatCount: 1)
+            alreadySeen = true
+        }
+        
+        // Show the label afterward:
+        setTimerForFunction("showLabel", seconds: 0.5)
+
     }
     
     
