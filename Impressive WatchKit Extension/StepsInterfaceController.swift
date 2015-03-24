@@ -19,6 +19,7 @@ class StepsInterfaceController: WKInterfaceController {
     @IBOutlet weak var timerDoneLabel: WKInterfaceLabel!
     
     var alreadySeen = false
+    var animationLength = 7
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
@@ -33,7 +34,8 @@ class StepsInterfaceController: WKInterfaceController {
         
         case .Pour:
             actionLabel.setText("Pour")
-            stepGroup.setBackgroundImageNamed("TSwiftKarate")
+            stepGroup.setBackgroundImageNamed("Mushroom")
+            animationLength = 20
             
         case .Stir:
             actionLabel.setText("Stir")
@@ -57,7 +59,7 @@ class StepsInterfaceController: WKInterfaceController {
         // Kick off the animation, but only if we haven't seen it yet:
         if !alreadySeen {
             stepGroup.startAnimatingWithImagesInRange(
-                NSRange(location: 0, length: 7),
+                NSRange(location: 0, length: animationLength),
                 duration: 1,
                 repeatCount: 1)
             alreadySeen = true
