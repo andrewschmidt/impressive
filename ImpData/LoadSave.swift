@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CloudKit
 
 public class LoadSave: NSObject {
     
@@ -219,4 +220,5 @@ public class LoadSave: NSObject {
 //        array.writeToFile(path, atomically: true)
 ////        println("LOADSAVE: Saved the array to \(path)")
 //    }
+
 }

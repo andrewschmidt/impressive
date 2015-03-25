@@ -43,7 +43,7 @@ public class Step: NSObject {
     }
     
     
-    func convertToNSDict() -> NSDictionary {
+    public func convertToNSDict() -> NSDictionary {
         var stepAsDict = [NSString: AnyObject]()
         
         switch self.type {

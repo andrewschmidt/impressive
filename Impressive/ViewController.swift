@@ -15,10 +15,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        // Just checking to make sure everything's working:
         let specialRecipe = LoadSave.sharedInstance.loadRecipe("SpecialRecipe")
-        println(specialRecipe.name)
-        LoadSave.sharedInstance.overwriteRecipe("Andrew's Attempt", withRecipe: specialRecipe, inPlistNamed: "SavedRecipes")
+        
+        println("VC: Attempting to save to the Cloud!!!?!?!?!?!")
+        CKLoadSave.sharedInstance.saveRecipe(specialRecipe, toPublicDatabase: true)
+        
     }
 
     override func didReceiveMemoryWarning() {
