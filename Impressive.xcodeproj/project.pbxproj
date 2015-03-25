@@ -296,7 +296,6 @@
 		4995D3871A94084300FA30A3 = {
 			isa = PBXGroup;
 			children = (
-				4964AF231AC23811005688F9 /* CloudKit.framework */,
 				4995D3921A94084400FA30A3 /* Impressive */,
 				4972BE701A9BE92C007B013D /* Impressive WatchKit Extension */,
 				4972BE821A9BE92C007B013D /* Impressive WatchKit App */,
@@ -304,6 +303,7 @@
 				4917E9171AAD382A00F984FD /* ImpData */,
 				4917E9261AAD382A00F984FD /* ImpDataTests */,
 				4995D3911A94084400FA30A3 /* Products */,
+				4964AF231AC23811005688F9 /* CloudKit.framework */,
 			);
 			sourceTree = "<group>";
 		};

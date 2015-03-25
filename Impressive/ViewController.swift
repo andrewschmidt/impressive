@@ -8,6 +8,7 @@
 
 import UIKit
 import ImpData
+import CloudKit
 
 class ViewController: UIViewController {
 
@@ -15,18 +16,21 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let specialRecipe = LoadSave.sharedInstance.loadRecipe("SpecialRecipe")
+//        let specialRecipe = LoadSave.sharedInstance.loadRecipe("SpecialRecipe")
+//        
+//        println("VC: Attempting to save to the Cloud... ")
+//        CKLoadSave.sharedInstance.saveRecipe(specialRecipe, toPublicDatabase: true)
         
-        println("VC: Attempting to save to the Cloud!!!?!?!?!?!")
-        CKLoadSave.sharedInstance.saveRecipe(specialRecipe, toPublicDatabase: true)
+        let savedRecipes = LoadSave.sharedInstance.loadRecipes("SavedRecipes")
+        CKLoadSave.sharedInstance.saveRecipes(savedRecipes, toPublicDatabase: false)
         
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
 }
 
