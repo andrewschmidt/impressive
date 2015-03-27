@@ -14,16 +14,25 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        let recipes = LoadSave.sharedInstance.loadRecipes("SavedRecipes")
+        CKLoadSave.sharedInstance.saveRecipes(recipes, toPublicDatabase: false)
         
-//        let specialRecipe = LoadSave.sharedInstance.loadRecipe("SpecialRecipe")
+        
+//        println("VC: Attempting to fetch recipes from the cloud with a completion block...")
 //        
-//        println("VC: Attempting to save to the Cloud... ")
-//        CKLoadSave.sharedInstance.saveRecipe(specialRecipe, toPublicDatabase: true)
-        
-        let savedRecipes = LoadSave.sharedInstance.loadRecipes("SavedRecipes")
-        CKLoadSave.sharedInstance.saveRecipes(savedRecipes, toPublicDatabase: false)
-        
+//        CKLoadSave.sharedInstance.fetchPersonalRecipes() {
+//            
+//            (recipes: [Recipe]) in
+//            
+//            // I could put any code in here - like updating UI!
+//            // For now let's keep it simple.
+//            println("VC: And here they are, fetched and ready:")
+//            println(recipes)
+//            
+//        }
+//        
+//        println("VC: While we wait for that to finish, let's move on...")
     }
     
 

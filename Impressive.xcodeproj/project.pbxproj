@@ -23,8 +23,6 @@
 		4917E94B1AAD446000F984FD /* DefaultSavedRecipes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4959BBCA1AA28BC600CAA075 /* DefaultSavedRecipes.plist */; };
 		4917E94C1AAD446000F984FD /* DefaultSpecialRecipe.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49C2411C1AA455810057D263 /* DefaultSpecialRecipe.plist */; };
 		4964AF221AC23595005688F9 /* CKLoadSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4964AF211AC23595005688F9 /* CKLoadSave.swift */; };
-		4964AF241AC23811005688F9 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4964AF231AC23811005688F9 /* CloudKit.framework */; };
-		4964AF251AC23824005688F9 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4964AF231AC23811005688F9 /* CloudKit.framework */; };
 		49663A7C1A9E6D1300AC244A /* SpecialTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49663A7B1A9E6D1300AC244A /* SpecialTableRowController.swift */; };
 		4972BE751A9BE92C007B013D /* MenuInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4972BE741A9BE92C007B013D /* MenuInterfaceController.swift */; };
 		4972BE771A9BE92C007B013D /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4972BE761A9BE92C007B013D /* NotificationController.swift */; };
@@ -135,7 +133,6 @@
 		496180E91A9D78500077A6F8 /* Impressive.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Impressive.entitlements; sourceTree = "<group>"; };
 		496180EA1A9D78EF0077A6F8 /* Impressive WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Impressive WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		4964AF211AC23595005688F9 /* CKLoadSave.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKLoadSave.swift; sourceTree = "<group>"; };
-		4964AF231AC23811005688F9 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		49663A7B1A9E6D1300AC244A /* SpecialTableRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecialTableRowController.swift; sourceTree = "<group>"; };
 		4972BE6F1A9BE92C007B013D /* Impressive WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Impressive WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4972BE721A9BE92C007B013D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -186,7 +183,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4964AF251AC23824005688F9 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,7 +191,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4917E92D1AAD382B00F984FD /* ImpData.framework in Frameworks */,
-				4964AF241AC23811005688F9 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,7 +298,6 @@
 				4917E9171AAD382A00F984FD /* ImpData */,
 				4917E9261AAD382A00F984FD /* ImpDataTests */,
 				4995D3911A94084400FA30A3 /* Products */,
-				4964AF231AC23811005688F9 /* CloudKit.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -508,7 +502,7 @@
 								enabled = 1;
 							};
 							com.apple.iCloud = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
