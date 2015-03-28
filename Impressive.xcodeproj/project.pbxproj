@@ -40,6 +40,7 @@
 		4995D39D1A94084400FA30A3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4995D39C1A94084400FA30A3 /* Images.xcassets */; };
 		4995D3A01A94084400FA30A3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4995D39E1A94084400FA30A3 /* LaunchScreen.xib */; };
 		4995D3AC1A94084400FA30A3 /* ImpressiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4995D3AB1A94084400FA30A3 /* ImpressiveTests.swift */; };
+		49F9D8551AC758BE00A2CBAD /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49F9D8541AC758BE00A2CBAD /* CloudKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -161,6 +162,7 @@
 		4995D3AB1A94084400FA30A3 /* ImpressiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpressiveTests.swift; sourceTree = "<group>"; };
 		49BC2B241A9EEE3E0090FAC7 /* LoadSave.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadSave.swift; sourceTree = "<group>"; };
 		49C2411C1AA455810057D263 /* DefaultSpecialRecipe.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultSpecialRecipe.plist; sourceTree = "<group>"; };
+		49F9D8541AC758BE00A2CBAD /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +193,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4917E92D1AAD382B00F984FD /* ImpData.framework in Frameworks */,
+				49F9D8551AC758BE00A2CBAD /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +301,7 @@
 				4917E9171AAD382A00F984FD /* ImpData */,
 				4917E9261AAD382A00F984FD /* ImpDataTests */,
 				4995D3911A94084400FA30A3 /* Products */,
+				49F9D8541AC758BE00A2CBAD /* CloudKit.framework */,
 			);
 			sourceTree = "<group>";
 		};

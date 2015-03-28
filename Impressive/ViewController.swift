@@ -15,8 +15,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let recipes = LoadSave.sharedInstance.loadRecipes("SavedRecipes")
-        CKLoadSave.sharedInstance.saveRecipes(recipes, toPublicDatabase: false)
+//        let recipes = LoadSave.sharedInstance.loadRecipes("SavedRecipes")
+//        CKLoadSave.sharedInstance.saveRecipes(recipes, toPublicDatabase: false)
         
         
 //        println("VC: Attempting to fetch recipes from the cloud with a completion block...")
@@ -31,7 +31,7 @@ class ViewController: UIViewController {
 //            println(recipes)
 //            
 //        }
-//        
+//
 //        println("VC: While we wait for that to finish, let's move on...")
     }
     
