@@ -44,14 +44,14 @@ public class CKLoadSave: NSObject {
     }
     
     
-    public func saveRecipes(recipes: [Recipe], toPublicDatabase publicOrNot: Bool) {
+    public func saveRecipes(recipes: [Recipe], toDatabase database: String) {
         for recipe in recipes {
-            saveRecipe(recipe, toPublicDatabase: publicOrNot)
+            saveRecipe(recipe, toDatabase: database)
         }
     }
     
     
-    public func saveRecipe(recipe: Recipe, toPublicDatabase publicOrNot: Bool) {
+    public func saveRecipe(recipe: Recipe, toDatabase database: String) {
         
         // Unfortunately we can't upload NSDicts — which are what we use to store Steps client-side. 
         // Instead, let's break all of the recipe's steps down into two arrays - one of types, and one of values.
@@ -75,18 +75,21 @@ public class CKLoadSave: NSObject {
         
         // Now let's write to it:
         recipeRecord.setObject(recipe.name, forKey: "name")
+        recipeRecord.setObject(recipe.author, forKey: "author")
+        recipeRecord.setObject(recipe.brewer, forKey: "brewer")
         recipeRecord.setObject(stepTypes, forKey: "stepTypes")
         recipeRecord.setObject(stepValues, forKey: "stepValues")
         
         // Now we save it!
         dispatch_sync(queue) {
-            self.saveCKRecord(recipeRecord, toPublicDatabase: publicOrNot)
+            self.saveCKRecord(recipeRecord, toDatabase: database)
         }
         
     }
     
     
-    public func fetchPersonalRecipes(completion: (returnRecipes: [Recipe]) -> Void) {
+    public func fetchPersonalRecipes(completion: (returnRecipes: [Recipe]) -> Void) { //It'd be interesting to give this function several optional parameters, and rename it "fetchRecipes." It could fetch an array of recipes matching whichever of the optional parameters you chose to pass it (name, newest, author, etc.)
+        
         var personalRecipes = [Recipe]()
         
         let predicate = NSPredicate(value: true)
@@ -142,55 +145,59 @@ public class CKLoadSave: NSObject {
     }
     
     
-    func saveCKRecord(record: CKRecord, toPublicDatabase: Bool) {
+    func saveCKRecord(record: CKRecord, toDatabase database: String) {
         
         println("CKLOADSAVE: The CKRecord we're trying to save is: ")
         println(record)
         
-        privateDatabase.saveRecord(record) {
-            returnRecord, error in
-        
-            if error != nil {
-                // Operation failed:
-                println("CKLOADSAVE: Failed to save recipe to private database!")
-                println(error)
-                
-                self.retrySaveCKRecord(record, toPublicDatabase: toPublicDatabase)
-                
-            } else {
-                // Operation succeeded:
-                println("CKLOADSAVE: Saved recipe to private database!")
-                
-            }
-        }
-        
-        // And if requested, we also save it to the public database:
-        if toPublicDatabase {
-            publicDatabase.saveRecord(record) {
-                returnRecord, error in
-                
-                if let err = error {
-                    // Operation failed:
-                    println("CKLOADSAVE: Failed to save recipe to public database!")
-                    println(err)
+        switch database {
+            case "public":
+                publicDatabase.saveRecord(record) {
+                    returnRecord, error in
                     
-                } else {
-                    // Operation succeeded:
-                    println("CKLOADSAVE: Saved recipe to public database!")
-                    
-                }
+                    if let err = error {
+                        // Operation failed:
+                        println("CKLOADSAVE: Failed to save recipe to public database.")
+                        println(err)
+                        
+                    } else {
+                        // Operation succeeded:
+                        println("CKLOADSAVE: Saved recipe to public database.")
+                        
+                    }
             }
+            
+            case "private":
+                privateDatabase.saveRecord(record) {
+                    returnRecord, error in
+                    
+                    if error != nil {
+                        // Operation failed:
+                        println("CKLOADSAVE: Failed to save recipe to private database.")
+                        println(error)
+                        
+                        self.retrySaveCKRecord(record, toDatabase: database)
+                        
+                    } else {
+                        // Operation succeeded:
+                        println("CKLOADSAVE: Saved recipe to private database.")
+                        
+                    }
+            }
+            
+            default:
+                println("CKLOADSAVE: No database specified for save operation.")
         }
     }
     
     
-    func retrySaveCKRecord(record: CKRecord, toPublicDatabase: Bool) {
+    func retrySaveCKRecord(record: CKRecord, toDatabase database: String) {
         // This appears to work, but lordy does it look ugly in the NSLog. We're bumping up against the rate limit constantly!
         
         // Maybe a better approach would be passing failed CKRecords back to the method that asked to save them, having those methods add the CKRecords to an array of "recordsToTryAgain," or whatever, and then somehow have this method pick away at them...
         
         println("CLOUDSAVE: Retrying failed save.")
-        var timer = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: Selector(saveCKRecord(record, toPublicDatabase: toPublicDatabase)), userInfo: nil, repeats: false)
+        var timer = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: Selector(saveCKRecord(record, toDatabase: database)), userInfo: nil, repeats: false)
     }
     
     

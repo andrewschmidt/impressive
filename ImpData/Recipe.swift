@@ -28,14 +28,6 @@ public class Recipe: NSObject {
         
         var stepsArray = [Step]()
         
-//        var stepTypes = dictionary["stepTypes"] as [String] // Do I want to do this?
-//        var stepValues = dictionary["stepValues"] as [Double] // Muddy up the code to make file structures match between the cloud and locally?
-//        
-//        for (i, type) in enumerate(stepTypes) {
-//            let step = Step(type, value: stepValues[i])
-//            stepsArray.append(step)
-//        }
-        
         for stepAsNSDict in dictionary["steps"] as NSArray {
             let step = Step(fromDictionary: stepAsNSDict as NSDictionary)
             stepsArray.append(step)
@@ -50,14 +42,6 @@ public class Recipe: NSObject {
     
     func convertToNSDictionary() -> NSDictionary {
         
-//        var stepTypes = [String]()
-//        var stepValues = [Double]()
-//        
-//        for step in self.steps {
-//            stepTypes.append(step.type)
-//            stepValues.append(step.value)
-//        }
-        
         var stepsAsArray = [NSDictionary]()
         
         for step in self.steps {
@@ -66,11 +50,10 @@ public class Recipe: NSObject {
         
         var recipeAsDictionary = [NSString: AnyObject]()
         
-        recipeAsDictionary["name"] = self.name
-        recipeAsDictionary["author"] = self.author
+        recipeAsDictionary["name"] = name
+        recipeAsDictionary["author"] = author
+        recipeAsDictionary["brewer"] = brewer
         recipeAsDictionary["steps"] = stepsAsArray
-//        recipeAsDictionary["stepTypes"] = stepTypes // **LOSE IF DESIRED, see above**
-//        recipeAsDictionary["stepValues"] = stepValues // **LOSE IF DESIRED**
         
         return recipeAsDictionary as NSDictionary
     }

@@ -5,6 +5,10 @@
 	<dict>
 		<key>name</key>
 		<string>Andrew&apos;s Attempt</string>
+		<key>author</key>
+		<string>@scatterfelt</string>
+		<key>brewer</key>
+		<string>AeroPress</string>
 		<key>steps</key>
 		<array>
 			<dict>
@@ -48,6 +52,10 @@
 	<dict>
 		<key>name</key>
 		<string>Lindsay&apos;s Latte</string>
+		<key>author</key>
+		<string>@lindsantiago</string>
+		<key>brewer</key>
+		<string>AeroPress</string>
 		<key>steps</key>
 		<array>
 			<dict>
@@ -79,6 +87,10 @@
 	<dict>
 		<key>name</key>
 		<string>Brad&apos;s Boilin&apos; Brew</string>
+		<key>author</key>
+		<string>Brad Maurer</string>
+		<key>brewer</key>
+		<string>AeroPress</string>
 		<key>steps</key>
 		<array>
 			<dict>
@@ -110,6 +122,10 @@
 	<dict>
 		<key>name</key>
 		<string>Carlos&apos; Cup</string>
+		<key>author</key>
+		<string>Carlos</string>
+		<key>brewer</key>
+		<string>AeroPress</string>
 		<key>steps</key>
 		<array>
 			<dict>

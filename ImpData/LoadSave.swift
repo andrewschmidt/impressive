@@ -40,7 +40,6 @@ public class LoadSave: NSObject {
         
         for i in 0 ..< savedRecipes.count {
             let name = savedRecipes[i].name
-//            println("LOADSAVE: Checking recipe named \"\(name).\"")
             
             if name == oldRecipeName {
                 savedRecipes[i] = newRecipe
@@ -111,7 +110,7 @@ public class LoadSave: NSObject {
             let bundle = NSBundle.mainBundle().pathForResource("Default\(list)", ofType: "plist")
             
             if (fileManager.copyItemAtPath(bundle!, toPath: file.path!, error: nil)) {
-                println("LOADSAVE: Copied the file to \(file.path).")
+                println("LOADSAVE: Copied the file to \(file.path!).")
             }
             else {
                 println("LOADSAVE: Failed to copy.")
@@ -131,7 +130,7 @@ public class LoadSave: NSObject {
         let file = url!.URLByAppendingPathComponent("\(name).plist")
         
         array.writeToFile(file.path!, atomically: true)
-        println("LOADSAVE: Saved the array to \(file.path)")
+        println("LOADSAVE: Saved the array to \(file.path!)")
         
     }
 

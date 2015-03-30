@@ -29,6 +29,7 @@ class StepsInterfaceController: WKInterfaceController {
         var step = context as Step
         
         actionLabel.setText(step.type)
+        timerDoneLabel.setText(String(format:"%.1f", step.value))
         
         // Below is a switch to perform custom UI commands depending on the step type. I'd like to name each animation the same as the step's type, so we won't need a Switch statement to handle those — but I bet we'll still need it to do things like create timers on buttons, etc.
         

@@ -15,8 +15,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        let recipes = LoadSave.sharedInstance.loadRecipes("SavedRecipes")
-//        CKLoadSave.sharedInstance.saveRecipes(recipes, toPublicDatabase: false)
+//        let recipe = LoadSave.sharedInstance.loadRecipe("SpecialRecipe")
+//        CKLoadSave.sharedInstance.saveRecipe(recipe, toDatabase: "public")
         
         
 //        println("VC: Attempting to fetch recipes from the cloud with a completion block...")
