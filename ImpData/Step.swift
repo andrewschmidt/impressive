@@ -27,6 +27,7 @@ public class Step: NSObject {
     
     
     func convertToNSDict() -> NSDictionary {
+        
         var stepAsDict = [NSString: AnyObject]()
         
         stepAsDict["type"] = self.type

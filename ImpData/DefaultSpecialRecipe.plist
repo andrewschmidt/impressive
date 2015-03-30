@@ -5,6 +5,10 @@
 	<dict>
 		<key>name</key>
 		<string>Marco&apos;s Best</string>
+		<key>author</key>
+		<string>@marco</string>
+		<key>brewer</key>
+		<string>AeroPress</string>
 		<key>steps</key>
 		<array>
 			<dict>

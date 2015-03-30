@@ -53,7 +53,8 @@ public class CKLoadSave: NSObject {
     
     public func saveRecipe(recipe: Recipe, toPublicDatabase publicOrNot: Bool) {
         
-        // We can convert steps to NSDicts, but unfortunately we can't upload NSDicts. So let's break all of the recipe's steps down into two simple arrays - one of step types, and one of step values.
+        // Unfortunately we can't upload NSDicts — which are what we use to store Steps client-side. 
+        // Instead, let's break all of the recipe's steps down into two arrays - one of types, and one of values.
         
         // Here are our arrays:
         var stepTypes = [String]()
@@ -61,22 +62,8 @@ public class CKLoadSave: NSObject {
         
         // Now let's populate them:
         for step in recipe.steps {
-            
             stepTypes.append(step.type)
             stepValues.append(step.value)
-            
-//            let stepAsDict = step.convertToNSDict() // This has the nice side effect of turning step types into Strings.
-//            
-//            stepTypes.append(stepAsDict["type"] as String)
-            
-            // Step types can be many different things. I've used a switch statement before, but this is faster:
-//            for key in stepAsDict.allKeys {
-//                if key as String != "type" && key as String != "name" { // Gotta ignore the step type, because we've already handled that.
-//                    let value: AnyObject? = stepAsDict[key as String]
-//                    stepValues.append(value as Double)
-//                }
-//            }
-            
         }
         
         println("CKLOADSAVE: \(recipe.name)'s steps broken down into two arrays:")
@@ -131,10 +118,10 @@ public class CKLoadSave: NSObject {
     
     func createRecipeFromRecord(record: CKRecord) -> Recipe {
         
-        // First the easy stuff.
+        // First the easy stuff:
         let name = record.objectForKey("name") as String
-        
-        println("CKLOADSAVE: Creating a recipe named \(name) from a CKRecord")
+        let author = record.objectForKey("author") as String
+        let brewer = record.objectForKey("brewer") as String
         
         // Next, turn corresponding types & values in two arrays into Step objects.
         let stepTypes = record.objectForKey("stepTypes") as [String]
@@ -150,54 +137,7 @@ public class CKLoadSave: NSObject {
             steps.append(step)
         }
         
-//        var i = 0
-//        for stepType in stepTypes {
-//            let stepValue = stepValues[i] as Double
-//            let step = Step(stepType, value: stepValue)
-//            
-//            steps.append(step)
-//            
-//            i = i++
-//        }
-        
-//        var i = 0
-//        for stepType in stepTypes {
-//            var step: Step!
-//            
-//            // We need to both interpret the actual StepType from a string, and grab the corresponding value.
-//            var actualStepType: StepType!
-//            
-//            switch stepType {
-//                case "Heat":
-//                    actualStepType = StepType.Heat
-//                    let stepValue = stepValues[i] as Double
-//                    step = Step(actualStepType, howHotCelsius: stepValue)
-//                
-//                case "Pour":
-//                    actualStepType = StepType.Pour
-//                    let stepValue = Int(stepValues[i])
-//                    step = Step(actualStepType, howMuch: stepValue)
-//                
-//                case "Stir":
-//                    actualStepType = StepType.Stir
-//                    let stepValue = Int(stepValues[i])
-//                    step = Step(actualStepType, howLong: stepValue)
-//                
-//                case "Press":
-//                    actualStepType = StepType.Press
-//                    let stepValue = Int(stepValues[i])
-//                    step = Step(actualStepType, howLong: stepValue)
-//                
-//                default:
-//                    println("LOADSAVE: Could not assign a StepType for \(stepType).")
-//
-//            }
-//            
-//            steps.append(step)
-//            i = i++
-//        }
-        
-        let recipe = Recipe(name: name, steps: steps)
+        let recipe = Recipe(name, by: author, using: brewer, steps: steps)
         return recipe
     }
     

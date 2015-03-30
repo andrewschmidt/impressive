@@ -90,29 +90,8 @@ public class LoadSave: NSObject {
         var savedRecipes = [Recipe]()
         
         for recipeAsNSDict in savedRecipesPlistAsArray {
-            
             let recipe = Recipe(fromDictionary: recipeAsNSDict as NSDictionary)
             savedRecipes.append(recipe)
-            
-//            let recipeName = recipeAsNSDict["name"] as String
-//            var recipeSteps = [Step]()
-//            
-//            // Let's make some Step objects!
-//            let recipeStepsAsNSDicts = recipeAsNSDict["steps"] as NSArray
-//            
-//            for stepAsNSDict in recipeStepsAsNSDicts {
-//                let stepType = stepAsNSDict["type"] as String
-//                let stepValue = stepAsNSDict["value"] as Double
-//                
-//                let step = Step(stepType, value: stepValue)
-//                
-//                // Add the freshly-minted Step object to an array of Steps.
-//                recipeSteps.append(step)
-//            }
-//            
-//            // Make a Recipe of it all:
-//            let recipe = Recipe(name: recipeName, steps: recipeSteps)
-//            savedRecipes.append(recipe)
         }
        
         return savedRecipes
