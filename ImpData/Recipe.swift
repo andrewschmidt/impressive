@@ -14,24 +14,42 @@ public class Recipe: NSObject {
     public var steps: [Step]
     
     
-    public init(name: String, steps: [Step]) {
+    init(name: String, steps: [Step]) {
         self.name = name
         self.steps = steps
     }
     
     
+    init(fromDictionary dictionary: NSDictionary) {
+        
+        println("IMPDATA: Using the new 'fromDictionary' constructor for a Recipe!")
+        
+        var stepsArray = [Step]()
+        
+        for stepAsNSDict in dictionary["steps"] as NSArray {
+            let step = Step(fromDictionary: stepAsNSDict as NSDictionary)
+            stepsArray.append(step)
+        }
+        
+        self.name = dictionary["name"] as String
+        self.steps = stepsArray
+    }
+    
+    
     func convertToNSDictionary() -> NSDictionary {
         
-        var recipeAsDictionary = [NSString: AnyObject]()
         var stepsAsArray = [NSDictionary]()
-        
-        recipeAsDictionary["name"] = self.name
         
         for step in self.steps {
             stepsAsArray.append(step.convertToNSDict())
         }
+        
+        var recipeAsDictionary = [NSString: AnyObject]()
+        
+        recipeAsDictionary["name"] = self.name
         recipeAsDictionary["steps"] = stepsAsArray
         
         return recipeAsDictionary as NSDictionary
     }
+    
 }

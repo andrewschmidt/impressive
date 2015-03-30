@@ -8,37 +8,37 @@
 		<key>steps</key>
 		<array>
 			<dict>
-				<key>howMuch</key>
+				<key>value</key>
 				<integer>10</integer>
 				<key>type</key>
 				<string>Pour</string>
 			</dict>
 			<dict>
-				<key>howHotCelsius</key>
+				<key>value</key>
 				<real>100</real>
 				<key>type</key>
 				<string>Heat</string>
 			</dict>
 			<dict>
-				<key>howLong</key>
+				<key>value</key>
 				<integer>5</integer>
 				<key>type</key>
 				<string>Stir</string>
 			</dict>
 			<dict>
-				<key>howMuch</key>
+				<key>value</key>
 				<integer>30</integer>
 				<key>type</key>
 				<string>Pour</string>
 			</dict>
 			<dict>
-				<key>howLong</key>
+				<key>value</key>
 				<integer>15</integer>
 				<key>type</key>
 				<string>Stir</string>
 			</dict>
 			<dict>
-				<key>howLong</key>
+				<key>value</key>
 				<integer>65</integer>
 				<key>type</key>
 				<string>Press</string>
@@ -51,25 +51,25 @@
 		<key>steps</key>
 		<array>
 			<dict>
-				<key>howHotCelsius</key>
+				<key>value</key>
 				<integer>92</integer>
 				<key>type</key>
 				<string>Heat</string>
 			</dict>
 			<dict>
-				<key>howMuch</key>
+				<key>value</key>
 				<integer>35</integer>
 				<key>type</key>
 				<string>Pour</string>
 			</dict>
 			<dict>
-				<key>howLong</key>
+				<key>value</key>
 				<integer>5</integer>
 				<key>type</key>
 				<string>Stir</string>
 			</dict>
 			<dict>
-				<key>howLong</key>
+				<key>value</key>
 				<integer>40</integer>
 				<key>type</key>
 				<string>Press</string>
@@ -82,25 +82,25 @@
 		<key>steps</key>
 		<array>
 			<dict>
-				<key>howHotCelsius</key>
+				<key>value</key>
 				<real>100</real>
 				<key>type</key>
 				<string>Heat</string>
 			</dict>
 			<dict>
-				<key>howMuch</key>
+				<key>value</key>
 				<integer>38</integer>
 				<key>type</key>
 				<string>Pour</string>
 			</dict>
 			<dict>
-				<key>howLong</key>
+				<key>value</key>
 				<integer>7</integer>
 				<key>type</key>
 				<string>Stir</string>
 			</dict>
 			<dict>
-				<key>howLong</key>
+				<key>value</key>
 				<integer>50</integer>
 				<key>type</key>
 				<string>Press</string>
@@ -113,31 +113,31 @@
 		<key>steps</key>
 		<array>
 			<dict>
-				<key>howHotCelsius</key>
+				<key>value</key>
 				<real>78</real>
 				<key>type</key>
 				<string>Heat</string>
 			</dict>
 			<dict>
-				<key>howMuch</key>
+				<key>value</key>
 				<integer>5</integer>
 				<key>type</key>
 				<string>Pour</string>
 			</dict>
 			<dict>
-				<key>howLong</key>
+				<key>value</key>
 				<integer>5</integer>
 				<key>type</key>
 				<string>Stir</string>
 			</dict>
 			<dict>
-				<key>howMuch</key>
+				<key>value</key>
 				<integer>30</integer>
 				<key>type</key>
 				<string>Pour</string>
 			</dict>
 			<dict>
-				<key>howLong</key>
+				<key>value</key>
 				<integer>55</integer>
 				<key>type</key>
 				<string>Press</string>

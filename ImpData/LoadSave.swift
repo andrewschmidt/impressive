@@ -87,59 +87,32 @@ public class LoadSave: NSObject {
         var savedRecipesPlistAsArray = LoadSave.sharedInstance.loadPlist(plistName) as Array
         
         // Next we need to convert each of the NSDictionaries in the plist to Recipes.
-        // Here's where we're going to put them:
         var savedRecipes = [Recipe]()
         
-        // And here's the loop:
         for recipeAsNSDict in savedRecipesPlistAsArray {
-            let currentRecipeName = recipeAsNSDict["name"] as String
-            var currentRecipeSteps = [Step]()
             
-            // Let's make some Step objects!
-            let recipeStepsAsNSDicts = recipeAsNSDict["steps"] as NSArray
+            let recipe = Recipe(fromDictionary: recipeAsNSDict as NSDictionary)
+            savedRecipes.append(recipe)
             
-            for stepAsNSDict in recipeStepsAsNSDicts {
-                
-                // First we need to interpret the StepType from a string.
-                var currentStepType: StepType!
-                let stepTypeAsString = stepAsNSDict["type"] as String
-                
-                switch stepTypeAsString as String {
-                case "Heat":
-                    currentStepType = StepType.Heat
-                case "Pour":
-                    currentStepType = StepType.Pour
-                case "Stir":
-                    currentStepType = StepType.Stir
-                case "Press":
-                    currentStepType = StepType.Press
-                default:
-                    println("LOADSAVE: Could not assign a StepType for \(stepTypeAsString).")
-                }
-                
-                // Then we need to figure out which particular value this step has, and pass the amount.
-                var currentStep: Step!
-                
-                if let currentStepHowLong: Int = stepAsNSDict["howLong"] as? Int {
-                    currentStep = Step(currentStepType, howLong: currentStepHowLong)
-                }
-                if let currentStepHowMuch: Int = stepAsNSDict["howMuch"] as? Int {
-                    currentStep = Step(currentStepType, howMuch: currentStepHowMuch)
-                }
-                if let currentStepHowHotFahrenheit: Double = stepAsNSDict["howHotFahrenheit"] as? Double {
-                    currentStep = Step(currentStepType, howHotFahrenheit: currentStepHowHotFahrenheit)
-                }
-                if let currentStepHowHotCelsius: Double = stepAsNSDict["howHotCelsius"] as? Double {
-                    currentStep = Step(currentStepType, howHotCelsius: currentStepHowHotCelsius)
-                }
-                
-                // Finally, add the Step to the array of Steps in the recipe.
-                currentRecipeSteps.append(currentStep)
-            }
-            
-            // And make a Recipe of it all:
-            let currentRecipe = Recipe(name: currentRecipeName, steps: currentRecipeSteps)
-            savedRecipes.append(currentRecipe)
+//            let recipeName = recipeAsNSDict["name"] as String
+//            var recipeSteps = [Step]()
+//            
+//            // Let's make some Step objects!
+//            let recipeStepsAsNSDicts = recipeAsNSDict["steps"] as NSArray
+//            
+//            for stepAsNSDict in recipeStepsAsNSDicts {
+//                let stepType = stepAsNSDict["type"] as String
+//                let stepValue = stepAsNSDict["value"] as Double
+//                
+//                let step = Step(stepType, value: stepValue)
+//                
+//                // Add the freshly-minted Step object to an array of Steps.
+//                recipeSteps.append(step)
+//            }
+//            
+//            // Make a Recipe of it all:
+//            let recipe = Recipe(name: recipeName, steps: recipeSteps)
+//            savedRecipes.append(recipe)
         }
        
         return savedRecipes
@@ -182,43 +155,5 @@ public class LoadSave: NSObject {
         println("LOADSAVE: Saved the array to \(file.path)")
         
     }
-    
-    
-//    private func loadPlist(list: String) -> NSArray {
-//        
-//        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
-//        let documentsDirectory = paths.objectAtIndex(0)as NSString
-//        let path = documentsDirectory.stringByAppendingPathComponent("\(list).plist")
-//        let fileManager = NSFileManager.defaultManager()
-//        
-//        // Check if file exists:
-//        if(!fileManager.fileExistsAtPath(path))
-//        {
-//            // If it doesn't, copy it from the default file in the Resources folder:
-//            println("LOADSAVE: No existing data found, copying Default\(list).plist to the device.")
-//            let bundle = NSBundle.mainBundle().pathForResource("Default\(list)", ofType: "plist")
-//            
-//            if (fileManager.copyItemAtPath(bundle!, toPath: path, error: nil)) {
-//                println("LOADSAVE: Copied the file to \(path).")
-//            }
-//            else {
-//                println("LOADSAVE: Failed to copy.")
-//            }
-//        }
-//        
-//        var data = NSArray(contentsOfFile: path)
-//        return data!
-//    }
-    
-    
-//    private func saveNSArray(array: NSArray, withName name: String) {
-//        
-//        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
-//        let documentsDirectory = paths.objectAtIndex(0) as NSString
-//        let path = documentsDirectory.stringByAppendingPathComponent("\(name).plist")
-//        
-//        array.writeToFile(path, atomically: true)
-////        println("LOADSAVE: Saved the array to \(path)")
-//    }
 
 }

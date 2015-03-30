@@ -18,33 +18,39 @@ class StepsInterfaceController: WKInterfaceController {
     @IBOutlet weak var actionLabel: WKInterfaceLabel!
     @IBOutlet weak var timerDoneLabel: WKInterfaceLabel!
     
+    
     var alreadySeen = false
     var animationLength = 7
+    
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
-        var currentStep = context as Step
+        var step = context as Step
         
-        switch currentStep.type {
+        actionLabel.setText(step.type)
         
-        case .Heat:
-            actionLabel.setText("Heat")
-            stepGroup.setBackgroundImageNamed("TSwiftKarate")
+        // Below is a switch to perform custom UI commands depending on the step type. I'd like to name each animation the same as the step's type, so we won't need a Switch statement to handle those — but I bet we'll still need it to do things like create timers on buttons, etc.
         
-        case .Pour:
-            actionLabel.setText("Pour")
-            stepGroup.setBackgroundImageNamed("Mushroom")
-            animationLength = 20
+        switch step.type {
+            case "Heat":
+                stepGroup.setBackgroundImageNamed("TSwiftKarate")
+                animationLength = 7
+
+            case "Pour":
+                stepGroup.setBackgroundImageNamed("Mushroom")
+                animationLength = 20
+
+            case "Stir":
+                stepGroup.setBackgroundImageNamed("TSwiftKarate")
+                animationLength = 7
             
-        case .Stir:
-            actionLabel.setText("Stir")
-            stepGroup.setBackgroundImageNamed("TSwiftKarate")
+            case "Press":
+                stepGroup.setBackgroundImageNamed("TSwiftKarate")
+                animationLength = 7
             
-        case .Press:
-            actionLabel.setText("Press")
-            stepGroup.setBackgroundImageNamed("TSwiftKarate")
-            
+            default:
+                println("STEPSIC: Couldn't parse step type.")
         }
         
         timerDoneLabel.setHidden(true)
@@ -69,6 +75,10 @@ class StepsInterfaceController: WKInterfaceController {
         setTimerForFunction("showLabel", seconds: 0.5)
 
     }
+    
+    
+    // ** TO-DO **
+    // Create methods that handle different ways of displaying the Step's info. Such as: changing celsius to fahrenheit with a tap (temperatureInFahrenheit = (celsius! * 1.8) + 32.0), or calculating how high to fill the Aeropress (displayed using the Aeropress notches).
     
     
     func showLabel() {
