@@ -29,21 +29,21 @@ class MenuInterfaceController: WKInterfaceController {
         // What's below is great. Need to decide the best way to refactor it into its own function (or pair of functions). But cool! Communication with the main app is working!
         
         // Let's try fetching our personal recipes from the cloud, via the iPhone app.
-        let request = ["fetchPersonalRecipes":"overwrite"]
-        
-        println("MENUIC: Attempting to contact parent app.")
-        WKInterfaceController.openParentApplication(request) {
-            (reply, error) -> Void in
-            
-            if error != nil {
-                println(error)
-                
-            } else {
-                println(reply["success"]!)
-                self.loadTableData()
-                
-            }
-        }
+//        let request = ["fetchPersonalRecipes":"overwrite"]
+//        
+//        println("MENUIC: Attempting to contact parent app.")
+//        WKInterfaceController.openParentApplication(request) {
+//            (reply, error) -> Void in
+//            
+//            if error != nil {
+//                println(error)
+//                
+//            } else {
+//                println(reply["success"]!)
+//                self.loadTableData()
+//                
+//            }
+//        }
         
     }
     
