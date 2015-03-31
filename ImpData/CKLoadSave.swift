@@ -44,6 +44,37 @@ public class CKLoadSave: NSObject {
     }
     
     
+    public func fetchPersonalRecipes(completion: (returnRecipes: [Recipe]) -> Void) { //It'd be interesting to give this function several optional parameters, and rename it "fetchRecipes." It could fetch an array of recipes matching whichever of the optional parameters you chose to pass it (name, newest, author, etc.)
+        
+        var personalRecipes = [Recipe]()
+        
+        let predicate = NSPredicate(value: true)
+        let sort = NSSortDescriptor(key: "creationDate", ascending: false)
+        
+        let query = CKQuery(recordType: "Recipe", predicate: predicate)
+        query.sortDescriptors = [sort]
+        
+        privateDatabase.performQuery(query, inZoneWithID: nil) {
+            results, error in
+            
+            if error != nil {
+                println("CKLOADSAVE: Error fetching personal recipes:")
+                println(error)
+                
+            } else {
+                for record in results {
+                    let recipe = self.createRecipeFromRecord(record as CKRecord)
+                    personalRecipes.append(recipe)
+                }
+                
+                // Now that we know we've got the data, let's send it back to the completion block!
+                completion(returnRecipes: personalRecipes)
+                
+            }
+        }
+    }
+    
+    
     public func saveRecipes(recipes: [Recipe], toDatabase database: String) {
         for recipe in recipes {
             saveRecipe(recipe, toDatabase: database)
@@ -85,37 +116,6 @@ public class CKLoadSave: NSObject {
             self.saveCKRecord(recipeRecord, toDatabase: database)
         }
         
-    }
-    
-    
-    public func fetchPersonalRecipes(completion: (returnRecipes: [Recipe]) -> Void) { //It'd be interesting to give this function several optional parameters, and rename it "fetchRecipes." It could fetch an array of recipes matching whichever of the optional parameters you chose to pass it (name, newest, author, etc.)
-        
-        var personalRecipes = [Recipe]()
-        
-        let predicate = NSPredicate(value: true)
-        let sort = NSSortDescriptor(key: "creationDate", ascending: false)
-        
-        let query = CKQuery(recordType: "Recipe", predicate: predicate)
-        query.sortDescriptors = [sort]
-        
-        privateDatabase.performQuery(query, inZoneWithID: nil) {
-            results, error in
-            
-            if error != nil {
-                println("CKLOADSAVE: Error fetching personal recipes:")
-                println(error)
-            
-            } else {
-                for record in results {
-                    let recipe = self.createRecipeFromRecord(record as CKRecord)
-                    personalRecipes.append(recipe)
-                }
-                
-                // Now that we know we've got the data, let's send it back to the completion block!
-                completion(returnRecipes: personalRecipes)
-                
-            }
-        }
     }
     
     
@@ -192,12 +192,11 @@ public class CKLoadSave: NSObject {
     
     
     func retrySaveCKRecord(record: CKRecord, toDatabase database: String) {
-        // This appears to work, but lordy does it look ugly in the NSLog. We're bumping up against the rate limit constantly!
-        
-        // Maybe a better approach would be passing failed CKRecords back to the method that asked to save them, having those methods add the CKRecords to an array of "recordsToTryAgain," or whatever, and then somehow have this method pick away at them...
         
         println("CLOUDSAVE: Retrying failed save.")
-        var timer = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: Selector(saveCKRecord(record, toDatabase: database)), userInfo: nil, repeats: false)
+        dispatch_sync(queue) {
+            self.saveCKRecord(record, toDatabase: database) // Should I introduce a time delay here?
+        }
     }
     
     
