@@ -13,19 +13,26 @@ import ImpData
 
 class StepsInterfaceController: WKInterfaceController {
 
-    
+    // Interface Controller variables:
     @IBOutlet weak var stepGroup: WKInterfaceGroup!
     @IBOutlet weak var actionLabel: WKInterfaceLabel!
-
-    @IBOutlet weak var timerButton: WKInterfaceButton!
-    @IBOutlet weak var timer: WKInterfaceTimer!
-    
     var alreadySeen = false
     var animationLength = 3
     var step: Step!
     
-    var timerStarted: Bool!
+    // Timer button variables:
+    @IBOutlet weak var timerButton: WKInterfaceButton!
+    @IBOutlet weak var timer: WKInterfaceTimer!
+    var countdown: NSDate!
+    var startingTime: Double!
+    var timerRunning: Bool!
 
+    // Temperature button variables:
+    @IBOutlet weak var temperatureButton: WKInterfaceButton!
+    @IBOutlet weak var temperatureLabel: WKInterfaceLabel!
+    @IBOutlet weak var scaleLabel: WKInterfaceLabel!
+    var temperature: Double!
+    var isCelsius: Bool!
     
     
     override func awakeWithContext(context: AnyObject?) {
@@ -59,24 +66,40 @@ class StepsInterfaceController: WKInterfaceController {
         }
         
         timerButton.setHidden(true)
+        temperatureButton.setHidden(true)
     
     }
     
     
     override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
         super.willActivate()
         
-        // Kick off the animation, but only if we haven't seen it yet:
+        timerButton.setHidden(true)
+        temperatureButton.setHidden(true)
+        
+        // We set up the screen differently depending on whether the user's seen it or not yet. Sounds great on paper, but it's a bit clunky because the Watch takes a second to update. Might be worth just showing the whole animation over again...
+        
         if !alreadySeen {
+            alreadySeen = true
+            
+            // Kick off the animation, but only if we haven't seen it yet:
             stepGroup.startAnimatingWithImagesInRange(
                 NSRange(location: 0, length: animationLength),
                 duration: 1,
                 repeatCount: 1)
-            alreadySeen = true
             
-            // Putting this here fixes some weirdness, but it appears the memory *does* get flushed on occasion. Hrm. Not sure what to do.
-            setTimerForFunction("showTimer", seconds: 2)
+            // Get ready to show whichever UI element:
+            setTimerForFunction("showTemperature", seconds: 2)
+            
+        } else {
+            // Set the animation to the last frame (where it should have cleared the screen):
+            stepGroup.startAnimatingWithImagesInRange(
+                NSRange(location: animationLength-1, length: 1),
+                duration: 1,
+                repeatCount: 1)
+            
+            // Immediately show whichever UI element:
+            showTemperature()
         }
         
     }
@@ -88,36 +111,77 @@ class StepsInterfaceController: WKInterfaceController {
     // To-Do: Create methods that handle different ways of displaying the Step's info. Such as: changing celsius to fahrenheit with a tap (temperatureInFahrenheit = (celsius! * 1.8) + 32.0), or calculating how high to fill the Aeropress (displayed using the Aeropress notches).
     
     
+    // TEMPERATURE LOGIC:
+    func showTemperature() {
+        temperature = step.value
+        temperatureLabel.setText(temperatureFromDouble(temperature))
+        scaleLabel.setText("Celsius")
+        
+        isCelsius = true
+        temperatureButton.setHidden(false)
+    }
+    
+    @IBAction func temperatureButtonPressed() {
+        // Alternate between Celsius and Fahrenheit.
+        if !isCelsius {
+            temperature = ((temperature * 1.8) + 32.0)
+            isCelsius = false
+            scaleLabel.setText("Fahrenheit")
+            
+        } else {
+            temperature = ((temperature - 32.0) / 1.8)
+            isCelsius = true
+            scaleLabel.setText("Celsius")
+            
+        }
+        
+        temperatureLabel.setText(temperatureFromDouble(temperature))
+    }
+    
+    func temperatureFromDouble(value: Double) -> String {
+        // Convert the value to a string with a ° on the end.
+        let temperature = String(format: "%f", value) + "°"
+        return temperature
+    }
+    
+    
+    // TIMER LOGIC:
     func showTimer() {
-        let countdownDate = secondsFromDouble(step.value)
+        startingTime = step.value
+        countdown = secondsFromDouble(startingTime)
         
-        timer.setDate(countdownDate)
-        
-        timerStarted = false
-        
+        timer.setDate(countdown)
+        timerRunning = false
         timerButton.setHidden(false)
     }
     
-    
     @IBAction func timerButtonPressed() {
-        var countdownDate: NSDate
+        // Start and stop the timer.
         
-        if !timerStarted {
-            countdownDate = secondsFromDouble(step.value)
-            timer.setDate(countdownDate)
+        if !timerRunning {
+            // Set the starting values:
+            countdown = secondsFromDouble(startingTime)
+            timer.setDate(countdown)
+            
+            // And start it:
             timer.start()
-            timerStarted = true
+            timerRunning = true
+        
         } else {
+            // Set the current time remaining as the new starting value:
+            let timeRemaining = NSDate().timeIntervalSinceDate(countdown)
+            startingTime = -timeRemaining
+            
+            // And stop it:
             timer.stop()
-            timerStarted = false
+            timerRunning = false
+            
         }
     }
     
-    
     func secondsFromDouble(value: Double) -> NSDate {
         var now = NSDate()
-        var seconds: NSDate = now.dateByAddingTimeInterval(NSTimeInterval(step.value))
-        
+        var seconds: NSDate = now.dateByAddingTimeInterval(NSTimeInterval(value))
         return seconds
     }
     

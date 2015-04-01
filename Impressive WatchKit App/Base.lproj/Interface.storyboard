@@ -63,14 +63,31 @@
                     <items>
                         <group width="1" height="1" alignment="left" contentMode="scaleAspectFill" layout="vertical" id="nTS-TP-tux">
                             <items>
-                                <label alignment="right" text="Type" textAlignment="left" id="MzW-Dx-z3q">
+                                <label height="45" alignment="right" text="Type" textAlignment="left" id="MzW-Dx-z3q">
                                     <color key="textColor" red="1" green="1" blue="0.92043483260000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <fontDescription key="font" type="system" pointSize="33"/>
                                 </label>
+                                <button alignment="center" verticalAlignment="center" id="SdU-Sz-6pm" userLabel="temperatureButton">
+                                    <group key="contentGroup" width="1" alignment="left" layout="vertical" id="9I2-F8-3fN">
+                                        <items>
+                                            <label height="70" alignment="center" verticalAlignment="bottom" text="78°" minimumScaleFactor="0.90000000000000002" id="79E-zn-Q5r">
+                                                <color key="textColor" red="0.51774001120000002" green="0.83363062139999999" blue="0.71302789450000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="font" type="system" weight="semibold" pointSize="80"/>
+                                            </label>
+                                            <label alignment="right" verticalAlignment="bottom" text="Celsius" id="LtU-mE-DT1">
+                                                <color key="textColor" red="1" green="1" blue="0.92043483260000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                            </label>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <action selector="temperatureButtonPressed" destination="8Kz-Sq-ttO" id="ghl-9O-l2Y"/>
+                                    </connections>
+                                </button>
                                 <button alignment="center" verticalAlignment="center" id="9bw-vy-qML" userLabel="timerButton">
                                     <group key="contentGroup" width="1" alignment="left" layout="vertical" id="QwT-uq-wnj">
                                         <items>
-                                            <timer alignment="center" verticalAlignment="center" format="abbreviated" previewedSeconds="88" id="iwh-gT-Yvw">
+                                            <timer height="70" alignment="center" verticalAlignment="center" format="abbreviated" previewedSeconds="88" id="iwh-gT-Yvw">
                                                 <color key="textColor" red="0.51774001120000002" green="0.83363062139999999" blue="0.71302789450000004" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="font" type="system" weight="semibold" pointSize="80"/>
                                                 <calendarUnit key="units" second="YES"/>
@@ -86,7 +103,10 @@
                     </items>
                     <connections>
                         <outlet property="actionLabel" destination="MzW-Dx-z3q" id="ASE-FL-jFP"/>
+                        <outlet property="scaleLabel" destination="LtU-mE-DT1" id="bnC-jq-cgU"/>
                         <outlet property="stepGroup" destination="nTS-TP-tux" id="WlV-15-7oO"/>
+                        <outlet property="temperatureButton" destination="SdU-Sz-6pm" id="61f-hU-spF"/>
+                        <outlet property="temperatureLabel" destination="79E-zn-Q5r" id="HnU-mV-t5i"/>
                         <outlet property="timer" destination="iwh-gT-Yvw" id="wcS-M7-2ko"/>
                         <outlet property="timerButton" destination="9bw-vy-qML" id="AM1-fG-BhY"/>
                     </connections>
