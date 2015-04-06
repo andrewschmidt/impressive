@@ -23,6 +23,7 @@ class StepsInterfaceController: WKInterfaceController {
     // Timer button variables:
     @IBOutlet weak var timerButton: WKInterfaceButton!
     @IBOutlet weak var timer: WKInterfaceTimer!
+    @IBOutlet weak var startstopLabel: WKInterfaceLabel!
     var countdown: NSDate!
     var startingTime: Double!
     var timerRunning: Bool!
@@ -32,7 +33,7 @@ class StepsInterfaceController: WKInterfaceController {
     @IBOutlet weak var temperatureLabel: WKInterfaceLabel!
     @IBOutlet weak var scaleLabel: WKInterfaceLabel!
     var temperature: Double!
-    var isCelsius: Bool!
+    var scale: String!
     
     
     override func awakeWithContext(context: AnyObject?) {
@@ -89,7 +90,7 @@ class StepsInterfaceController: WKInterfaceController {
                 repeatCount: 1)
             
             // Get ready to show whichever UI element:
-            setTimerForFunction("showTemperature", seconds: 2)
+            setTimerForFunction("showTimer", seconds: 2)
             
         } else {
             // Set the animation to the last frame (where it should have cleared the screen):
@@ -99,7 +100,7 @@ class StepsInterfaceController: WKInterfaceController {
                 repeatCount: 1)
             
             // Immediately show whichever UI element:
-            showTemperature()
+            showTimer()
         }
         
     }
@@ -115,32 +116,32 @@ class StepsInterfaceController: WKInterfaceController {
     func showTemperature() {
         temperature = step.value
         temperatureLabel.setText(temperatureFromDouble(temperature))
-        scaleLabel.setText("Celsius")
         
-        isCelsius = true
+        scale = "Celsius"
+        scaleLabel.setText(scale)
+        
         temperatureButton.setHidden(false)
     }
     
     @IBAction func temperatureButtonPressed() {
         // Alternate between Celsius and Fahrenheit.
-        if !isCelsius {
+        if scale == "Celsius" {
             temperature = ((temperature * 1.8) + 32.0)
-            isCelsius = false
-            scaleLabel.setText("Fahrenheit")
+            scale = "Fahrenheit"
             
         } else {
             temperature = ((temperature - 32.0) / 1.8)
-            isCelsius = true
-            scaleLabel.setText("Celsius")
+            scale = "Celsius"
             
         }
         
+        scaleLabel.setText(scale)
         temperatureLabel.setText(temperatureFromDouble(temperature))
     }
     
     func temperatureFromDouble(value: Double) -> String {
         // Convert the value to a string with a ° on the end.
-        let temperature = String(format: "%f", value) + "°"
+        let temperature = String(format: "%.f", value) + "°"
         return temperature
     }
     
@@ -150,7 +151,9 @@ class StepsInterfaceController: WKInterfaceController {
         startingTime = step.value
         countdown = secondsFromDouble(startingTime)
         
+        startstopLabel.setText("Tap to start")
         timer.setDate(countdown)
+        
         timerRunning = false
         timerButton.setHidden(false)
     }
@@ -163,6 +166,9 @@ class StepsInterfaceController: WKInterfaceController {
             countdown = secondsFromDouble(startingTime)
             timer.setDate(countdown)
             
+            // Set the start/stop label text:
+            startstopLabel.setText("Tap to pause")
+            
             // And start it:
             timer.start()
             timerRunning = true
@@ -170,7 +176,18 @@ class StepsInterfaceController: WKInterfaceController {
         } else {
             // Set the current time remaining as the new starting value:
             let timeRemaining = NSDate().timeIntervalSinceDate(countdown)
-            startingTime = -timeRemaining
+            
+            // This confusing bit of code makes it so if the timer has finished counting down and a user taps it, it resets the timer to the full step value.
+            if timeRemaining < 0.0 {
+                startingTime = -timeRemaining
+            } else {
+                startingTime = step.value
+                countdown = secondsFromDouble(startingTime)
+                timer.setDate(countdown)
+            }
+            
+            // Set the start/stop label:
+            startstopLabel.setText("Tap to start")
             
             // And stop it:
             timer.stop()

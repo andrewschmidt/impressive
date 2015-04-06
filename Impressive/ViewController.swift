@@ -19,20 +19,24 @@ class ViewController: UIViewController {
 //        CKLoadSave.sharedInstance.saveRecipe(recipe, toDatabase: "public")
         
         
-//        println("VC: Attempting to fetch recipes from the cloud with a completion block...")
-//        
-//        CKLoadSave.sharedInstance.fetchPersonalRecipes() {
-//            
-//            (recipes: [Recipe]) in
-//            
-//            // I could put any code in here - like updating UI!
-//            // For now let's keep it simple.
-//            println("VC: And here they are, fetched and ready:")
-//            println(recipes)
-//            
-//        }
-//
-//        println("VC: While we wait for that to finish, let's move on...")
+        println("VC: Attempting to fetch recipes from the cloud with a completion block...")
+        
+        CKLoadSave.sharedInstance.fetchPersonalRecipes() {
+            
+            (recipes: [Recipe]) in
+            
+            // I could put any code in here - like updating UI!
+            // For now let's keep it simple.
+            println("VC: And here they are, fetched and ready:")
+            println(recipes)
+            let firstRecipe = recipes[0]
+            println(firstRecipe.name)
+            println(firstRecipe.author)
+            println(firstRecipe.brewer)
+            
+        }
+
+        println("VC: While we wait for that to finish, let's move on...")
     }
     
 

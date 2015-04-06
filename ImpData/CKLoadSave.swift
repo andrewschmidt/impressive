@@ -54,22 +54,76 @@ public class CKLoadSave: NSObject {
         let query = CKQuery(recordType: "Recipe", predicate: predicate)
         query.sortDescriptors = [sort]
         
-        privateDatabase.performQuery(query, inZoneWithID: nil) {
+        // Now that we've built the query, let's fetch those recipes!
+        fetchRecords(query, fromDatabase: "Private") {
+            records in
+            
+            for record in records {
+                let recipe: Recipe? = self.createRecipeFromRecord(record as CKRecord)
+                if recipe != nil {
+                    personalRecipes.append(recipe!)
+                }
+            }
+            
+            completion(returnRecipes: personalRecipes)
+        }
+    }
+    
+    
+    func fetchRecords(query: CKQuery, fromDatabase database: String, completion: (returnRecords: [CKRecord]) -> Void) {
+        
+        // First let's create a place to store our records:
+        var records = [CKRecord]()
+        
+        // We need to interpret the right CKDatabase based on the string sent:
+        var databaseToQuery: CKDatabase!
+
+        switch database {
+            case "Public":
+                databaseToQuery = publicDatabase
+            
+            case "Private":
+                databaseToQuery = privateDatabase
+            
+            default:
+                println("CKLOADSAVE: Database '\(database)' not found. Defaulting to 'Public'.")
+                databaseToQuery = publicDatabase
+        }
+        
+        // Now let's query the selected database:
+        databaseToQuery.performQuery(query, inZoneWithID: nil) {
             results, error in
             
             if error != nil {
-                println("CKLOADSAVE: Error fetching personal recipes:")
+                println("CKLOADSAVE: Error fetching records from database '\(database)'.")
                 println(error)
-                
-            } else {
-                for record in results {
-                    let recipe = self.createRecipeFromRecord(record as CKRecord)
-                    personalRecipes.append(recipe)
+                self.retryFetchRecords(query, fromDatabase: database) {
+                    records in
+                    completion(returnRecords: records as [CKRecord])
                 }
                 
-                // Now that we know we've got the data, let's send it back to the completion block!
-                completion(returnRecipes: personalRecipes)
+            } else {
                 
+                for record in results {
+                    records.append(record as CKRecord)
+                }
+                
+                // And finally, send the data back to the completion block:
+                completion(returnRecords: records)
+            }
+        }
+    }
+    
+    
+    // Here's a TOTALLY UNTESTED retry method:
+    func retryFetchRecords(query: CKQuery, fromDatabase database: String, completion: (returnRecords: [CKRecord]) -> Void) {
+        
+        println("CLOUDSAVE: Retrying failed fetch.")
+        
+        dispatch_sync(queue) { // Should I introduce a time delay here?
+            self.fetchRecords(query, fromDatabase: database) {
+                records in
+                completion(returnRecords: records as [CKRecord])
             }
         }
     }
@@ -121,10 +175,29 @@ public class CKLoadSave: NSObject {
     
     func createRecipeFromRecord(record: CKRecord) -> Recipe {
         
-        // First the easy stuff:
-        let name = record.objectForKey("name") as String
-        let author = record.objectForKey("author") as String
-        let brewer = record.objectForKey("brewer") as String
+        // This CANNOT be the right way to protect against nil values. But let's do it for now:
+        var name: String
+        var author: String
+        var brewer: String
+        
+        // If any of these keys don't exist or return nil, let's fill in the default values:
+        if let checkName = record.objectForKey("name") as? String {
+            name = checkName
+        } else {
+            name = ""
+        }
+        
+        if let checkAuthor = record.objectForKey("author") as? String {
+            author = checkAuthor
+        } else {
+            author = ""
+        }
+        
+        if let checkBrewer = record.objectForKey("brewer") as? String {
+            brewer = checkBrewer
+        } else {
+            brewer = "AeroPress"
+        }
         
         // Next, turn corresponding types & values in two arrays into Step objects.
         let stepTypes = record.objectForKey("stepTypes") as [String]
@@ -140,7 +213,10 @@ public class CKLoadSave: NSObject {
             steps.append(step)
         }
         
+        
         let recipe = Recipe(name, by: author, using: brewer, steps: steps)
+
+        
         return recipe
     }
     
