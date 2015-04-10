@@ -89,7 +89,7 @@ public class LoadSave: NSObject {
         var savedRecipes = [Recipe]()
         
         for recipeAsNSDict in savedRecipesPlistAsArray {
-            let recipe = Recipe(fromDictionary: recipeAsNSDict as NSDictionary)
+            let recipe = Recipe(fromDictionary: recipeAsNSDict as! NSDictionary)
             savedRecipes.append(recipe)
         }
        

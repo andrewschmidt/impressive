@@ -28,14 +28,14 @@ public class Recipe: NSObject {
         
         var stepsArray = [Step]()
         
-        for stepAsNSDict in dictionary["steps"] as NSArray {
-            let step = Step(fromDictionary: stepAsNSDict as NSDictionary)
+        for stepAsNSDict in dictionary["steps"] as! NSArray {
+            let step = Step(fromDictionary: stepAsNSDict as! NSDictionary)
             stepsArray.append(step)
         }
         
-        self.name = dictionary["name"] as String
-        self.author = dictionary["author"] as String
-        self.brewer = dictionary["brewer"] as String
+        self.name = dictionary["name"] as! String
+        self.author = dictionary["author"] as! String
+        self.brewer = dictionary["brewer"] as! String
         self.steps = stepsArray
     }
     

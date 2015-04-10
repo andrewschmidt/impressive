@@ -8,6 +8,7 @@
 
 import UIKit
 import CloudKit
+import EventKit
 
 public class CKLoadSave: NSObject {
     
@@ -45,8 +46,21 @@ public class CKLoadSave: NSObject {
     
     
     public func fetchDaily() {
-        // get the newest Daily record
-        // check if the record's creation date matches today's date
+        // First? Check to see if we already received a daily recipe for today, maybe from a subscription, and stored it in Tomorrow.
+        
+        // Get the "Daily" record matching today's date.
+        // First we need to get a time range covering the entire day:
+        let eventStore = EKEventStore()
+        let calendar = NSCalendar()
+        let today = NSDate()
+        let startDate = calendar.dateBySettingHour(0, minute: 0, second: 0, ofDate: today, options: nil)
+        let endDate = calendar.dateBySettingHour(23, minute: 59, second: 59, ofDate: today, options: nil)
+        
+        // Next we build the predicate:
+        
+        
+        
+        // If there isn't one:
         
         // if so:
         // get the recipe record referenced by the daily record,
@@ -168,7 +182,7 @@ public class CKLoadSave: NSObject {
             } else {
                 
                 for record in results {
-                    records.append(record as CKRecord)
+                    records.append(record as! CKRecord)
                 }
                 
                 // And finally, send the data back to the completion block:
@@ -264,8 +278,8 @@ public class CKLoadSave: NSObject {
         }
         
         // Next, turn corresponding types & values in two arrays into Step objects.
-        let stepTypes = record.objectForKey("stepTypes") as [String]
-        let stepValues = record.objectForKey("stepValues") as [Double]
+        let stepTypes = record.objectForKey("stepTypes") as! [String]
+        let stepValues = record.objectForKey("stepValues") as! [Double]
         
         var steps = [Step]()
         

@@ -66,7 +66,7 @@ class MenuInterfaceController: WKInterfaceController {
         recipeTable.setRowTypes(rowTypes)
         
         // Set the label of the special recipe:
-        let specialRow = recipeTable.rowControllerAtIndex(0) as SpecialTableRowController
+        let specialRow = recipeTable.rowControllerAtIndex(0) as! SpecialTableRowController
         specialRow.specialNameLabel.setText(specialRecipe.name)
         
         // And set the labels of the saved recipes:
@@ -75,7 +75,7 @@ class MenuInterfaceController: WKInterfaceController {
             // We need to adjust the index number, because the first row is already taken care of:
             let adjustedIndex = index+1
             
-            let row = recipeTable.rowControllerAtIndex(adjustedIndex) as MenuTableRowController
+            let row = recipeTable.rowControllerAtIndex(adjustedIndex) as! MenuTableRowController
 
             row.recipeNameLabel.setText(currentRecipe.name)
         }

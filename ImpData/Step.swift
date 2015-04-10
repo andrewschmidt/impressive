@@ -21,8 +21,8 @@ public class Step: NSObject {
     
     
     init(fromDictionary dictionary: NSDictionary) {
-        self.type = dictionary["type"] as String
-        self.value = dictionary["value"] as Double
+        self.type = dictionary["type"] as! String
+        self.value = dictionary["value"] as! Double
     }
     
     

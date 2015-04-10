@@ -39,7 +39,7 @@ class StepsInterfaceController: WKInterfaceController {
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
-        step = context as Step
+        step = context as! Step
         
         actionLabel.setText(step.type)
         

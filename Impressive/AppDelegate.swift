@@ -21,59 +21,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-    func application(application: UIApplication, handleWatchKitExtensionRequest userInfo: [String : AnyObject]!, reply: (([NSObject: AnyObject]!) -> Void)!) {
+    func application(application: UIApplication, handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]?, reply: (([NSObject : AnyObject]!) -> Void)!) {
         
         println("APPDELEGATE: Awoken by Watch!")
         
-//        for (key, value) in userInfo {
-//            println("APPDELEGATE: Watch says: \(key).")
-//            switch key! {
-//                case "fetchPersonalRecipes":
-//                    println("APPDELEGATE: Attempting to fetch personal recipes.")
-//                    CKLoadSave.sharedInstance.fetchPersonalRecipes() {
-//                        recipes in
-//                        println("APPDELEGATE: Returning personal recipes to Watch.")
-//                        reply(["recipes": recipes])
-//                    }
-//
-//                default:
-//                    println("APPDELEGATE: Error - received nonsensical command from Watch:")
-//                    println(value)
-//                    reply(["error": "APPDELEGATE: Error - received nonsensical command from Watch: \(value)"])
-//
-//            }
-//        }
-        for (key, value) in userInfo {
+        for (key, value) in userInfo! {
             switch key {
-                case "fetchPersonalRecipes":
-                    
-                    if value as String == "overwrite" {
-                        CKLoadSave.sharedInstance.fetchPersonalRecipes() {
-                            recipes in
-                            
-                            LoadSave.sharedInstance.overwriteRecipesInPlist("SavedRecipes", withRecipes: recipes)
-                            
-                            reply(["success": "PARENTAPP: Overwrote the saved recipes with personal recipes from the cloud."])
-                        }
-                    } else {
-                        CKLoadSave.sharedInstance.fetchPersonalRecipes() {
-                            recipes in
-                            
-                            for recipe in recipes {
-                                LoadSave.sharedInstance.saveRecipe(recipe, inPlistNamed: "SavedRecipes")
-                            }
-                            
-                            reply(["success": "PARENTAPP: Added personal recipes from the cloud to saved recipes."])
-                        }
+            case "fetchPersonalRecipes":
+                
+                if value as! String == "overwrite" {
+                    CKLoadSave.sharedInstance.fetchPersonalRecipes() {
+                        recipes in
+                        
+                        LoadSave.sharedInstance.overwriteRecipesInPlist("SavedRecipes", withRecipes: recipes)
+                        
+                        reply(["success": "PARENTAPP: Overwrote the saved recipes with personal recipes from the cloud."])
                     }
-
-                                    
-                default:
-                    reply(["error": "APPDELEGATE: Error - received nonsensical command from Watch: \(value)"])
+                } else {
+                    CKLoadSave.sharedInstance.fetchPersonalRecipes() {
+                        recipes in
+                        
+                        for recipe in recipes {
+                            LoadSave.sharedInstance.saveRecipe(recipe, inPlistNamed: "SavedRecipes")
+                        }
+                        
+                        reply(["success": "PARENTAPP: Added personal recipes from the cloud to saved recipes."])
+                    }
+                }
+                
+                
+            default:
+                reply(["error": "APPDELEGATE: Error - received nonsensical command from Watch: \(value)"])
             }
-
+            
         }
-        
     }
     
 
