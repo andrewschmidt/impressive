@@ -8,7 +8,6 @@
 
 import UIKit
 import CloudKit
-import EventKit
 
 public class CKLoadSave: NSObject {
     
@@ -50,24 +49,39 @@ public class CKLoadSave: NSObject {
         
         // Get the "Daily" record matching today's date.
         // First we need to get a time range covering the entire day:
-        let eventStore = EKEventStore()
-        let calendar = NSCalendar()
+        let calendar = NSCalendar.currentCalendar() // or = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
         let today = NSDate()
-        let startDate = calendar.dateBySettingHour(0, minute: 0, second: 0, ofDate: today, options: nil)
-        let endDate = calendar.dateBySettingHour(23, minute: 59, second: 59, ofDate: today, options: nil)
+        println("CKLOADSAVE: today is:", today)
+        let startDate = calendar.dateBySettingHour(0, minute: 0, second: 0, ofDate: today, options: NSCalendarOptions())
+        let endDate = calendar.dateBySettingHour(23, minute: 59, second: 59, ofDate: today, options: NSCalendarOptions())
+        println("CKLOADSAVE: fetchDaily's startDate is: ", startDate)
+        println("CKLOADSAVE: fetchDaily's endDate is: ", endDate)
         
-        // Next we build the predicate:
+        // Next we build the predicate - the attempt below is a stab in the dark:
+        let predicate = NSPredicate(format: "(creationDate > %@) AND (creationDate < %@)", startDate!, endDate!)
         
+        // Then somehow use that predicate to create a CKQuery:
+        let query = CKQuery(recordType: "Daily", predicate: predicate)
         
+        // Now let's run the query, and see if we get anything back.
+        fetchRecords(query, fromDatabase: "public") {
+            records, error in
+            
+            if error == nil {
+                println("CKLOADSAVE: FetchDaily somehow fetched a daily record? \r")
+            } else {
+                println("CKLOADSAVE: FetchDaily was returned an error. The error is:")
+                println(error, "\r")
+            }
+            
+        }
         
-        // If there isn't one:
-        
-        // if so:
+        // IF SO:
         // get the recipe record referenced by the daily record,
         // convert it into a Recipe,
         // send it back to the function caller.
         
-        // if not:
+        // IF NOT:
         // get the recipe record referenced by the daily record,
         // get the creation date of that recipe record,
         // query for public recipe records created after that date - we need the next 1 chronologically
@@ -86,7 +100,7 @@ public class CKLoadSave: NSObject {
         
         // Now that we've built the query, let's fetch those recipes!
         fetchRecords(query, fromDatabase: "public") {
-            records in
+            records, error in
             println("CKLOADSAVE: Attempting to save the first public recipe (sorted by date) in a daily record.")
             self.saveDaily(records[1] as CKRecord)
             
@@ -132,7 +146,7 @@ public class CKLoadSave: NSObject {
         
         // Now that we've built the query, let's fetch those recipes!
         fetchRecords(query, fromDatabase: "private") {
-            records in
+            records, error in
             
             for record in records {
                 let recipe: Recipe? = self.createRecipeFromRecord(record as CKRecord)
@@ -146,7 +160,7 @@ public class CKLoadSave: NSObject {
     }
     
     
-    func fetchRecords(query: CKQuery, fromDatabase database: String, completion: (returnRecords: [CKRecord]) -> Void) {
+    func fetchRecords(query: CKQuery, fromDatabase database: String, completion: (returnRecords: [CKRecord], error: NSError!) -> Void) {
         
         // First let's create a place to store our records:
         var records = [CKRecord]()
@@ -170,15 +184,24 @@ public class CKLoadSave: NSObject {
         databaseToQuery.performQuery(query, inZoneWithID: nil) {
             results, error in
             
+            // Need to expand this to handle different errors in different ways. Below is really what should happen only if there's a connection issue. Maybe a switch statement, based on the different errors that can be returned?
             if error != nil {
                 println("CKLOADSAVE: Error fetching records from the \(database) database. The error is:")
-                println(error)
-                println("\r")
-                self.retryFetchRecords(query, fromDatabase: database) {
-                    records in
-                    completion(returnRecords: records as [CKRecord])
-                }
+                println(error, "\r")
                 
+                switch error.code {
+                    
+                    case CKErrorCode.UnknownItem.rawValue:
+                        println("CKLOADSAVE: Caught an UnknownItem error!")
+                    
+                    default:
+                        println("CKLOADSAVE: Error outside the defined cases, trying to fetch again.")
+                        self.retryFetchRecords(query, fromDatabase: database) {
+                            records in
+                            completion(returnRecords: records as [CKRecord], error: error)
+                        }
+                }
+
             } else {
                 
                 for record in results {
@@ -186,7 +209,7 @@ public class CKLoadSave: NSObject {
                 }
                 
                 // And finally, send the data back to the completion block:
-                completion(returnRecords: records)
+                completion(returnRecords: records, error: nil)
             }
         }
     }
@@ -199,7 +222,7 @@ public class CKLoadSave: NSObject {
         
         dispatch_sync(queue) { // Should I introduce a time delay here?
             self.fetchRecords(query, fromDatabase: database) {
-                records in
+                records, error in
                 completion(returnRecords: records as [CKRecord])
             }
         }
