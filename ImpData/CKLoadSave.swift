@@ -51,12 +51,14 @@ public class CKLoadSave: NSObject {
         // First we need to get a time range covering the entire day:
         let calendar = NSCalendar.currentCalendar() // or = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
         let today = NSDate()
-        let startDate = calendar.dateBySettingHour(0, minute: 0, second: 0, ofDate: today, options: NSCalendarOptions())!
-        let endDate = calendar.dateBySettingHour(23, minute: 59, second: 59, ofDate: today, options: NSCalendarOptions())!
+        let startDate = calendar.dateBySettingHour(0, minute: 0, second: 0, ofDate: today, options: NSCalendarOptions(0))!
+        let endDate = calendar.dateBySettingHour(23, minute: 59, second: 59, ofDate: today, options: NSCalendarOptions(0))!
         
-//        println("CKLOADSAVE: today is:", today)
-//        println("CKLOADSAVE: fetchDaily's startDate is: ", startDate)
-//        println("CKLOADSAVE: fetchDaily's endDate is: ", endDate)
+        // I haven't yet been able to test this from a phone in Japan - because the simulator doesn't appear to change locations properly.
+        // Need to figure out how to tackle that.
+        println("CKLOADSAVE: today is:", today)
+        println("CKLOADSAVE: fetchDaily's startDate is: ", startDate)
+        println("CKLOADSAVE: fetchDaily's endDate is: ", endDate)
         
         // Next we build the predicate - the attempt below is a stab in the dark:
         let predicate = NSPredicate(format: "(creationDate > %@) AND (creationDate < %@)", startDate, endDate)
@@ -71,9 +73,9 @@ public class CKLoadSave: NSObject {
             if records.count == 0 {
                 println("CKLOADSAVE: No Daily records returned!")
             } else {
-                println("CKLOADSAVE: Daily record detected, time to handle it...")
+                println("CKLOADSAVE: Daily record detected, time to handle it... But for now, here it is:")
+                println(records[0])
             }
-            
         }
         
         // IF SO:
@@ -90,10 +92,10 @@ public class CKLoadSave: NSObject {
     }
     
     
-    public func testDaily() {
+    public func testSaveDaily() {
         
         let predicate = NSPredicate(value: true)
-        let sort = NSSortDescriptor(key: "creationDate", ascending: true)
+        let sort = NSSortDescriptor(key: "creationDate", ascending: false) //Does ascending=false return the newest record?
         
         let query = CKQuery(recordType: "Recipe", predicate: predicate)
         query.sortDescriptors = [sort]
@@ -101,9 +103,8 @@ public class CKLoadSave: NSObject {
         // Now that we've built the query, let's fetch those recipes!
         fetchRecords(query, fromDatabase: "public") {
             records in
-            println("CKLOADSAVE: Attempting to save the first public recipe (sorted by date) in a daily record.")
-            self.saveDaily(records[1] as CKRecord)
-            
+            println("CKLOADSAVE: Attempting to save the newest public recipe in a daily record.")
+            self.saveDaily(records[0] as CKRecord) //Used to be records[1]?
         }
 
     }

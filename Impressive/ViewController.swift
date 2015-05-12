@@ -41,8 +41,10 @@ class ViewController: UIViewController {
 //        let recipes: [Recipe] = LoadSave.sharedInstance.loadRecipes("SavedRecipes")
 //        CKLoadSave.sharedInstance.saveRecipes(recipes, toDatabase: "Public")
         
-//        CKLoadSave.sharedInstance.testDaily()
+//        println("VIEWCONTROLLER: Attempting to make the newest record in the public database today's daily record.")
+//        CKLoadSave.sharedInstance.testSaveDaily()
         
+        println("VIEWCONTROLLER: And now attempting to fetch it.")
         CKLoadSave.sharedInstance.fetchDaily()
     }
     

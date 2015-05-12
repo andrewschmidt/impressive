@@ -24,7 +24,7 @@ class MenuInterfaceController: WKInterfaceController {
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
-        loadTableData()
+//        loadTableData()
         
         // What's below is great. Need to decide the best way to refactor it into its own function (or pair of functions). But cool! Communication with the main app is working!
         
@@ -103,6 +103,9 @@ class MenuInterfaceController: WKInterfaceController {
     
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
+        
+        loadTableData()
+        
         super.willActivate()
     }
 
