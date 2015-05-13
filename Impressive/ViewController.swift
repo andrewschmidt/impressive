@@ -44,8 +44,13 @@ class ViewController: UIViewController {
 //        println("VIEWCONTROLLER: Attempting to make the newest record in the public database today's daily record.")
 //        CKLoadSave.sharedInstance.testSaveDaily()
         
-        println("VIEWCONTROLLER: And now attempting to fetch it.")
-        CKLoadSave.sharedInstance.fetchDaily()
+        println("VIEWCONTROLLER: Attempting to fetch the recipe of the day...")
+        CKLoadSave.sharedInstance.fetchDaily() {
+            recipe in
+            
+            println("\rVIEWCONTROLLER: Received the daily recipe! Unbelievable. Here it is, in all its glory:")
+            println(recipe)
+        }
     }
     
 
