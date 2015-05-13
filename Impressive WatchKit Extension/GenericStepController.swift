@@ -11,7 +11,7 @@ import Foundation
 import ImpData
 
 
-class StepsInterfaceController: WKInterfaceController {
+class GenericStepController: WKInterfaceController {
 
     // Interface Controller variables:
     @IBOutlet weak var stepGroup: WKInterfaceGroup!
@@ -43,8 +43,22 @@ class StepsInterfaceController: WKInterfaceController {
         
         actionLabel.setText(step.type)
         
+        // This didn't work.
+//        if let checkForImage = UIImage(contentsOfFile: step.type) {
+//            stepGroup.setBackgroundImageNamed(step.type)
+//            animationLength = 20
+//            
+//        } else {
+//            // Default settings here. Maybe no animation? For now let's default to Taylor Swift:
+//            stepGroup.setBackgroundImageNamed("TSwiftKarate")
+//            animationLength = 7
+//        }
+        
         // Below is a switch to perform custom UI commands depending on the step type. I'd like to name each animation the same as the step's type, so we won't need a Switch statement to handle those — but I bet we'll still need it to do things like create timers on buttons, etc.
         
+        // Could still do a switch statement to set up timer, temperature button, etc., with a default that doesn't set up anything.
+        // But if we got the direction of multiple step interface controllers, we won't need it.
+                
         switch step.type {
             case "Heat":
                 stepGroup.setBackgroundImageNamed("TSwiftKarate")
@@ -66,8 +80,8 @@ class StepsInterfaceController: WKInterfaceController {
                 println("STEPSIC: Couldn't parse step type.")
         }
         
-        timerButton.setHidden(true)
-        temperatureButton.setHidden(true)
+//        timerButton.setHidden(true)
+//        temperatureButton.setHidden(true)
     
     }
     

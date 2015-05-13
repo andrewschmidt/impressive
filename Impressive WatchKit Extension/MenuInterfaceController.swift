@@ -94,7 +94,14 @@ class MenuInterfaceController: WKInterfaceController {
             selectedRecipe = savedRecipes[adjustedRowIndex]
         }
         
-         let controllers: [String] = Array(count: selectedRecipe.steps.count, repeatedValue: "StepsInterfaceController")
+//         let controllers: [String] = Array(count: selectedRecipe.steps.count, repeatedValue: "StepsInterfaceController")
+        
+        var controllers = [String]()
+        
+        for step in selectedRecipe.steps {
+            let controller = step.type + "Step"
+            controllers.append(controller)
+        }
 
          presentControllerWithNames(controllers, contexts: selectedRecipe.steps)
 
