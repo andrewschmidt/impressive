@@ -129,9 +129,9 @@ public class CKLoadSave: NSObject {
                             let previousCreationDate = previousDailyRecipeRecord.objectForKey("creationDate") as! NSDate
                             
                             // So we can query for the next Recipe record, chronologically:
-                            let nextRecipePredicate = NSPredicate(format: "creationDate > %@", previousCreationDate)
+                            let newerThan = NSPredicate(format: "creationDate > %@", previousCreationDate)
                             let oldestToNewest = NSSortDescriptor(key: "creationDate", ascending: true)
-                            let query = CKQuery(recordType: "Recipe", predicate: nextRecipePredicate)
+                            let query = CKQuery(recordType: "Recipe", predicate: newerThan)
                             query.sortDescriptors = [oldestToNewest]
                             
                             self.fetchRecords(query, fromDatabase: "public") {
@@ -162,9 +162,9 @@ public class CKLoadSave: NSObject {
                                     println("CKLOADSAVE: There aren't any newer recipes to use for the pick of the day!")
                                     println("CKLOADSAVE: Querying for the oldest recipe...")
                                     
-                                    let predicate = NSPredicate(value: true)
+                                    let allRecords = NSPredicate(value: true)
                                     let oldestToNewest = NSSortDescriptor(key: "creationDate", ascending: true)
-                                    let query = CKQuery(recordType: "Recipe", predicate: predicate)
+                                    let query = CKQuery(recordType: "Recipe", predicate: allRecords)
                                     query.sortDescriptors = [oldestToNewest]
                                     
                                     self.fetchRecords(query, fromDatabase: "public") {
@@ -186,10 +186,67 @@ public class CKLoadSave: NSObject {
                         
                     } else {
                         // The rare occassion when there are NO existing daily records.
+                        println("\rCKLOADSAVE: No existing Daily records found.")
                         // Try making a daily record referencing the oldest Recipe record.
-                        // If there are no Recipe records, upload a default starter recipe and use it.
+                        println("CKLOADSAVE: Querying for oldest Recipe...")
+                        
+                        var recipeRecord: CKRecord!
+                        
+                        let allRecords = NSPredicate(value: true)
+                        let oldestToNewest = NSSortDescriptor(key: "creationDate", ascending: true)
+                        let query = CKQuery(recordType: "Recipe", predicate: allRecords)
+                        query.sortDescriptors = [oldestToNewest]
+                        
+                        self.fetchRecords(query, fromDatabase: "public") {
+                            records in
+                            
+                            if records.count != 0 {
+                                
+                                // We found the oldest Recipe, now let's create a Daily record referencing it.
+                                println("\rCKLOADSAVE: Creating a first Daily record with the oldest Recipe record.")
+
+                                recipeRecord = records[0]
+                                self.saveDaily(recipeRecord) {
+                                    success in
+                                    if success == true {
+                                        println("CKLOADSAVE: Successfully created the first Daily record.")
+                                        self.retryFetchDaily(){recipe in completion(dailyRecipe: recipe)}
+                                    }
+                                }
+
+                            } else {
+                                
+                                // If there are no Recipe records, upload a default starter recipe and use it.
+                                println("CKLOADSAVE: No Recipe records found! Uploading the default...")
+                                
+                                let defaultDailyRecipe = LoadSave.sharedInstance.loadRecipe("SpecialRecipe")
+                                self.saveRecipe(defaultDailyRecipe, toDatabase: "public"){
+                                    success in
+                                    
+                                    // With a bit of a delay to give the database time to realize it has a new Daily record:
+                                    let delay = 3.0 * Double(NSEC_PER_SEC) //Carefully tuned: 5 seconds was enough, 1.5 too little.
+                                    let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+                                    dispatch_after(time, dispatch_get_main_queue()) {
+                                        println("CKLOADSAVE: Now attempting to use the default.")
+                                        
+                                        self.fetchRecords(query, fromDatabase: "public") {
+                                            records in
+                                            recipeRecord = records[0]
+                                            
+                                            self.saveDaily(recipeRecord) {
+                                                success in
+                                                if success == true {
+                                                    println("CKLOADSAVE: Successfully created the first Daily record.")
+                                                    self.retryFetchDaily(){recipe in completion(dailyRecipe: recipe)}
+                                                }
+                                            }
+                                        }
+                                    }
+                                    
+                                }
+                            }
+                        }
                     }
-                    
                 }
             }
         }
@@ -376,14 +433,14 @@ public class CKLoadSave: NSObject {
     }
     
     
-    public func saveRecipes(recipes: [Recipe], toDatabase database: String) {
+    public func saveRecipes(recipes: [Recipe], toDatabase database: String, completion: (success: Bool) -> Void) {
         for recipe in recipes {
-            saveRecipe(recipe, toDatabase: database)
+            saveRecipe(recipe, toDatabase: database){success in completion(success: success)}
         }
     }
     
     
-    public func saveRecipe(recipe: Recipe, toDatabase database: String) {
+    public func saveRecipe(recipe: Recipe, toDatabase database: String, completion: (success: Bool) -> Void) {
         
         // Unfortunately we can't upload NSDicts — which are what we use to store Steps client-side. 
         // Instead, let's break all of the recipe's steps down into two arrays - one of types, and one of values.
@@ -415,7 +472,7 @@ public class CKLoadSave: NSObject {
         
         // Now we save it!
         dispatch_sync(queue) {
-            self.saveRecord(recipeRecord, toDatabase: database){success in}
+            self.saveRecord(recipeRecord, toDatabase: database){success in completion(success: success)}
         }
         
     }
@@ -565,7 +622,6 @@ public class CKLoadSave: NSObject {
                     }
                     println("\r")
                     println(title + message + "\r")
-                    println("\r")
                 }
                 
             })
