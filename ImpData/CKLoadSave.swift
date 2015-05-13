@@ -314,7 +314,7 @@ public class CKLoadSave: NSObject {
                 println(daily)
                 println("\r")
                 // Clean-up: let's delete any older Daily records that reference the same recipe.
-                // This way the Daily records function more like a revolving playlist.
+                // This way the Daily records function more like a batting order, or a playlist on repeat.
                 let sameButOlder = NSPredicate(format: "(creationDate < %@) AND (recipe == %@)", startSaveTime, referencedRecipe) //Toldya.
                 let query = CKQuery(recordType: "Daily", predicate: sameButOlder)
                 
