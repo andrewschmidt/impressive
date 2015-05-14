@@ -36,7 +36,7 @@ class StirStepController: WKInterfaceController {
         typeLabel.setText(step.type)
         
         stepGroup.setBackgroundImageNamed("TSwiftKarate") // Eventually this should also use step.type - or simply reference an image baked into the storyboard?
-        animationLength = 20
+        animationLength = 7
         
         timerButton.setHidden(true)
     }
@@ -45,7 +45,7 @@ class StirStepController: WKInterfaceController {
     override func willActivate() {
         super.willActivate()
         
-//        timerButton.setHidden(true) // Crashing with this, I think...
+        //        timerButton.setHidden(true) // Crashing with this, I think...
         
         if !alreadySeen {
             alreadySeen = true
@@ -67,7 +67,7 @@ class StirStepController: WKInterfaceController {
                 repeatCount: 1)
             
             // Immediately show whichever UI element:
-//            showTimer() // Crashing with this, I think...
+            //            showTimer() // Crashing with this, I think...
         }
         
     }

@@ -35,7 +35,7 @@ class PourStepController: WKInterfaceController {
         
         typeLabel.setText(step.type)
 
-        stepGroup.setBackgroundImageNamed("Mushroom") // Eventually this should also use step.type - or simply reference an image baked into the storyboard?
+        stepGroup.setBackgroundImageNamed("Mushroom")
         animationLength = 20
         
         timerButton.setHidden(true)
@@ -44,8 +44,7 @@ class PourStepController: WKInterfaceController {
     
     override func willActivate() {
         super.willActivate()
-        
-//        timerButton.setHidden(true) // Crashing with this, I think...
+
         
         if !alreadySeen {
             alreadySeen = true

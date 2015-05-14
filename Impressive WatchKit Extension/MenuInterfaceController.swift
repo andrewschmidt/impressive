@@ -50,6 +50,8 @@ class MenuInterfaceController: WKInterfaceController {
     
     private func loadTableData() {
         
+        // WHOA. I NEED to nest most of this in a completion block - this could be why it's so hard to get the app running!
+        
         // First let's load our pick of the day & saved recipes.
         specialRecipe = LoadSave.sharedInstance.loadRecipe("SpecialRecipe")
         savedRecipes = LoadSave.sharedInstance.loadRecipes("SavedRecipes")
@@ -97,13 +99,13 @@ class MenuInterfaceController: WKInterfaceController {
 //         let controllers: [String] = Array(count: selectedRecipe.steps.count, repeatedValue: "StepsInterfaceController")
         
         var controllers = [String]()
-        
+                
         for step in selectedRecipe.steps {
             let controller = step.type + "Step"
             controllers.append(controller)
         }
-
-         presentControllerWithNames(controllers, contexts: selectedRecipe.steps)
+        
+        presentControllerWithNames(controllers, contexts: selectedRecipe.steps)
 
     }
 

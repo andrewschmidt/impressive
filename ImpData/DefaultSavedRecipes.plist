@@ -15,13 +15,13 @@
 				<key>value</key>
 				<integer>10</integer>
 				<key>type</key>
-				<string>Heat</string>
+				<string>Pour</string>
 			</dict>
 			<dict>
 				<key>value</key>
 				<real>100</real>
 				<key>type</key>
-				<string>Heat</string>
+				<string>Pour</string>
 			</dict>
 			<dict>
 				<key>value</key>

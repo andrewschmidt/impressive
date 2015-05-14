@@ -33,7 +33,8 @@ class HeatStepController: WKInterfaceController {
         step = context as! Step
         
         typeLabel.setText(step.type)
-        stepGroup.setBackgroundImageNamed("TSwiftKarate")  // Eventually this should also use step.type - or simply reference an image baked into the storyboard?
+        
+        stepGroup.setBackgroundImageNamed("TSwiftKarate")
         animationLength = 7
         
         temperatureButton.setHidden(true)
@@ -63,7 +64,7 @@ class HeatStepController: WKInterfaceController {
                 NSRange(location: animationLength-1, length: 1),
                 duration: 1,
                 repeatCount: 1)
-            
+                        
             // Immediately show whichever UI element:
 //            showTemperature() // Crashing with this.
         }

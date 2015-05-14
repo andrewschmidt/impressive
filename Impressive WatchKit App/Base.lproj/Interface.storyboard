@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3737"/>
     </dependencies>
     <scenes>
-        <!--Daily ☕️-->
+        <!--Daily Press-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller identifier="Menu" title="Daily ☕️" id="AgC-eL-Hgc" customClass="MenuInterfaceController" customModule="Impressive_WatchKit_Extension">
+                <controller identifier="Menu" title="Daily Press" id="AgC-eL-Hgc" customClass="MenuInterfaceController" customModule="Impressive_WatchKit_Extension">
                     <items>
                         <table alignment="left" id="tkp-c7-E3K">
                             <items>
@@ -58,15 +58,15 @@
         <!--Heat-->
         <scene sceneID="UZO-fa-rNX">
             <objects>
-                <controller identifier="HeatStep" title="Heat" id="s78-In-sBF" customClass="HeatStepController" customModule="Impressive_WatchKit_Extension">
+                <controller identifier="HeatStep" title="Heat" hidesWhenLoading="NO" id="s78-In-sBF" customClass="HeatStepController" customModule="Impressive_WatchKit_Extension">
                     <items>
-                        <group width="1" height="1" alignment="left" contentMode="scaleAspectFill" layout="vertical" id="EkH-Aq-cYU">
+                        <group width="1" height="1" alignment="left" backgroundImage="TSwiftKarate1" contentMode="scaleAspectFill" layout="vertical" id="EkH-Aq-cYU">
                             <items>
-                                <label alignment="right" text="Type" textAlignment="left" id="P59-R4-M4P">
+                                <label alignment="right" text="Heat" textAlignment="left" id="P59-R4-M4P">
                                     <color key="textColor" red="1" green="1" blue="0.92043483260000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <fontDescription key="font" type="system" pointSize="30"/>
                                 </label>
-                                <button alignment="center" verticalAlignment="center" id="P4g-6L-t7I" userLabel="temperatureButton">
+                                <button alignment="center" verticalAlignment="bottom" hidden="YES" id="P4g-6L-t7I" userLabel="temperatureButton">
                                     <group key="contentGroup" width="1" alignment="left" layout="vertical" id="Osm-U8-N5x">
                                         <items>
                                             <label height="80" alignment="center" verticalAlignment="center" text="188°" textAlignment="center" minimumScaleFactor="0.0" id="Dta-Dn-XL6">
@@ -100,15 +100,15 @@
         <!--Pour-->
         <scene sceneID="jEp-2J-L95">
             <objects>
-                <controller identifier="PourStep" title="Pour" id="QTZ-oZ-hfA" customClass="PourStepController" customModule="Impressive_WatchKit_Extension">
+                <controller identifier="PourStep" title="Pour" hidesWhenLoading="NO" id="QTZ-oZ-hfA" customClass="PourStepController" customModule="Impressive_WatchKit_Extension">
                     <items>
-                        <group width="1" height="1" alignment="left" contentMode="scaleAspectFill" layout="vertical" id="vUO-kk-90y">
+                        <group width="1" height="1" alignment="left" backgroundImage="MushroomStill" contentMode="scaleAspectFill" layout="vertical" id="vUO-kk-90y">
                             <items>
-                                <label alignment="right" text="Type" textAlignment="left" id="sdy-5p-Thn">
+                                <label alignment="right" text="Pour" textAlignment="left" id="sdy-5p-Thn">
                                     <color key="textColor" red="1" green="1" blue="0.92043483260000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <fontDescription key="font" type="system" pointSize="30"/>
                                 </label>
-                                <button alignment="center" verticalAlignment="center" id="a9I-Cb-j8V" userLabel="timerButton">
+                                <button alignment="center" verticalAlignment="bottom" hidden="YES" id="a9I-Cb-j8V" userLabel="timerButton">
                                     <group key="contentGroup" alignment="left" layout="vertical" id="9sr-jZ-IsI">
                                         <items>
                                             <timer height="80" alignment="center" verticalAlignment="center" textAlignment="center" minimumScaleFactor="0.0" format="abbreviated" previewedSeconds="80" id="pC0-Gz-Kd5">
@@ -141,60 +141,60 @@
             <point key="canvasLocation" x="433" y="557"/>
         </scene>
         <!--Stir-->
-        <scene sceneID="g3t-ie-zOL">
+        <scene sceneID="1aa-jg-BHA">
             <objects>
-                <controller identifier="StirStep" title="Stir" id="xTt-I9-zbT" customClass="StirStepController" customModule="Impressive_WatchKit_Extension">
+                <controller identifier="StirStep" title="Stir" hidesWhenLoading="NO" id="31N-S1-Q5G" customClass="StirStepController" customModule="Impressive_WatchKit_Extension">
                     <items>
-                        <group width="1" height="1" alignment="left" contentMode="scaleAspectFill" layout="vertical" id="J7a-bE-S32">
+                        <group width="1" height="1" alignment="left" backgroundImage="TSwiftKarate1" contentMode="scaleAspectFill" layout="vertical" id="QUl-tG-9XL">
                             <items>
-                                <label alignment="right" text="Type" textAlignment="left" id="PcO-6o-Whd">
+                                <label alignment="right" text="Stir" textAlignment="left" id="Fj2-8G-i5x">
                                     <color key="textColor" red="1" green="1" blue="0.92043483260000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <fontDescription key="font" type="system" pointSize="30"/>
                                 </label>
-                                <button alignment="center" verticalAlignment="center" id="UPc-Mr-oiC" userLabel="timerButton">
-                                    <group key="contentGroup" alignment="left" layout="vertical" id="S46-vM-euh">
+                                <button alignment="center" verticalAlignment="bottom" hidden="YES" id="JMy-SB-xdv" userLabel="timerButton">
+                                    <group key="contentGroup" alignment="left" layout="vertical" id="mjh-BB-6Ax">
                                         <items>
-                                            <timer height="80" alignment="center" verticalAlignment="center" textAlignment="center" minimumScaleFactor="0.0" format="abbreviated" previewedSeconds="80" id="tc9-ZD-4b0">
+                                            <timer height="80" alignment="center" verticalAlignment="center" textAlignment="center" minimumScaleFactor="0.0" format="abbreviated" previewedSeconds="80" id="pN7-37-wEW">
                                                 <color key="textColor" red="0.51774001120000002" green="0.83363062139999999" blue="0.71302789450000004" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="font" type="system" weight="semibold" pointSize="100"/>
                                                 <calendarUnit key="units" second="YES"/>
                                             </timer>
-                                            <label alignment="right" verticalAlignment="center" text="Tap to start" id="tcq-aV-ucR">
+                                            <label alignment="right" verticalAlignment="center" text="Tap to start" id="8cO-fn-dtw">
                                                 <color key="textColor" red="1" green="1" blue="0.92043483260000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                             </label>
                                         </items>
                                     </group>
                                     <connections>
-                                        <action selector="timerButtonPressed" destination="xTt-I9-zbT" id="ITn-dR-cEr"/>
+                                        <action selector="timerButtonPressed" destination="31N-S1-Q5G" id="xj9-bZ-n0j"/>
                                     </connections>
                                 </button>
                             </items>
                         </group>
                     </items>
                     <connections>
-                        <outlet property="startstopLabel" destination="tcq-aV-ucR" id="Cvc-yS-1Xl"/>
-                        <outlet property="stepGroup" destination="J7a-bE-S32" id="4Qa-zp-4gc"/>
-                        <outlet property="timer" destination="tc9-ZD-4b0" id="olS-x3-0W6"/>
-                        <outlet property="timerButton" destination="UPc-Mr-oiC" id="zcL-zA-ufe"/>
-                        <outlet property="typeLabel" destination="PcO-6o-Whd" id="Iya-Bc-qvp"/>
+                        <outlet property="startstopLabel" destination="8cO-fn-dtw" id="KeR-c0-CFj"/>
+                        <outlet property="stepGroup" destination="QUl-tG-9XL" id="M5h-PZ-cHq"/>
+                        <outlet property="timer" destination="pN7-37-wEW" id="EzO-wv-MB6"/>
+                        <outlet property="timerButton" destination="JMy-SB-xdv" id="m2S-8W-gq2"/>
+                        <outlet property="typeLabel" destination="Fj2-8G-i5x" id="nPR-eG-U1O"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="433" y="778"/>
+            <point key="canvasLocation" x="433" y="779"/>
         </scene>
         <!--Press-->
         <scene sceneID="kbL-cx-nle">
             <objects>
-                <controller identifier="PressStep" title="Press" id="dXh-p8-pXr" customClass="PressStepController" customModule="Impressive_WatchKit_Extension">
+                <controller identifier="PressStep" title="Press" hidesWhenLoading="NO" id="dXh-p8-pXr" customClass="PressStepController" customModule="Impressive_WatchKit_Extension">
                     <items>
-                        <group width="1" height="1" alignment="left" contentMode="scaleAspectFill" layout="vertical" id="brO-kf-nxm">
+                        <group width="1" height="1" alignment="left" backgroundImage="Mushroom1" contentMode="scaleAspectFill" layout="vertical" id="brO-kf-nxm">
                             <items>
-                                <label alignment="right" text="Type" textAlignment="left" id="NmL-X1-xgg">
+                                <label alignment="right" text="Press" textAlignment="left" id="NmL-X1-xgg">
                                     <color key="textColor" red="1" green="1" blue="0.92043483260000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <fontDescription key="font" type="system" pointSize="30"/>
                                 </label>
-                                <button alignment="center" verticalAlignment="center" id="RBj-AO-7AC" userLabel="timerButton">
+                                <button alignment="center" verticalAlignment="bottom" hidden="YES" id="RBj-AO-7AC" userLabel="timerButton">
                                     <group key="contentGroup" alignment="left" layout="vertical" id="nuk-DZ-vua">
                                         <items>
                                             <timer height="80" alignment="center" verticalAlignment="center" textAlignment="center" minimumScaleFactor="0.0" format="abbreviated" previewedSeconds="80" id="Cbl-jQ-CrY">
