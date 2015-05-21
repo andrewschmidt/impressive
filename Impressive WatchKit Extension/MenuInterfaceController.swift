@@ -65,12 +65,13 @@ class MenuInterfaceController: WKInterfaceController {
     private func loadTableData() {
         
         // First let's load our pick of the day & saved recipes.
-        specialRecipe = LoadSave.sharedInstance.loadRecipe("SpecialRecipe")
+//        specialRecipe = LoadSave.sharedInstance.loadRecipe("SpecialRecipe")
         savedRecipes = LoadSave.sharedInstance.loadRecipes("SavedRecipes")
         
         // Let's create an array of our row types. The first row is always our daily special:
-        var rowTypes = ["SpecialTableRowController"]
+//        var rowTypes = ["SpecialTableRowController"]
         
+        var rowTypes = [String]()
         // The rest of the rows are the regular row type:
         for recipe in savedRecipes {
             rowTypes.append("MenuTableRowController")
@@ -80,8 +81,8 @@ class MenuInterfaceController: WKInterfaceController {
         recipeTable.setRowTypes(rowTypes)
         
         // Set the label of the special recipe:
-        let specialRow = recipeTable.rowControllerAtIndex(0) as! SpecialTableRowController
-        specialRow.specialNameLabel.setText(specialRecipe.name)
+//        let specialRow = recipeTable.rowControllerAtIndex(0) as! SpecialTableRowController
+//        specialRow.specialNameLabel.setText(specialRecipe.name)
         
         // And set the labels of the saved recipes:
         for (index, currentRecipe) in enumerate(savedRecipes) {

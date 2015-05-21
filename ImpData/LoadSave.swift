@@ -22,6 +22,98 @@ public class LoadSave: NSObject {
     }
     
     
+    public func loadDaily(completion: (daily: Recipe) -> Void) {
+        // STEPS:
+        
+        // 1. Check if the "SavedDaily" is current. If so, load it and return it.
+        if let dateModified = getDateModified("SavedDaily") where isDateCurrent(dateModified) == true {
+            
+            println("\rLOADSAVE: The recipe in SavedDaily is current, loading it.")
+            
+            let dailyRecipe = loadRecipe("SavedDaily")
+            completion(daily: dailyRecipe)
+            
+        } else {
+        
+            // 2. Check to see if there's a Daily recipe in "NextDaily". If so, save it into SavedDaily, clear it from NextDaily, load it and return it.
+            if let dateModified = getDateModified("NextDaily") where isDateCurrent(dateModified) {
+                
+                println("\rLOADSAVE: The recipe saved in NextDaily is current, moving it to SavedDaily and loading it.")
+                
+                let nextDailyRecipe = loadRecipe("NextDaily")
+                
+                overwriteRecipesInPlist("SavedDaily", withRecipes: [nextDailyRecipe])
+                deletePlist("NextDaily")
+                
+                completion(daily: nextDailyRecipe)
+                
+            } else {
+            
+                // 3. Run fetchDaily(). Save the result into SavedDaily. Load it and return it.
+                println("\rLOADSAVE: Didn't have a usable daily recipe in storage, attempting to fetch one...")
+                CKLoadSave.sharedInstance.fetchDaily() {
+                    dailyRecipe in
+                    println("\rLOADSAVE: Received a daily recipe from the network! Saving it and re-running loadDaily().")
+                    
+                    self.overwriteRecipesInPlist("SavedDaily", withRecipes: [dailyRecipe])
+                    
+                    self.loadDaily() {
+                        dailyRecipe in
+                        completion(daily: dailyRecipe)
+                    }
+                    
+                }
+            }
+        }
+    }
+    
+    func isDateCurrent(date: NSDate) -> Bool {
+        let calendar = NSCalendar.currentCalendar() // or = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+        let today = NSDate()
+        let startDate = calendar.dateBySettingHour(0, minute: 0, second: 0, ofDate: today, options: NSCalendarOptions(0))!
+        let endDate = calendar.dateBySettingHour(23, minute: 59, second: 59, ofDate: today, options: NSCalendarOptions(0))!
+        
+        if date > startDate && date < endDate {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func getDateCreated(plistName: String) -> NSDate? {
+        let fileManager = NSFileManager.defaultManager()
+        let url = fileManager.containerURLForSecurityApplicationGroupIdentifier("group.AndrewSchmidt.Impressive")
+        let file = url!.URLByAppendingPathComponent("\(plistName).plist")
+        
+        if !fileManager.fileExistsAtPath(file.path!) {
+            // If it doesn't exists, we need to know that. or return nil?
+            return nil
+        } else {
+            // If it does, return the date.
+            let attributes: NSDictionary = fileManager.attributesOfItemAtPath(file.path!, error: nil)!
+            let creationDate = attributes.fileCreationDate()
+            return creationDate
+        }
+
+    }
+    
+    func getDateModified(plistName: String) -> NSDate? {
+        let fileManager = NSFileManager.defaultManager()
+        let url = fileManager.containerURLForSecurityApplicationGroupIdentifier("group.AndrewSchmidt.Impressive")
+        let file = url!.URLByAppendingPathComponent("\(plistName).plist")
+        
+        if !fileManager.fileExistsAtPath(file.path!) {
+            // If it doesn't exists, we need to know that. or return nil?
+            return nil
+        } else {
+            // If it does, return the date.
+            let attributes: NSDictionary = fileManager.attributesOfItemAtPath(file.path!, error: nil)!
+            let modifiedDate = attributes.fileModificationDate()
+            return modifiedDate
+        }
+    }
+    
+    
     public func saveRecipe(recipe: Recipe, inPlistNamed plistName: String) {
         // First let's load the plist as-is.
         var savedRecipes = loadRecipes(plistName)
@@ -94,6 +186,21 @@ public class LoadSave: NSObject {
         }
        
         return savedRecipes
+    }
+   
+    
+    private func deletePlist(list: String) {
+        
+        let fileManager = NSFileManager.defaultManager()
+        let url = fileManager.containerURLForSecurityApplicationGroupIdentifier("group.AndrewSchmidt.Impressive")
+        let file = url!.URLByAppendingPathComponent("\(list).plist")
+        
+        // Check if file exists:
+        if fileManager.fileExistsAtPath(file.path!) == true {
+            // If it does, delete it.
+            println("LOADSAVE: Deleting file at path: \(file.path!)")
+            fileManager.removeItemAtPath(file.path!, error: nil)
+        }
     }
     
     

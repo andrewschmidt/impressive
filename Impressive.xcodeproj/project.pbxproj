@@ -37,6 +37,13 @@
 		4972BE891A9BE92C007B013D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4972BE881A9BE92C007B013D /* Images.xcassets */; };
 		4972BE8C1A9BE92C007B013D /* Impressive WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4972BE6F1A9BE92C007B013D /* Impressive WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4972BE9B1A9C09D9007B013D /* MenuTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4972BE9A1A9C09D9007B013D /* MenuTableRowController.swift */; };
+		4981542E1B0E62360022092A /* DefaultNextDaily.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4981542D1B0E62360022092A /* DefaultNextDaily.plist */; };
+		498154301B0E62430022092A /* DefaultSavedDaily.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4981542F1B0E62430022092A /* DefaultSavedDaily.plist */; };
+		498154321B0E6DC30022092A /* NSDate+Comparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498154311B0E6DC30022092A /* NSDate+Comparison.swift */; };
+		498154331B0E70580022092A /* DefaultSavedDaily.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4981542F1B0E62430022092A /* DefaultSavedDaily.plist */; };
+		498154341B0E70590022092A /* DefaultSavedDaily.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4981542F1B0E62430022092A /* DefaultSavedDaily.plist */; };
+		498154351B0E705F0022092A /* DefaultNextDaily.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4981542D1B0E62360022092A /* DefaultNextDaily.plist */; };
+		498154361B0E705F0022092A /* DefaultNextDaily.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4981542D1B0E62360022092A /* DefaultNextDaily.plist */; };
 		4995D3961A94084400FA30A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4995D3951A94084400FA30A3 /* AppDelegate.swift */; };
 		4995D3981A94084400FA30A3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4995D3971A94084400FA30A3 /* ViewController.swift */; };
 		4995D39B1A94084400FA30A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4995D3991A94084400FA30A3 /* Main.storyboard */; };
@@ -156,6 +163,9 @@
 		4972BE941A9BF165007B013D /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		4972BE961A9BF367007B013D /* Step.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
 		4972BE9A1A9C09D9007B013D /* MenuTableRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableRowController.swift; sourceTree = "<group>"; };
+		4981542D1B0E62360022092A /* DefaultNextDaily.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultNextDaily.plist; sourceTree = "<group>"; };
+		4981542F1B0E62430022092A /* DefaultSavedDaily.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultSavedDaily.plist; sourceTree = "<group>"; };
+		498154311B0E6DC30022092A /* NSDate+Comparison.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Comparison.swift"; sourceTree = "<group>"; };
 		4995D3901A94084400FA30A3 /* Impressive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Impressive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4995D3941A94084400FA30A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4995D3951A94084400FA30A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -229,6 +239,7 @@
 			children = (
 				4972BE941A9BF165007B013D /* Recipe.swift */,
 				4972BE961A9BF367007B013D /* Step.swift */,
+				498154311B0E6DC30022092A /* NSDate+Comparison.swift */,
 				49BC2B241A9EEE3E0090FAC7 /* LoadSave.swift */,
 				4964AF211AC23595005688F9 /* CKLoadSave.swift */,
 				4917E93C1AAD3A3C00F984FD /* TestFramework.swift */,
@@ -241,6 +252,8 @@
 		4917E9181AAD382A00F984FD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4981542D1B0E62360022092A /* DefaultNextDaily.plist */,
+				4981542F1B0E62430022092A /* DefaultSavedDaily.plist */,
 				4959BBCA1AA28BC600CAA075 /* DefaultSavedRecipes.plist */,
 				49C2411C1AA455810057D263 /* DefaultSpecialRecipe.plist */,
 				4917E9191AAD382A00F984FD /* Info.plist */,
@@ -577,6 +590,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				498154301B0E62430022092A /* DefaultSavedDaily.plist in Resources */,
+				4981542E1B0E62360022092A /* DefaultNextDaily.plist in Resources */,
 				4917E93A1AAD396B00F984FD /* DefaultSpecialRecipe.plist in Resources */,
 				4917E9391AAD396600F984FD /* DefaultSavedRecipes.plist in Resources */,
 			);
@@ -595,6 +610,8 @@
 			files = (
 				4972BE7B1A9BE92C007B013D /* Images.xcassets in Resources */,
 				4972BE7F1A9BE92C007B013D /* Impressive WatchKit App.app in Resources */,
+				498154331B0E70580022092A /* DefaultSavedDaily.plist in Resources */,
+				498154351B0E705F0022092A /* DefaultNextDaily.plist in Resources */,
 				4917E94C1AAD446000F984FD /* DefaultSpecialRecipe.plist in Resources */,
 				4917E94B1AAD446000F984FD /* DefaultSavedRecipes.plist in Resources */,
 			);
@@ -613,10 +630,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				498154341B0E70590022092A /* DefaultSavedDaily.plist in Resources */,
 				4995D39B1A94084400FA30A3 /* Main.storyboard in Resources */,
 				4995D3A01A94084400FA30A3 /* LaunchScreen.xib in Resources */,
 				4917E9491AAD445200F984FD /* DefaultSavedRecipes.plist in Resources */,
 				4917E94A1AAD445200F984FD /* DefaultSpecialRecipe.plist in Resources */,
+				498154361B0E705F0022092A /* DefaultNextDaily.plist in Resources */,
 				4995D39D1A94084400FA30A3 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -640,6 +659,7 @@
 				4964AF221AC23595005688F9 /* CKLoadSave.swift in Sources */,
 				4917E93D1AAD3A3C00F984FD /* TestFramework.swift in Sources */,
 				4917E9381AAD38CD00F984FD /* LoadSave.swift in Sources */,
+				498154321B0E6DC30022092A /* NSDate+Comparison.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
