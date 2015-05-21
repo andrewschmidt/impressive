@@ -83,7 +83,7 @@ public class LoadSave: NSObject {
         
         // First let's load the plist of saved recipes.
         // The loadPlist function is smart enough to fill in the default recipes if there aren't any saved ones.
-        var savedRecipesPlistAsArray = LoadSave.sharedInstance.loadPlist(plistName) as Array
+        var savedRecipesPlistAsArray = loadPlist(plistName) as Array
         
         // Next we need to convert each of the NSDictionaries in the plist to Recipes.
         var savedRecipes = [Recipe]()
@@ -108,7 +108,6 @@ public class LoadSave: NSObject {
             // If it doesn't, copy it from the default file in the Resources folder:
             println("LOADSAVE: No existing data found, copying Default\(list).plist to the device.")
             let bundle = NSBundle.mainBundle().pathForResource("Default\(list)", ofType: "plist")
-            
             if (fileManager.copyItemAtPath(bundle!, toPath: file.path!, error: nil)) {
                 println("LOADSAVE: Copied the file to \(file.path!).")
             }

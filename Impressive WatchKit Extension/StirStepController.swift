@@ -45,8 +45,6 @@ class StirStepController: WKInterfaceController {
     override func willActivate() {
         super.willActivate()
         
-        //        timerButton.setHidden(true) // Crashing with this, I think...
-        
         if !alreadySeen {
             alreadySeen = true
             
@@ -67,19 +65,17 @@ class StirStepController: WKInterfaceController {
                 repeatCount: 1)
             
             // Immediately show whichever UI element:
-            //            showTimer() // Crashing with this, I think...
+            showTimer()
         }
         
     }
     
     override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
+        alreadySeen = false //Will this fix the new interface activation problems in Watch OS 1.0.1?
+
         super.didDeactivate()
     }
     
-    
-    // To-Do: Create methods to handle calculating how high to fill the Aeropress, alternating between liquid measurement and units of Aeropress notches.
-    // For now I've left the timer logic here, for no particular reason.
     
     // TIMER LOGIC:
     

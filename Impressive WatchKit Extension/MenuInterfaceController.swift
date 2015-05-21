@@ -47,10 +47,22 @@ class MenuInterfaceController: WKInterfaceController {
         
     }
     
+    override func willActivate() {
+        // This method is called when watch view controller is about to be visible to user
+        
+        loadTableData()
+        
+        super.willActivate()
+    }
+    
+    
+    override func didDeactivate() {
+        // This method is called when watch view controller is no longer visible
+        super.didDeactivate()
+    }
+    
     
     private func loadTableData() {
-        
-        // WHOA. I NEED to nest most of this in a completion block - this could be why it's so hard to get the app running!
         
         // First let's load our pick of the day & saved recipes.
         specialRecipe = LoadSave.sharedInstance.loadRecipe("SpecialRecipe")
@@ -99,7 +111,7 @@ class MenuInterfaceController: WKInterfaceController {
 //         let controllers: [String] = Array(count: selectedRecipe.steps.count, repeatedValue: "StepsInterfaceController")
         
         var controllers = [String]()
-                
+        
         for step in selectedRecipe.steps {
             let controller = step.type + "Step"
             controllers.append(controller)
@@ -110,18 +122,5 @@ class MenuInterfaceController: WKInterfaceController {
     }
 
     
-    override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
-        
-        loadTableData()
-        
-        super.willActivate()
-    }
-
-    
-    override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
-        super.didDeactivate()
-    }
 
 }

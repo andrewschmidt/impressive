@@ -29,7 +29,7 @@ class HeatStepController: WKInterfaceController {
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
-        
+        println("HEATSTEPCONTROLLER: awakeWithContext called.")
         step = context as! Step
         
         typeLabel.setText(step.type)
@@ -44,11 +44,12 @@ class HeatStepController: WKInterfaceController {
     override func willActivate() {
         super.willActivate()
         
-//        temperatureButton.setHidden(true) // Crashing with this... I think.
-        
         if !alreadySeen {
             alreadySeen = true
+            println("HEATSTEPCONTROLLER: First time seeing.")
             
+            temperatureButton.setHidden(true)
+
             // Kick off the animation, but only if we haven't seen it yet:
             stepGroup.startAnimatingWithImagesInRange(
                 NSRange(location: 0, length: animationLength),
@@ -60,19 +61,24 @@ class HeatStepController: WKInterfaceController {
             
         } else {
             // Set the animation to the last frame (where it should have cleared the screen):
+            println("HEATSTEPCONTROLLER: Already seen.")
             stepGroup.startAnimatingWithImagesInRange(
                 NSRange(location: animationLength-1, length: 1),
                 duration: 1,
                 repeatCount: 1)
                         
             // Immediately show whichever UI element:
-//            showTemperature() // Crashing with this.
+            showTemperature()
         }
         
     }
     
     override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
+        // Below are commands that need to be wrapped in some sort of heuristics detection - a timer to determine whether the screen's being looked at by a user or by the system.
+        println("HEATSTEPCONTROLLER: DidDeactivate called.")
+        alreadySeen = false
+        temperatureButton.setHidden(true) // Doesn't appear to work here.
+
         super.didDeactivate()
     }
     
