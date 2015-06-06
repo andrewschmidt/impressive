@@ -79,11 +79,14 @@ class MenuInterfaceController: WKInterfaceController {
         }
         
         // Finally set the row types:
-        recipeTable.setRowTypes(rowTypes)
+//        recipeTable.setRowTypes(rowTypes)
         
         // Set the label of the special recipe:
+        recipeTable.insertRowsAtIndexes(NSIndexSet(index: 0), withRowType: "SpecialTableRowController")
+        
         let dailyRow = recipeTable.rowControllerAtIndex(0) as! SpecialTableRowController
         dailyRow.specialNameLabel.setText(dailyRecipe.name)
+        
         
         // And set the labels of the saved recipes:
         for (index, currentRecipe) in enumerate(savedRecipes) {
@@ -91,8 +94,10 @@ class MenuInterfaceController: WKInterfaceController {
             // We need to adjust the index number, because the first row is already taken care of:
             let adjustedIndex = index+1
             
-            let row = recipeTable.rowControllerAtIndex(adjustedIndex) as! MenuTableRowController
+            // Then add the row:
+            recipeTable.insertRowsAtIndexes(NSIndexSet(index: adjustedIndex), withRowType: "MenuTableRowController")
 
+            let row = recipeTable.rowControllerAtIndex(adjustedIndex) as! MenuTableRowController
             row.recipeNameLabel.setText(currentRecipe.name)
         }
     }
