@@ -22,11 +22,20 @@ public class LoadSave: NSObject {
     }
     
     
+    public func savedDailyIsCurrent() -> Bool {
+        if let dateModified = getDateModified("SavedDaily") where dateIsCurrent(dateModified) == true {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    
     public func loadDaily(completion: (daily: Recipe) -> Void) {
         // STEPS:
         
         // 1. Check if the "SavedDaily" is current. If so, load it and return it.
-        if let dateModified = getDateModified("SavedDaily") where isDateCurrent(dateModified) == true {
+        if let dateModified = getDateModified("SavedDaily") where dateIsCurrent(dateModified) == true {
             
             println("\rLOADSAVE: The recipe in SavedDaily is current, loading it.")
             
@@ -36,7 +45,7 @@ public class LoadSave: NSObject {
         } else {
         
             // 2. Check to see if there's a Daily recipe in "NextDaily". If so, save it into SavedDaily, clear it from NextDaily, load it and return it.
-            if let dateModified = getDateModified("NextDaily") where isDateCurrent(dateModified) {
+            if let dateModified = getDateModified("NextDaily") where dateIsCurrent(dateModified) {
                 
                 println("\rLOADSAVE: The recipe saved in NextDaily is current, moving it to SavedDaily and loading it.")
                 
@@ -67,7 +76,7 @@ public class LoadSave: NSObject {
         }
     }
     
-    func isDateCurrent(date: NSDate) -> Bool {
+    func dateIsCurrent(date: NSDate) -> Bool {
         let calendar = NSCalendar.currentCalendar() // or = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
         let today = NSDate()
         let startDate = calendar.dateBySettingHour(0, minute: 0, second: 0, ofDate: today, options: NSCalendarOptions(0))!

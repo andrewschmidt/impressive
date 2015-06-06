@@ -18,39 +18,41 @@ class MenuInterfaceController: WKInterfaceController {
     
     @IBOutlet weak var recipeTable: WKInterfaceTable!
     var savedRecipes = [Recipe]()
-    var specialRecipe: Recipe!
+    var dailyRecipe: Recipe!
     
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
-//        loadTableData()
+        // Let's ask the iPhone app to load our daily recipe before we populate the table.
+        // Not sure if this is really the right view to do this in, but it's worth a shot!
         
-        // What's below is great. Need to decide the best way to refactor it into its own function (or pair of functions). But cool! Communication with the main app is working!
-        
-        // Let's try fetching our personal recipes from the cloud, via the iPhone app.
-//        let request = ["fetchPersonalRecipes":"overwrite"]
-//        
-//        println("MENUIC: Attempting to contact parent app.")
-//        WKInterfaceController.openParentApplication(request) {
-//            (reply, error) -> Void in
-//            
-//            if error != nil {
-//                println(error)
-//                
-//            } else {
-//                println(reply["success"]!)
-//                self.loadTableData()
-//                
-//            }
-//        }
-        
+        if !LoadSave.sharedInstance.savedDailyIsCurrent() {
+            println("\rMENUIC: The saved daily recipe is not current.")
+            println("MENUIC: Attempting to contact the parent app to load a daily recipe.")
+            
+            let request = ["loadDaily":""]
+            
+            WKInterfaceController.openParentApplication(request) {
+                (reply, error) -> Void in
+                
+                if error != nil {
+                    println(error)
+                } else {
+                    println(reply["success"]!)
+                    self.loadTableData()
+                }
+            }
+        } else {
+            println("\rMENUIC: The saved daily recipe is current, moving on...")
+            self.loadTableData()
+        }
     }
     
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         
-        loadTableData()
+//        loadTableData()
         
         super.willActivate()
     }
@@ -65,13 +67,12 @@ class MenuInterfaceController: WKInterfaceController {
     private func loadTableData() {
         
         // First let's load our pick of the day & saved recipes.
-//        specialRecipe = LoadSave.sharedInstance.loadRecipe("SpecialRecipe")
+        dailyRecipe = LoadSave.sharedInstance.loadRecipe("SavedDaily")
         savedRecipes = LoadSave.sharedInstance.loadRecipes("SavedRecipes")
         
         // Let's create an array of our row types. The first row is always our daily special:
-//        var rowTypes = ["SpecialTableRowController"]
+        var rowTypes = ["SpecialTableRowController"]
         
-        var rowTypes = [String]()
         // The rest of the rows are the regular row type:
         for recipe in savedRecipes {
             rowTypes.append("MenuTableRowController")
@@ -81,8 +82,8 @@ class MenuInterfaceController: WKInterfaceController {
         recipeTable.setRowTypes(rowTypes)
         
         // Set the label of the special recipe:
-//        let specialRow = recipeTable.rowControllerAtIndex(0) as! SpecialTableRowController
-//        specialRow.specialNameLabel.setText(specialRecipe.name)
+        let dailyRow = recipeTable.rowControllerAtIndex(0) as! SpecialTableRowController
+        dailyRow.specialNameLabel.setText(dailyRecipe.name)
         
         // And set the labels of the saved recipes:
         for (index, currentRecipe) in enumerate(savedRecipes) {
@@ -102,15 +103,13 @@ class MenuInterfaceController: WKInterfaceController {
         var selectedRecipe: Recipe!
         
         if rowIndex == 0 {
-            selectedRecipe = specialRecipe
+            selectedRecipe = dailyRecipe
         }
         else {
             var adjustedRowIndex = rowIndex-1
             selectedRecipe = savedRecipes[adjustedRowIndex]
         }
-        
-//         let controllers: [String] = Array(count: selectedRecipe.steps.count, repeatedValue: "StepsInterfaceController")
-        
+                
         var controllers = [String]()
         
         for step in selectedRecipe.steps {

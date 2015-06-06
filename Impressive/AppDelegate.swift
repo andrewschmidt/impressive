@@ -15,18 +15,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
-        return true
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        // Handle notifications.
+        
+        println("APPDELEGATE: Received notification!")
     }
     
     
     func application(application: UIApplication, handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]?, reply: (([NSObject : AnyObject]!) -> Void)!) {
+        // Handle requests from the watch.
         
         println("APPDELEGATE: Awoken by Watch!")
         
         for (key, value) in userInfo! {
             switch key {
+                
+            case "loadDaily":
+                
+                LoadSave.sharedInstance.loadDaily() {
+                    dailyRecipe in
+                    
+                    reply(["success": "PARENTAPP: Found a daily recipe and saved it to the shared app group."])
+                }
+                
             case "fetchPersonalRecipes":
                 
                 if value as! String == "overwrite" {
@@ -49,18 +60,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                 }
                 
-                
             default:
                 reply(["error": "APPDELEGATE: Error - received nonsensical command from Watch: \(value)"])
             }
-            
         }
     }
     
     
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-        
-        println("APPDELEGATE: Received notification!")
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        // Override point for customization after application launch.
+        return true
     }
     
 
