@@ -19,13 +19,10 @@
 		4917E9371AAD38CD00F984FD /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4972BE961A9BF367007B013D /* Step.swift */; };
 		4917E9381AAD38CD00F984FD /* LoadSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BC2B241A9EEE3E0090FAC7 /* LoadSave.swift */; };
 		4917E9391AAD396600F984FD /* DefaultSavedRecipes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4959BBCA1AA28BC600CAA075 /* DefaultSavedRecipes.plist */; };
-		4917E93A1AAD396B00F984FD /* DefaultSpecialRecipe.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49C2411C1AA455810057D263 /* DefaultSpecialRecipe.plist */; };
 		4917E93D1AAD3A3C00F984FD /* TestFramework.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4917E93C1AAD3A3C00F984FD /* TestFramework.swift */; };
 		4917E9451AAD3DD900F984FD /* ImpData.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4917E9161AAD382A00F984FD /* ImpData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4917E9491AAD445200F984FD /* DefaultSavedRecipes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4959BBCA1AA28BC600CAA075 /* DefaultSavedRecipes.plist */; };
-		4917E94A1AAD445200F984FD /* DefaultSpecialRecipe.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49C2411C1AA455810057D263 /* DefaultSpecialRecipe.plist */; };
 		4917E94B1AAD446000F984FD /* DefaultSavedRecipes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4959BBCA1AA28BC600CAA075 /* DefaultSavedRecipes.plist */; };
-		4917E94C1AAD446000F984FD /* DefaultSpecialRecipe.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49C2411C1AA455810057D263 /* DefaultSpecialRecipe.plist */; };
 		4964AF221AC23595005688F9 /* CKLoadSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4964AF211AC23595005688F9 /* CKLoadSave.swift */; };
 		49663A7C1A9E6D1300AC244A /* SpecialTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49663A7B1A9E6D1300AC244A /* SpecialTableRowController.swift */; };
 		4972BE751A9BE92C007B013D /* MenuInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4972BE741A9BE92C007B013D /* MenuInterfaceController.swift */; };
@@ -179,7 +176,6 @@
 		4995D3AA1A94084400FA30A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4995D3AB1A94084400FA30A3 /* ImpressiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpressiveTests.swift; sourceTree = "<group>"; };
 		49BC2B241A9EEE3E0090FAC7 /* LoadSave.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadSave.swift; sourceTree = "<group>"; };
-		49C2411C1AA455810057D263 /* DefaultSpecialRecipe.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultSpecialRecipe.plist; sourceTree = "<group>"; };
 		49F9D8541AC758BE00A2CBAD /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -258,7 +254,6 @@
 				4981542D1B0E62360022092A /* DefaultNextDaily.plist */,
 				4981542F1B0E62430022092A /* DefaultSavedDaily.plist */,
 				4959BBCA1AA28BC600CAA075 /* DefaultSavedRecipes.plist */,
-				49C2411C1AA455810057D263 /* DefaultSpecialRecipe.plist */,
 				4917E9191AAD382A00F984FD /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -595,7 +590,6 @@
 			files = (
 				498154301B0E62430022092A /* DefaultSavedDaily.plist in Resources */,
 				4981542E1B0E62360022092A /* DefaultNextDaily.plist in Resources */,
-				4917E93A1AAD396B00F984FD /* DefaultSpecialRecipe.plist in Resources */,
 				4917E9391AAD396600F984FD /* DefaultSavedRecipes.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -615,7 +609,6 @@
 				4972BE7F1A9BE92C007B013D /* Impressive WatchKit App.app in Resources */,
 				498154331B0E70580022092A /* DefaultSavedDaily.plist in Resources */,
 				498154351B0E705F0022092A /* DefaultNextDaily.plist in Resources */,
-				4917E94C1AAD446000F984FD /* DefaultSpecialRecipe.plist in Resources */,
 				4917E94B1AAD446000F984FD /* DefaultSavedRecipes.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -637,7 +630,6 @@
 				4995D39B1A94084400FA30A3 /* Main.storyboard in Resources */,
 				4995D3A01A94084400FA30A3 /* LaunchScreen.xib in Resources */,
 				4917E9491AAD445200F984FD /* DefaultSavedRecipes.plist in Resources */,
-				4917E94A1AAD445200F984FD /* DefaultSpecialRecipe.plist in Resources */,
 				498154361B0E705F0022092A /* DefaultNextDaily.plist in Resources */,
 				4995D39D1A94084400FA30A3 /* Images.xcassets in Resources */,
 			);
