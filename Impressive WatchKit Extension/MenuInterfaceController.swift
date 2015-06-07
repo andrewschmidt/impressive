@@ -154,18 +154,12 @@ class MenuInterfaceController: WKInterfaceController {
                     contexts.append(step)
                 
             }
-            
-//            if step.type == "Grind" {
-//                // Special Grind step logic.
-//            } else {
-//                let controller = step.type + "Step"
-//                controllers.append(controller)
-//                contexts.append(step)
-//            }
-            
         }
         
-        presentControllerWithNames(controllers, contexts: selectedRecipe.steps)
+//        println("MENUIC: About to present a paginated modal series with these contexts:")
+//        println(contexts)
+        
+        presentControllerWithNames(controllers, contexts: contexts)
 
     }
 

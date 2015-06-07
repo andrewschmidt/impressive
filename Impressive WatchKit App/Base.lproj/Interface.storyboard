@@ -207,6 +207,7 @@
                         <outlet property="measureLabel" destination="mGN-Rl-buH" id="uga-Z5-10I"/>
                         <outlet property="miniTimerButton" destination="sZw-a6-CFa" id="KBN-MU-Pvg"/>
                         <outlet property="miniTimerLabel" destination="0dp-Yv-pnZ" id="roB-E9-iEw"/>
+                        <outlet property="separator" destination="f3I-FO-ehg" id="9cs-85-yLn"/>
                         <outlet property="startstopLabel" destination="Wsr-Ja-YpH" id="ZR1-b8-xN7"/>
                         <outlet property="stepGroup" destination="E9Y-W2-F2J" id="cRk-2o-Iwb"/>
                         <outlet property="timer" destination="uVb-sY-yGQ" id="6mh-D8-INg"/>

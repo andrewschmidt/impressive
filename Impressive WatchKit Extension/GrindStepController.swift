@@ -20,6 +20,8 @@ class GrindStepController: WKInterfaceController {
     @IBOutlet weak var measureLabel: WKInterfaceLabel!
     @IBOutlet weak var unitLabel: WKInterfaceLabel!
     
+    @IBOutlet weak var separator: WKInterfaceSeparator!
+    
     @IBOutlet weak var miniTimerButton: WKInterfaceButton!
     @IBOutlet weak var miniTimerLabel: WKInterfaceLabel!
     
@@ -42,8 +44,8 @@ class GrindStepController: WKInterfaceController {
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
-        let checkStep: Step = context as! Step
-        println(checkStep.type)
+//        let checkStep: Step = context as! Step
+//        println(checkStep.type)
         
         let contextArray: [Double] = context as! [Double]
         seconds = contextArray[0]
@@ -108,6 +110,7 @@ class GrindStepController: WKInterfaceController {
     
     @IBAction func miniTimerButtonPressed() {
         measureButton.setHidden(true)
+        separator.setHidden(true)
         miniTimerButton.setHidden(true)
         showTimer()
     }
@@ -122,6 +125,9 @@ class GrindStepController: WKInterfaceController {
         // Start it immediately:
         timer.start()
         timerRunning = true
+        
+        // Set same timer to change the label text when the countdown ends:
+        startStopTimer = NSTimer.scheduledTimerWithTimeInterval(startingTime, target: self, selector: Selector("setLabelToReset"), userInfo: nil, repeats: false)
         
         timerButton.setHidden(false)
     }
