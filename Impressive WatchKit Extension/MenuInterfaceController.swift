@@ -44,7 +44,7 @@ class MenuInterfaceController: WKInterfaceController {
                 }
             }
         } else {
-            println("\rMENUIC: The saved daily recipe is current, moving on...")
+//            println("\rMENUIC: The saved daily recipe is current, moving on...")
             self.loadTableData()
         }
     }
@@ -114,12 +114,55 @@ class MenuInterfaceController: WKInterfaceController {
             var adjustedRowIndex = rowIndex-1
             selectedRecipe = savedRecipes[adjustedRowIndex]
         }
-                
-        var controllers = [String]()
         
-        for step in selectedRecipe.steps {
-            let controller = step.type + "Step"
-            controllers.append(controller)
+        // We've had to get more fancy with how we prepare the contexts because the step types of Beans and Grind are now presented in a single controller.
+        
+        var controllers = [String]()
+        var contexts = [AnyObject]()
+        
+        var index = 0
+        
+        for index in 0..<selectedRecipe.steps.count {
+            var step = selectedRecipe.steps[index]
+            
+            var beanCount: Double!
+            
+            switch step.type {
+            
+                case "BeanCount":
+                    println("\rMENUIC: Caught a 'bean count' step type.")
+                    println("MENUIC: We'll handle this if we find a grind step next.")
+                
+                case "Grind":
+                    println("\rMENUIC: Caught a 'grind' step. Checking to see if the previous step was a bean count.")
+                    
+                    let previousStep = selectedRecipe.steps[index-1]
+                    
+                    if previousStep.type == "BeanCount" {
+                        let controller = step.type + "Step"
+                        let context = [step.value, previousStep.value]
+                        
+                        controllers.append(controller)
+                        contexts.append(context)
+                    } else {
+                        println("\rMENUIC: No bean count step found, abandoning the grind step.")
+                    }
+                
+                default:
+                    let controller = step.type + "Step"
+                    controllers.append(controller)
+                    contexts.append(step)
+                
+            }
+            
+//            if step.type == "Grind" {
+//                // Special Grind step logic.
+//            } else {
+//                let controller = step.type + "Step"
+//                controllers.append(controller)
+//                contexts.append(step)
+//            }
+            
         }
         
         presentControllerWithNames(controllers, contexts: selectedRecipe.steps)

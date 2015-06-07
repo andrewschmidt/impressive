@@ -19,15 +19,15 @@
 			</dict>
 			<dict>
 				<key>value</key>
-				<real>100</real>
+				<integer>17</integer>
 				<key>type</key>
-				<string>Pour</string>
+				<string>BeanCount</string>
 			</dict>
 			<dict>
 				<key>value</key>
-				<integer>5</integer>
+				<integer>30</integer>
 				<key>type</key>
-				<string>Stir</string>
+				<string>Grind</string>
 			</dict>
 			<dict>
 				<key>value</key>

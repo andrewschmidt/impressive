@@ -26,7 +26,8 @@ class PressStepController: WKInterfaceController {
     var countdown: NSDate!
     var startingTime: Double!
     var timerRunning: Bool!
-    
+    var startStopTimer: NSTimer!
+
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
@@ -34,41 +35,40 @@ class PressStepController: WKInterfaceController {
         step = context as! Step
         
         typeLabel.setText(step.type)
+        showTimer()
         
-        stepGroup.setBackgroundImageNamed("Mushroom") // Eventually this should also use step.type - or simply reference an image baked into the storyboard?
-        animationLength = 20
+//        stepGroup.setBackgroundImageNamed("Mushroom") // Eventually this should also use step.type - or simply reference an image baked into the storyboard?
+//        animationLength = 20
         
-        timerButton.setHidden(true)
+//        timerButton.setHidden(true)
     }
     
     
     override func willActivate() {
         super.willActivate()
         
-//        timerButton.setHidden(true) // Crashing with this, I think...
-        
-        if !alreadySeen {
-            alreadySeen = true
-            
-            // Kick off the animation, but only if we haven't seen it yet:
-            stepGroup.startAnimatingWithImagesInRange(
-                NSRange(location: 0, length: animationLength),
-                duration: 1,
-                repeatCount: 1)
-            
-            // Get ready to show whichever UI element:
-            setTimerForFunction("showTimer", seconds: 2)
-            
-        } else {
-            // Set the animation to the last frame (where it should have cleared the screen):
-            stepGroup.startAnimatingWithImagesInRange(
-                NSRange(location: animationLength-1, length: 1),
-                duration: 1,
-                repeatCount: 1)
-            
-            // Immediately show whichever UI element:
-            showTimer()
-        }
+//        if !alreadySeen {
+//            alreadySeen = true
+//            
+//            // Kick off the animation, but only if we haven't seen it yet:
+//            stepGroup.startAnimatingWithImagesInRange(
+//                NSRange(location: 0, length: animationLength),
+//                duration: 1,
+//                repeatCount: 1)
+//            
+//            // Get ready to show whichever UI element:
+//            setTimerForFunction("showTimer", seconds: 2)
+//            
+//        } else {
+//            // Set the animation to the last frame (where it should have cleared the screen):
+//            stepGroup.startAnimatingWithImagesInRange(
+//                NSRange(location: animationLength-1, length: 1),
+//                duration: 1,
+//                repeatCount: 1)
+//            
+//            // Immediately show whichever UI element:
+//            showTimer()
+//        }
         
     }
     
@@ -104,6 +104,9 @@ class PressStepController: WKInterfaceController {
             // Set the start/stop label text:
             startstopLabel.setText("Tap to pause")
             
+            // Set same timer to change the label text when the countdown ends:
+            startStopTimer = NSTimer.scheduledTimerWithTimeInterval(startingTime, target: self, selector: Selector("setLabelToReset"), userInfo: nil, repeats: false)
+            
             // And start it:
             timer.start()
             timerRunning = true
@@ -123,6 +126,9 @@ class PressStepController: WKInterfaceController {
             
             // Set the start/stop label:
             startstopLabel.setText("Tap to start")
+            
+            // Cancel the start/stop label's countdown to "Tap to reset":
+            startStopTimer.invalidate()
             
             // And stop it:
             timer.stop()

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="7702" systemVersion="14D131" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3737"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="7701"/>
     </dependencies>
     <scenes>
-        <!--Daily Press-->
+        <!--Menu-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller identifier="Menu" title="Daily Press" id="AgC-eL-Hgc" customClass="MenuInterfaceController" customModule="Impressive_WatchKit_Extension">
+                <controller identifier="Menu" id="AgC-eL-Hgc" customClass="MenuInterfaceController" customModule="Impressive_WatchKit_Extension">
                     <items>
                         <table alignment="left" id="tkp-c7-E3K">
                             <items>
@@ -55,27 +55,23 @@
             </objects>
             <point key="canvasLocation" x="235" y="339"/>
         </scene>
-        <!--Heat-->
+        <!--HeatStep-->
         <scene sceneID="UZO-fa-rNX">
             <objects>
-                <controller identifier="HeatStep" title="Heat" hidesWhenLoading="NO" id="s78-In-sBF" customClass="HeatStepController" customModule="Impressive_WatchKit_Extension">
+                <controller identifier="HeatStep" hidesWhenLoading="NO" id="s78-In-sBF" customClass="HeatStepController" customModule="Impressive_WatchKit_Extension">
                     <items>
-                        <group width="1" height="1" alignment="left" backgroundImage="TSwiftKarate1" contentMode="scaleAspectFill" layout="vertical" id="EkH-Aq-cYU">
+                        <group width="1" height="1" alignment="left" contentMode="scaleAspectFill" layout="vertical" id="EkH-Aq-cYU">
                             <items>
-                                <label alignment="right" text="Heat" textAlignment="left" id="P59-R4-M4P">
-                                    <color key="textColor" red="1" green="1" blue="0.92043483260000003" alpha="1" colorSpace="calibratedRGB"/>
-                                    <fontDescription key="font" type="system" pointSize="30"/>
+                                <label height="45" alignment="left" text="Heat" textAlignment="left" id="P59-R4-M4P">
+                                    <color key="textColor" red="1" green="0.41596624282773986" blue="0.47689314128643889" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="font" type="system" pointSize="45"/>
                                 </label>
-                                <button alignment="center" verticalAlignment="bottom" hidden="YES" id="P4g-6L-t7I" userLabel="temperatureButton">
+                                <button alignment="center" verticalAlignment="bottom" id="P4g-6L-t7I" userLabel="temperatureButton">
                                     <group key="contentGroup" width="1" alignment="left" layout="vertical" id="Osm-U8-N5x">
                                         <items>
-                                            <label height="80" alignment="center" verticalAlignment="center" text="188°" textAlignment="center" minimumScaleFactor="0.0" id="Dta-Dn-XL6">
-                                                <color key="textColor" red="0.51774001120000002" green="0.83363062139999999" blue="0.71302789450000004" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="font" type="system" weight="semibold" pointSize="100"/>
-                                            </label>
-                                            <label alignment="right" verticalAlignment="center" text="Celsius" id="Tyj-lW-JEQ">
-                                                <color key="textColor" red="1" green="1" blue="0.92043483260000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                            <label height="74" alignment="center" verticalAlignment="center" text="--°" textAlignment="center" minimumScaleFactor="0.0" id="Dta-Dn-XL6">
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="font" type="system" weight="medium" pointSize="100"/>
                                             </label>
                                         </items>
                                     </group>
@@ -83,6 +79,10 @@
                                         <action selector="temperatureButtonPressed" destination="s78-In-sBF" id="KeU-P7-hdI"/>
                                     </connections>
                                 </button>
+                                <label alignment="right" verticalAlignment="bottom" text="Celsius" id="Tyj-lW-JEQ">
+                                    <color key="textColor" red="1" green="0.4159662428" blue="0.47689314129999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="font" style="UICTFontTextStyleCaption1"/>
+                                </label>
                             </items>
                         </group>
                     </items>
@@ -95,30 +95,151 @@
                     </connections>
                 </controller>
             </objects>
+            <point key="canvasLocation" x="602" y="339"/>
+        </scene>
+        <!--InvertStep-->
+        <scene sceneID="Yg6-9W-Iaa">
+            <objects>
+                <controller identifier="InvertStep" hidesWhenLoading="NO" id="Tn4-V3-reS">
+                    <items>
+                        <group width="1" height="1" alignment="left" contentMode="scaleAspectFill" layout="vertical" id="xeF-KG-iRV">
+                            <items>
+                                <label height="45" alignment="left" text="Invert" textAlignment="left" id="vEb-6h-O8y">
+                                    <color key="textColor" red="0.94586807490000002" green="0.66493384219999996" blue="0.80182281430000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="font" type="system" pointSize="45"/>
+                                </label>
+                                <group width="1" height="74" alignment="center" verticalAlignment="bottom" layout="vertical" id="Yo0-zK-lQa">
+                                    <items>
+                                        <label height="1" alignment="center" verticalAlignment="center" text="♻︎" textAlignment="center" minimumScaleFactor="0.0" id="YpB-N0-deW">
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="font" type="system" weight="medium" pointSize="78"/>
+                                        </label>
+                                    </items>
+                                </group>
+                                <label alignment="right" verticalAlignment="bottom" text="the AeroPress" id="yUg-To-1jf">
+                                    <color key="textColor" red="0.94586807490000002" green="0.66493384219999996" blue="0.80182281430000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="font" style="UICTFontTextStyleCaption1"/>
+                                </label>
+                            </items>
+                        </group>
+                    </items>
+                </controller>
+            </objects>
             <point key="canvasLocation" x="433" y="339"/>
         </scene>
-        <!--Pour-->
-        <scene sceneID="jEp-2J-L95">
+        <!--GrindStep-->
+        <scene sceneID="kE7-AA-YVE">
             <objects>
-                <controller identifier="PourStep" title="Pour" hidesWhenLoading="NO" id="QTZ-oZ-hfA" customClass="PourStepController" customModule="Impressive_WatchKit_Extension">
+                <controller identifier="GrindStep" hidesWhenLoading="NO" id="dbv-Pt-nKi" customClass="GrindStepController" customModule="Impressive_WatchKit_Extension">
                     <items>
-                        <group width="1" height="1" alignment="left" backgroundImage="MushroomStill" contentMode="scaleAspectFill" layout="vertical" id="vUO-kk-90y">
+                        <group width="1" height="1" alignment="left" contentMode="scaleAspectFill" layout="vertical" id="E9Y-W2-F2J">
                             <items>
-                                <label alignment="right" text="Pour" textAlignment="left" id="sdy-5p-Thn">
-                                    <color key="textColor" red="1" green="1" blue="0.92043483260000003" alpha="1" colorSpace="calibratedRGB"/>
-                                    <fontDescription key="font" type="system" pointSize="30"/>
+                                <label height="45" alignment="left" text="Grind" textAlignment="left" id="ubo-Q6-6EP">
+                                    <color key="textColor" red="0.98861938709999997" green="0.71836388110000005" blue="0.3232594728" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="font" type="system" pointSize="45"/>
                                 </label>
-                                <button alignment="center" verticalAlignment="bottom" hidden="YES" id="a9I-Cb-j8V" userLabel="timerButton">
-                                    <group key="contentGroup" alignment="left" layout="vertical" id="9sr-jZ-IsI">
+                                <button alignment="left" verticalAlignment="bottom" id="995-cQ-BSd" userLabel="measureButton">
+                                    <group key="contentGroup" width="1" alignment="left" spacing="0.0" id="7DX-g1-gf2">
                                         <items>
-                                            <timer height="80" alignment="center" verticalAlignment="center" textAlignment="center" minimumScaleFactor="0.0" format="abbreviated" previewedSeconds="80" id="pC0-Gz-Kd5">
-                                                <color key="textColor" red="0.51774001120000002" green="0.83363062139999999" blue="0.71302789450000004" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="font" type="system" weight="semibold" pointSize="100"/>
+                                            <label alignment="left" text="17" id="mGN-Rl-buH">
+                                                <fontDescription key="font" type="boldSystem" pointSize="41"/>
+                                            </label>
+                                            <group height="0.60000000000000009" alignment="left" verticalAlignment="bottom" id="6GA-Ow-eUC">
+                                                <items>
+                                                    <label height="1" alignment="left" verticalAlignment="bottom" text="grams" id="HTm-Z4-Cg7">
+                                                        <color key="textColor" red="0.98861938709999997" green="0.71836388110000005" blue="0.3232594728" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </label>
+                                                </items>
+                                            </group>
+                                        </items>
+                                        <edgeInsets key="margins" left="7" right="0.0" top="0.0" bottom="0.0"/>
+                                    </group>
+                                    <connections>
+                                        <action selector="measureButtonPressed" destination="dbv-Pt-nKi" id="IEs-Wh-fNy"/>
+                                    </connections>
+                                </button>
+                                <separator width="97" alignment="center" verticalAlignment="bottom" alpha="0.59999999999999964" id="f3I-FO-ehg">
+                                    <color key="color" red="0.98861938709999997" green="0.71836388110000005" blue="0.3232594728" alpha="1" colorSpace="calibratedRGB"/>
+                                </separator>
+                                <button alignment="left" verticalAlignment="bottom" id="sZw-a6-CFa" userLabel="miniTimerButton">
+                                    <group key="contentGroup" width="1" alignment="left" spacing="0.0" id="MvA-yg-uHu">
+                                        <items>
+                                            <label alignment="left" text="30" id="0dp-Yv-pnZ">
+                                                <fontDescription key="font" type="boldSystem" pointSize="41"/>
+                                            </label>
+                                            <group height="0.60000000000000009" alignment="left" verticalAlignment="bottom" id="FwV-qk-g1P">
+                                                <items>
+                                                    <label height="1" alignment="left" verticalAlignment="bottom" text="seconds" id="g8A-37-8HJ">
+                                                        <color key="textColor" red="0.98861938709999997" green="0.71836388110000005" blue="0.3232594728" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </label>
+                                                </items>
+                                            </group>
+                                        </items>
+                                        <edgeInsets key="margins" left="7" right="0.0" top="0.0" bottom="0.0"/>
+                                    </group>
+                                    <connections>
+                                        <action selector="miniTimerButtonPressed" destination="dbv-Pt-nKi" id="jBS-cn-JJ2"/>
+                                    </connections>
+                                </button>
+                                <button alignment="center" verticalAlignment="bottom" hidden="YES" id="KHU-jM-s3M" userLabel="timerButton">
+                                    <group key="contentGroup" width="1" alignment="left" layout="vertical" id="xwM-GR-YGl">
+                                        <items>
+                                            <timer height="74" alignment="center" verticalAlignment="center" textAlignment="center" minimumScaleFactor="0.0" format="abbreviated" previewedSeconds="30" id="uVb-sY-yGQ">
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="font" type="system" weight="medium" pointSize="100"/>
                                                 <calendarUnit key="units" second="YES"/>
                                             </timer>
-                                            <label alignment="right" verticalAlignment="center" text="Tap to start" id="B2g-L3-ydR">
-                                                <color key="textColor" red="1" green="1" blue="0.92043483260000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                            <label alignment="right" verticalAlignment="bottom" text="Tap to start" id="Wsr-Ja-YpH">
+                                                <color key="textColor" red="0.98861938709999997" green="0.71836388110000005" blue="0.3232594728" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="font" style="UICTFontTextStyleCaption1"/>
+                                            </label>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <action selector="timerButtonPressed" destination="dbv-Pt-nKi" id="zh0-xe-pJI"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="measureButton" destination="995-cQ-BSd" id="aXv-Uh-EOs"/>
+                        <outlet property="measureLabel" destination="mGN-Rl-buH" id="uga-Z5-10I"/>
+                        <outlet property="miniTimerButton" destination="sZw-a6-CFa" id="KBN-MU-Pvg"/>
+                        <outlet property="miniTimerLabel" destination="0dp-Yv-pnZ" id="roB-E9-iEw"/>
+                        <outlet property="startstopLabel" destination="Wsr-Ja-YpH" id="ZR1-b8-xN7"/>
+                        <outlet property="stepGroup" destination="E9Y-W2-F2J" id="cRk-2o-Iwb"/>
+                        <outlet property="timer" destination="uVb-sY-yGQ" id="6mh-D8-INg"/>
+                        <outlet property="timerButton" destination="KHU-jM-s3M" id="1sf-ln-O31"/>
+                        <outlet property="typeLabel" destination="ubo-Q6-6EP" id="6Kg-b6-3Gu"/>
+                        <outlet property="unitLabel" destination="HTm-Z4-Cg7" id="kRf-gV-moI"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="769" y="339"/>
+        </scene>
+        <!--PourStep-->
+        <scene sceneID="jEp-2J-L95">
+            <objects>
+                <controller identifier="PourStep" hidesWhenLoading="NO" id="QTZ-oZ-hfA" customClass="PourStepController" customModule="Impressive_WatchKit_Extension">
+                    <items>
+                        <group width="1" height="1" alignment="left" contentMode="scaleAspectFill" layout="vertical" id="vUO-kk-90y">
+                            <items>
+                                <label height="45" alignment="left" text="Pour" textAlignment="left" id="sdy-5p-Thn">
+                                    <color key="textColor" red="0.51439789555708826" green="0.89969961809176568" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="font" type="system" pointSize="45"/>
+                                </label>
+                                <button alignment="center" verticalAlignment="bottom" id="a9I-Cb-j8V" userLabel="timerButton">
+                                    <group key="contentGroup" width="1" alignment="left" layout="vertical" id="9sr-jZ-IsI">
+                                        <items>
+                                            <timer height="74" alignment="center" verticalAlignment="center" textAlignment="center" minimumScaleFactor="0.0" format="abbreviated" previewedSeconds="48" id="pC0-Gz-Kd5">
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="font" type="system" weight="medium" pointSize="100"/>
+                                                <calendarUnit key="units" second="YES"/>
+                                            </timer>
+                                            <label alignment="right" verticalAlignment="bottom" text="Tap to start" id="B2g-L3-ydR">
+                                                <color key="textColor" red="0.51439789560000004" green="0.89969961809999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="font" style="UICTFontTextStyleCaption1"/>
                                             </label>
                                         </items>
                                     </group>
@@ -138,30 +259,30 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="433" y="557"/>
+            <point key="canvasLocation" x="433" y="588"/>
         </scene>
-        <!--Stir-->
+        <!--StirStep-->
         <scene sceneID="1aa-jg-BHA">
             <objects>
-                <controller identifier="StirStep" title="Stir" hidesWhenLoading="NO" id="31N-S1-Q5G" customClass="StirStepController" customModule="Impressive_WatchKit_Extension">
+                <controller identifier="StirStep" hidesWhenLoading="NO" id="31N-S1-Q5G" customClass="StirStepController" customModule="Impressive_WatchKit_Extension">
                     <items>
-                        <group width="1" height="1" alignment="left" backgroundImage="TSwiftKarate1" contentMode="scaleAspectFill" layout="vertical" id="QUl-tG-9XL">
+                        <group width="1" height="1" alignment="left" contentMode="scaleAspectFill" layout="vertical" id="QUl-tG-9XL">
                             <items>
-                                <label alignment="right" text="Stir" textAlignment="left" id="Fj2-8G-i5x">
-                                    <color key="textColor" red="1" green="1" blue="0.92043483260000003" alpha="1" colorSpace="calibratedRGB"/>
-                                    <fontDescription key="font" type="system" pointSize="30"/>
+                                <label height="45" alignment="left" text="Stir" textAlignment="left" id="Fj2-8G-i5x">
+                                    <color key="textColor" red="0.94586807489395142" green="0.66493384218702223" blue="0.80182281425498014" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="font" type="system" pointSize="45"/>
                                 </label>
-                                <button alignment="center" verticalAlignment="bottom" hidden="YES" id="JMy-SB-xdv" userLabel="timerButton">
-                                    <group key="contentGroup" alignment="left" layout="vertical" id="mjh-BB-6Ax">
+                                <button alignment="center" verticalAlignment="bottom" id="JMy-SB-xdv" userLabel="timerButton">
+                                    <group key="contentGroup" width="1" alignment="left" layout="vertical" id="mjh-BB-6Ax">
                                         <items>
-                                            <timer height="80" alignment="center" verticalAlignment="center" textAlignment="center" minimumScaleFactor="0.0" format="abbreviated" previewedSeconds="80" id="pN7-37-wEW">
-                                                <color key="textColor" red="0.51774001120000002" green="0.83363062139999999" blue="0.71302789450000004" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="font" type="system" weight="semibold" pointSize="100"/>
+                                            <timer height="74" alignment="center" verticalAlignment="center" textAlignment="center" minimumScaleFactor="0.0" format="abbreviated" previewedSeconds="2" id="pN7-37-wEW">
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="font" type="system" weight="medium" pointSize="100"/>
                                                 <calendarUnit key="units" second="YES"/>
                                             </timer>
-                                            <label alignment="right" verticalAlignment="center" text="Tap to start" id="8cO-fn-dtw">
-                                                <color key="textColor" red="1" green="1" blue="0.92043483260000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                            <label alignment="right" verticalAlignment="bottom" text="Tap to start" id="8cO-fn-dtw">
+                                                <color key="textColor" red="0.94586807490000002" green="0.66493384219999996" blue="0.80182281430000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="font" style="UICTFontTextStyleCaption1"/>
                                             </label>
                                         </items>
                                     </group>
@@ -181,30 +302,30 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="433" y="779"/>
+            <point key="canvasLocation" x="602" y="588"/>
         </scene>
-        <!--Press-->
+        <!--PressStep-->
         <scene sceneID="kbL-cx-nle">
             <objects>
-                <controller identifier="PressStep" title="Press" hidesWhenLoading="NO" id="dXh-p8-pXr" customClass="PressStepController" customModule="Impressive_WatchKit_Extension">
+                <controller identifier="PressStep" hidesWhenLoading="NO" id="dXh-p8-pXr" customClass="PressStepController" customModule="Impressive_WatchKit_Extension">
                     <items>
-                        <group width="1" height="1" alignment="left" backgroundImage="Mushroom1" contentMode="scaleAspectFill" layout="vertical" id="brO-kf-nxm">
+                        <group width="1" height="1" alignment="left" contentMode="scaleAspectFill" layout="vertical" id="brO-kf-nxm">
                             <items>
-                                <label alignment="right" text="Press" textAlignment="left" id="NmL-X1-xgg">
-                                    <color key="textColor" red="1" green="1" blue="0.92043483260000003" alpha="1" colorSpace="calibratedRGB"/>
-                                    <fontDescription key="font" type="system" pointSize="30"/>
+                                <label height="45" alignment="left" text="Press" textAlignment="left" id="NmL-X1-xgg">
+                                    <color key="textColor" red="0.52844905514045848" green="0.95164192973421058" blue="0.52844905514045848" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="font" type="system" pointSize="45"/>
                                 </label>
-                                <button alignment="center" verticalAlignment="bottom" hidden="YES" id="RBj-AO-7AC" userLabel="timerButton">
-                                    <group key="contentGroup" alignment="left" layout="vertical" id="nuk-DZ-vua">
+                                <button alignment="center" verticalAlignment="bottom" id="RBj-AO-7AC" userLabel="timerButton">
+                                    <group key="contentGroup" width="1" alignment="left" layout="vertical" id="nuk-DZ-vua">
                                         <items>
-                                            <timer height="80" alignment="center" verticalAlignment="center" textAlignment="center" minimumScaleFactor="0.0" format="abbreviated" previewedSeconds="80" id="Cbl-jQ-CrY">
-                                                <color key="textColor" red="0.51774001120000002" green="0.83363062139999999" blue="0.71302789450000004" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="font" type="system" weight="semibold" pointSize="100"/>
+                                            <timer height="74" alignment="center" verticalAlignment="center" textAlignment="center" minimumScaleFactor="0.0" format="abbreviated" previewedSeconds="80" id="Cbl-jQ-CrY">
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="font" type="system" weight="medium" pointSize="100"/>
                                                 <calendarUnit key="units" second="YES"/>
                                             </timer>
-                                            <label alignment="right" verticalAlignment="center" text="Tap to start" id="D0n-jn-YeV">
-                                                <color key="textColor" red="1" green="1" blue="0.92043483260000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                            <label alignment="right" verticalAlignment="bottom" text="Tap to start" id="D0n-jn-YeV">
+                                                <color key="textColor" red="0.52844905509999995" green="0.95164192970000006" blue="0.52844905509999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="font" style="UICTFontTextStyleCaption1"/>
                                             </label>
                                         </items>
                                     </group>
@@ -224,7 +345,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="433" y="997"/>
+            <point key="canvasLocation" x="769" y="588"/>
         </scene>
         <!--Glance Interface Controller-->
         <scene sceneID="BOz-TT-tkC">
@@ -237,7 +358,7 @@
                     <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="14"/>
                 </glanceController>
             </objects>
-            <point key="canvasLocation" x="235" y="1284"/>
+            <point key="canvasLocation" x="235" y="934"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">
@@ -253,14 +374,14 @@
                     </connections>
                 </notificationController>
             </objects>
-            <point key="canvasLocation" x="235" y="1573"/>
+            <point key="canvasLocation" x="235" y="1223"/>
         </scene>
         <!--Notification Controller-->
         <scene sceneID="KIl-fV-djm">
             <objects>
                 <controller id="gdX-wl-uQE" customClass="NotificationController" customModule="Impressive_WatchKit_App" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="553" y="1573"/>
+            <point key="canvasLocation" x="553" y="1223"/>
         </scene>
     </scenes>
     <color key="tintColor" red="1" green="1" blue="0.92156862745098034" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>

@@ -19,8 +19,8 @@ class HeatStepController: WKInterfaceController {
     @IBOutlet weak var temperatureLabel: WKInterfaceLabel!
     @IBOutlet weak var scaleLabel: WKInterfaceLabel!
     
-    var alreadySeen = false
-    var animationLength: Int!
+//    var alreadySeen = false
+//    var animationLength: Int!
     var step: Step!
     
     var temperature: Double!
@@ -29,55 +29,57 @@ class HeatStepController: WKInterfaceController {
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
-        println("HEATSTEPCONTROLLER: awakeWithContext called.")
         step = context as! Step
         
         typeLabel.setText(step.type)
         
-        stepGroup.setBackgroundImageNamed("TSwiftKarate")
-        animationLength = 7
+//        stepGroup.setBackgroundImageNamed("TSwiftKarate") //Removed for the WWDC build.
+//        animationLength = 7
         
-        temperatureButton.setHidden(true)
+//        temperatureButton.setHidden(true) //Removed for the WWDC build.
+        showTemperature() //Added for WWDC build.
     }
     
     
     override func willActivate() {
         super.willActivate()
         
-        if !alreadySeen {
-            alreadySeen = true
-            println("HEATSTEPCONTROLLER: First time seeing.")
-            
-            temperatureButton.setHidden(true)
-
-            // Kick off the animation, but only if we haven't seen it yet:
-            stepGroup.startAnimatingWithImagesInRange(
-                NSRange(location: 0, length: animationLength),
-                duration: 1,
-                repeatCount: 1)
-            
-            // Get ready to show whichever UI element:
-            setTimerForFunction("showTemperature", seconds: 2)
-            
-        } else {
-            // Set the animation to the last frame (where it should have cleared the screen):
-            println("HEATSTEPCONTROLLER: Already seen.")
-            stepGroup.startAnimatingWithImagesInRange(
-                NSRange(location: animationLength-1, length: 1),
-                duration: 1,
-                repeatCount: 1)
-                        
-            // Immediately show whichever UI element:
-            showTemperature()
-        }
+        // Below logic removed for WWDC build. Some bits will be useful in the future.
+        
+//        if !alreadySeen {
+//            alreadySeen = true
+//            println("HEATSTEPCONTROLLER: First time seeing.")
+//            
+//            temperatureButton.setHidden(true)
+//
+//            // Kick off the animation:
+//            stepGroup.startAnimatingWithImagesInRange(
+//                NSRange(location: 0, length: animationLength),
+//                duration: 1,
+//                repeatCount: 1)
+//            
+//            // Get ready to show whichever UI element:
+//            setTimerForFunction("showTemperature", seconds: 2)
+//            
+//        } else {
+//            // Set the animation to the last frame (where it should have cleared the screen):
+//            println("HEATSTEPCONTROLLER: Already seen.")
+//            stepGroup.startAnimatingWithImagesInRange(
+//                NSRange(location: animationLength-1, length: 1),
+//                duration: 1,
+//                repeatCount: 1)
+//                        
+//            // Immediately show whichever UI element:
+//            showTemperature()
+//        }
         
     }
     
     override func didDeactivate() {
         // Below are commands that need to be wrapped in some sort of heuristics detection - a timer to determine whether the screen's being looked at by a user or by the system.
-        println("HEATSTEPCONTROLLER: DidDeactivate called.")
-        alreadySeen = false
-        temperatureButton.setHidden(true) // Doesn't appear to work here.
+
+//        alreadySeen = false
+//        temperatureButton.setHidden(true)
 
         super.didDeactivate()
     }

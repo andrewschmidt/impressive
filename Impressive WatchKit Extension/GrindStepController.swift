@@ -1,8 +1,8 @@
 //
-//  PourStepController.swift
+//  GrindStepController.swift
 //  Impressive
 //
-//  Created by Andrew Schmidt on 5/13/15.
+//  Created by Andrew Schmidt on 6/6/15.
 //  Copyright (c) 2015 Andrew Schmidt. All rights reserved.
 //
 
@@ -11,86 +11,118 @@ import Foundation
 import ImpData
 
 
-class PourStepController: WKInterfaceController {
+class GrindStepController: WKInterfaceController {
     
     @IBOutlet weak var stepGroup: WKInterfaceGroup!
     @IBOutlet weak var typeLabel: WKInterfaceLabel!
+    
+    @IBOutlet weak var measureButton: WKInterfaceButton!
+    @IBOutlet weak var measureLabel: WKInterfaceLabel!
+    @IBOutlet weak var unitLabel: WKInterfaceLabel!
+    
+    @IBOutlet weak var miniTimerButton: WKInterfaceButton!
+    @IBOutlet weak var miniTimerLabel: WKInterfaceLabel!
+    
     @IBOutlet weak var timerButton: WKInterfaceButton!
     @IBOutlet weak var timer: WKInterfaceTimer!
     @IBOutlet weak var startstopLabel: WKInterfaceLabel!
     
-    var alreadySeen = false
-    var animationLength = 3
-    var step: Step!
+//    var step: Step!
+    var seconds: Double!
+    
+    var beanCount: Double!
+    var unit: String!
     
     var countdown: NSDate!
     var startingTime: Double!
     var timerRunning: Bool!
+    var startStopTimer: NSTimer!
     
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
-        step = context as! Step
+        let checkStep: Step = context as! Step
+        println(checkStep.type)
         
-        typeLabel.setText(step.type)
-        showTimer()
-
-//        stepGroup.setBackgroundImageNamed("Mushroom")
-//        animationLength = 20
+        let contextArray: [Double] = context as! [Double]
+        seconds = contextArray[0]
+        beanCount = contextArray[1]
         
-//        timerButton.setHidden(true)
+        typeLabel.setText("Grind")
+        
+        showMeasureButton()
+        showMiniTimer()
+        
+        measureButton.setHidden(false)
+        timerButton.setHidden(true)
     }
     
     
     override func willActivate() {
         super.willActivate()
-
-        
-//        if !alreadySeen {
-//            alreadySeen = true
-//            
-//            // Kick off the animation, but only if we haven't seen it yet:
-//            stepGroup.startAnimatingWithImagesInRange(
-//                NSRange(location: 0, length: animationLength),
-//                duration: 1,
-//                repeatCount: 1)
-//            
-//            // Get ready to show whichever UI element:
-//            setTimerForFunction("showTimer", seconds: 2)
-//            
-//        } else {
-//            // Set the animation to the last frame (where it should have cleared the screen):
-//            stepGroup.startAnimatingWithImagesInRange(
-//                NSRange(location: animationLength-1, length: 1),
-//                duration: 1,
-//                repeatCount: 1)
-//            
-//            // Immediately show whichever UI element:
-//            showTimer()
-//        }
         
     }
     
     override func didDeactivate() {
-        alreadySeen = false //Will this fix the new interface activation problems in Watch OS 1.0.1?
-
+        
         super.didDeactivate()
     }
     
     
+    // MEASURE LOGIC:
+    
+    func showMeasureButton() {
+        unit = "grams"
+        measureLabel.setText(stringFromDouble(beanCount))
+        measureButton.setHidden(false)
+    }
+    
+    @IBAction func measureButtonPressed() {
+        
+        // Alternate between unit types.
+        
+        if unit == "grams" {
+            
+            unit = "other"
+            // Insert logic to convert.
+            
+        } else {
+            
+            unit = "grams"
+            // Insert logic to convert back.
+            
+        }
+        
+        unitLabel.setText(unit)
+        measureLabel.setText(stringFromDouble(beanCount))
+    }
+    
+    
     // TIMER LOGIC:
-    // To-Do: Create methods to handle calculating how high to fill the Aeropress, alternating between liquid measurement and units of Aeropress notches.
-    // For now I've left the timer logic here, for no particular reason.
+    
+    func showMiniTimer() {
+        miniTimerLabel.setText(stringFromDouble(seconds))
+        miniTimerButton.setHidden(false)
+    }
+    
+    @IBAction func miniTimerButtonPressed() {
+        measureButton.setHidden(true)
+        miniTimerButton.setHidden(true)
+        showTimer()
+    }
     
     func showTimer() {
-        startingTime = step.value
+        startingTime = seconds
         countdown = secondsFromDouble(startingTime)
         
-        startstopLabel.setText("Tap to start")
+        startstopLabel.setText("Tap to pause")
         timer.setDate(countdown)
         
-        timerRunning = false
+        // Start it immediately:
+        timer.start()
+        timerRunning = true
+        
         timerButton.setHidden(false)
     }
     
@@ -105,6 +137,9 @@ class PourStepController: WKInterfaceController {
             // Set the start/stop label text:
             startstopLabel.setText("Tap to pause")
             
+            // Set same timer to change the label text when the countdown ends:
+            startStopTimer = NSTimer.scheduledTimerWithTimeInterval(startingTime, target: self, selector: Selector("setLabelToReset"), userInfo: nil, repeats: false)
+            
             // And start it:
             timer.start()
             timerRunning = true
@@ -117,7 +152,7 @@ class PourStepController: WKInterfaceController {
             if timeRemaining < 0.0 {
                 startingTime = -timeRemaining
             } else {
-                startingTime = step.value
+                startingTime = seconds
                 countdown = secondsFromDouble(startingTime)
                 timer.setDate(countdown)
             }
@@ -125,11 +160,18 @@ class PourStepController: WKInterfaceController {
             // Set the start/stop label:
             startstopLabel.setText("Tap to start")
             
+            // Cancel the start/stop label's countdown to "Tap to reset":
+            startStopTimer.invalidate()
+            
             // And stop it:
             timer.stop()
             timerRunning = false
             
         }
+    }
+    
+    func setLabelToReset() {
+        startstopLabel.setText("Tap to reset")
     }
     
     func secondsFromDouble(value: Double) -> NSDate {
@@ -145,4 +187,8 @@ class PourStepController: WKInterfaceController {
         var timer = NSTimer.scheduledTimerWithTimeInterval(Double(seconds), target: self, selector: Selector(functionName), userInfo: nil, repeats: false)
     }
     
+    func stringFromDouble(value: Double) -> String {
+        let str = String(format: "%.f", value)
+        return str
+    }
 }
