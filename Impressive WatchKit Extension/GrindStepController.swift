@@ -58,11 +58,20 @@ class GrindStepController: WKInterfaceController {
         
         measureButton.setHidden(false)
         timerButton.setHidden(true)
+        
     }
     
     
     override func willActivate() {
         super.willActivate()
+        
+        typeLabel.setText("Grind")
+        
+        showMeasureButton()
+        showMiniTimer()
+        
+        measureButton.setHidden(false)
+        timerButton.setHidden(true)
         
     }
     
@@ -76,35 +85,34 @@ class GrindStepController: WKInterfaceController {
     
     func showMeasureButton() {
         unit = "grams"
-        measureLabel.setText(stringFromDouble(beanCount))
+        measureLabel.setText(stringFromDouble(beanCount, format: "%.f"))
         measureButton.setHidden(false)
     }
     
     @IBAction func measureButtonPressed() {
-        
         // Alternate between unit types.
         
+        var format: String
+        
         if unit == "grams" {
-            
-            unit = "other"
-            // Insert logic to convert.
-            
+            unit = "ounces"
+            beanCount = beanCount*0.0353
+            format = "%.1f"
         } else {
-            
             unit = "grams"
-            // Insert logic to convert back.
-            
+            beanCount = beanCount*28.3495
+            format = "%.f"
         }
         
         unitLabel.setText(unit)
-        measureLabel.setText(stringFromDouble(beanCount))
+        measureLabel.setText(stringFromDouble(beanCount, format: format))
     }
     
     
     // TIMER LOGIC:
     
     func showMiniTimer() {
-        miniTimerLabel.setText(stringFromDouble(seconds))
+        miniTimerLabel.setText(stringFromDouble(seconds, format: "%.f"))
         miniTimerButton.setHidden(false)
     }
     
@@ -116,7 +124,7 @@ class GrindStepController: WKInterfaceController {
     }
     
     func showTimer() {
-        startingTime = seconds
+        startingTime = seconds + 1.0
         countdown = secondsFromDouble(startingTime)
         
         startstopLabel.setText("Tap to pause")
@@ -193,8 +201,8 @@ class GrindStepController: WKInterfaceController {
         var timer = NSTimer.scheduledTimerWithTimeInterval(Double(seconds), target: self, selector: Selector(functionName), userInfo: nil, repeats: false)
     }
     
-    func stringFromDouble(value: Double) -> String {
-        let str = String(format: "%.f", value)
+    func stringFromDouble(value: Double, format: String) -> String {
+        let str = String(format: format, value)
         return str
     }
 }

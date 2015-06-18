@@ -34,7 +34,7 @@ class StirStepController: WKInterfaceController {
         
         step = context as! Step
         
-        typeLabel.setText(step.type)
+        typeLabel.setText(step.type) // Moved from awakeWithContext.
         showTimer()
         
 //        stepGroup.setBackgroundImageNamed("TSwiftKarate") // Eventually this should also use step.type - or simply reference an image baked into the storyboard?
@@ -46,6 +46,9 @@ class StirStepController: WKInterfaceController {
     
     override func willActivate() {
         super.willActivate()
+        
+        typeLabel.setText(step.type) // Moved from awakeWithContext.
+        showTimer()
         
 //        if !alreadySeen {
 //            alreadySeen = true
@@ -82,11 +85,11 @@ class StirStepController: WKInterfaceController {
     // TIMER LOGIC:
     
     func showTimer() {
-        startingTime = step.value
+        startingTime = step.value + 1.0
         countdown = secondsFromDouble(startingTime)
+        timer.setDate(countdown)
         
         startstopLabel.setText("Tap to start")
-        timer.setDate(countdown)
         
         timerRunning = false
         timerButton.setHidden(false)

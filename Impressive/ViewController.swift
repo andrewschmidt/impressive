@@ -52,14 +52,17 @@ class ViewController: UIViewController {
 //            println(recipe)
 //        }
         
-        LoadSave.sharedInstance.loadDaily() {
-            dailyRecipe in
-            println("\rVC: Got the daily recipe, one way or another! Here it is:")
-            println(dailyRecipe)
-        }
+//        LoadSave.sharedInstance.loadDaily() {
+//            dailyRecipe in
+//            println("\rVC: Got the daily recipe, one way or another! Here it is:")
+//            println(dailyRecipe)
+//        }
         
     }
     
+    @IBAction func deleteButtonPressed(sender: AnyObject) {
+//        LoadSave.sharedInstance.deletePlist("SavedDaily")
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

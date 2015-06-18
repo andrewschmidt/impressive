@@ -32,17 +32,20 @@ class HeatStepController: WKInterfaceController {
         step = context as! Step
         
         typeLabel.setText(step.type)
+        showTemperature() //Added for WWDC build.
         
 //        stepGroup.setBackgroundImageNamed("TSwiftKarate") //Removed for the WWDC build.
 //        animationLength = 7
         
 //        temperatureButton.setHidden(true) //Removed for the WWDC build.
-        showTemperature() //Added for WWDC build.
     }
     
     
     override func willActivate() {
         super.willActivate()
+        
+        typeLabel.setText(step.type)
+        showTemperature() //Added for WWDC build.
         
         // Below logic removed for WWDC build. Some bits will be useful in the future.
         

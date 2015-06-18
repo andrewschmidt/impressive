@@ -13,17 +13,28 @@ import ImpData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var backgroundTask: UIBackgroundTaskIdentifier!
 
 
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-        // Handle notifications.
-        
-        println("APPDELEGATE: Received notification!")
-    }
+//    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+//        // Handle notifications.
+//
+//        println("APPDELEGATE: Received notification!")
+//    }
     
     
     func application(application: UIApplication, handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]?, reply: (([NSObject : AnyObject]!) -> Void)!) {
         // Handle requests from the watch.
+        
+//        let priority = DISPATCH_QUEUE_PRIORITY_HIGH
+//        dispatch_async(dispatch_get_global_queue(priority, 0)) {
+        
+        
+//        let completionBlock: () -> Void = {
+//            reply(["success": "PARENTAPP: Did something right!"])
+//            UIApplication.sharedApplication().endBackgroundTask(self.loadDailyRecipeTask!)
+//        }
+        
         
         println("APPDELEGATE: Awoken by Watch!")
         
@@ -36,7 +47,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     dailyRecipe in
                     
                     reply(["success": "PARENTAPP: Found a daily recipe and saved it to the shared app group."])
+                    self.endBackgroundTask()
                 }
+                registerBackgroundTask()
                 
             case "fetchPersonalRecipes":
                 
@@ -64,6 +77,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 reply(["error": "APPDELEGATE: Error - received nonsensical command from Watch: \(value)"])
             }
         }
+            
+//        }
+    }
+    
+    
+    func registerBackgroundTask() {
+        println("APPDELEGATE: Registering background task.")
+
+        backgroundTask = UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler() {
+//            [unowned self] in
+            self.endBackgroundTask()
+        }
+        assert(backgroundTask != UIBackgroundTaskInvalid)
+    }
+    
+    func endBackgroundTask() {
+        println("APPDELEGATE: Background task ended.")
+        
+        UIApplication.sharedApplication().endBackgroundTask(backgroundTask)
+        
+        backgroundTask = UIBackgroundTaskInvalid
     }
     
     

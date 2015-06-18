@@ -47,6 +47,9 @@ class PressStepController: WKInterfaceController {
     override func willActivate() {
         super.willActivate()
         
+        typeLabel.setText(step.type)
+        showTimer()
+        
 //        if !alreadySeen {
 //            alreadySeen = true
 //            
@@ -83,11 +86,11 @@ class PressStepController: WKInterfaceController {
     // TIMER LOGIC:
     
     func showTimer() {
-        startingTime = step.value
+        startingTime = step.value + 1.0
         countdown = secondsFromDouble(startingTime)
+        timer.setDate(countdown)
         
         startstopLabel.setText("Tap to start")
-        timer.setDate(countdown)
         
         timerRunning = false
         timerButton.setHidden(false)
