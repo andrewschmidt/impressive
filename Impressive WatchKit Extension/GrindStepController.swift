@@ -20,7 +20,7 @@ class GrindStepController: WKInterfaceController {
     @IBOutlet weak var measureLabel: WKInterfaceLabel!
     @IBOutlet weak var unitLabel: WKInterfaceLabel!
     
-    @IBOutlet weak var separator: WKInterfaceSeparator!
+//    @IBOutlet weak var separator: WKInterfaceSeparator!
     
     @IBOutlet weak var miniTimerButton: WKInterfaceButton!
     @IBOutlet weak var miniTimerLabel: WKInterfaceLabel!
@@ -118,7 +118,7 @@ class GrindStepController: WKInterfaceController {
     
     @IBAction func miniTimerButtonPressed() {
         measureButton.setHidden(true)
-        separator.setHidden(true)
+//        separator.setHidden(true)
         miniTimerButton.setHidden(true)
         showTimer()
     }

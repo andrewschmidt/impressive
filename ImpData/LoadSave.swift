@@ -198,7 +198,7 @@ public class LoadSave: NSObject {
     }
    
     
-    func deletePlist(list: String) { //Should probably be private.
+    public func deletePlist(list: String) { //Should probably be private.
         
         let fileManager = NSFileManager.defaultManager()
         let url = fileManager.containerURLForSecurityApplicationGroupIdentifier("group.AndrewSchmidt.Impressive")

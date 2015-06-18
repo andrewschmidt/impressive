@@ -61,7 +61,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func deleteButtonPressed(sender: AnyObject) {
-//        LoadSave.sharedInstance.deletePlist("SavedDaily")
+        LoadSave.sharedInstance.deletePlist("SavedDaily")
     }
 
     override func didReceiveMemoryWarning() {
