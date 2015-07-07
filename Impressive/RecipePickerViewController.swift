@@ -43,7 +43,7 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
                 self.recipes.insert(self.dailyRecipe, atIndex: 0)
                 
                 // AND THEN add the row to the table.
-                self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Bottom)
+                self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Fade)
             }
         } else {
             println("RECIPEPICKERVC: Daily recipe IS current, appending to recipes array.")
