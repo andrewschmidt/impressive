@@ -98,23 +98,7 @@
                             <outlet property="delegate" destination="mES-XE-BXo" id="6NJ-le-Rzm"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Recipes" id="6jO-dh-TIc">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="g3D-8Z-1bj">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aYE-z2-sDB">
-                                <rect key="frame" x="-23" y="-15" width="133" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Delete Daily">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="deleteDailyPressed:" destination="mES-XE-BXo" eventType="touchUpInside" id="TDr-fy-sMX"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="deleteDailyButton" destination="aYE-z2-sDB" id="sxk-tP-TC1"/>
-                    </connections>
+                    <navigationItem key="navigationItem" title="Recipes" id="6jO-dh-TIc"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pcZ-nc-9j5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -135,6 +135,25 @@ public class LoadSave: NSObject {
     }
     
     
+    public func deleteRecipe(recipe: Recipe, inPlistNamed plistName: String) {
+        // First let's load the plist as-is.
+        var savedRecipes = loadRecipes(plistName)
+        
+        // Then find the recipe we want to delete and remove it from the array.
+        var index = 0
+        for savedRecipe in savedRecipes {
+            if savedRecipe.name == recipe.name {
+                savedRecipes.removeAtIndex(index)
+                break
+            }
+            ++index
+        }
+        
+        // Finally re-save the recipe array.
+        overwriteRecipesInPlist(plistName, withRecipes: savedRecipes)
+    }
+    
+    
     public func overwriteRecipe(oldRecipeName: String, withRecipe newRecipe: Recipe, inPlistNamed plistName: String) {
         var savedRecipes = loadRecipes(plistName)
         var foundRecipe = false
