@@ -11,48 +11,40 @@ import ImpData
 
 class RecipePickerViewController: UITableViewController, UISplitViewControllerDelegate {
     
+    
     private var collapseRecipeViewController = true
+    
     
     var dailyRecipe: Recipe!
     var dailyIsPresent = false
     var savedRecipes = [Recipe]()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.refreshControl?.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
         splitViewController?.delegate = self
+        self.navigationItem.rightBarButtonItem = self.editButtonItem()
 
         // First, let's get our recipes loaded in.
+        // The daily recipe is handled async, so here's a function that runs that and sets the variable:
+        loadAndAddDaily()
         
-        loadDailyRecipe() {
-            daily in
-            self.dailyRecipe = daily
-            self.dailyIsPresent = true
-            
-            // We'll also add the row to the table, because by now cellForRowAtIndexPath has probably already been called.
-            self.tableView.beginUpdates()
-            self.tableView.insertSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
-            self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Fade)
-            self.tableView.endUpdates()
-        }
-        
+        // The saved recipes are local and much simpler:
         savedRecipes = loadSavedRecipes()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-         self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
     
-    // MARK: - Table view data source
+    
+    // MARK: Table view data source.
     
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -96,7 +88,7 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
             cell.nameLabel.text = cellRecipe.name
         }
         
-        println("RECIPEPICKERVC: Creating a cell with name " + cellRecipe.name + ".")
+        println("RECIPEPICKER: Creating a cell with name " + cellRecipe.name + ".")
         
         return cell
     }
@@ -107,7 +99,34 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
     }
 
     
+    
     // MARK: Loading data
+    
+    func reloadSavedRecipes() {
+        savedRecipes = loadSavedRecipes()
+        tableView.reloadData()
+    }
+    
+    
+    
+    
+    func loadAndAddDaily() {
+        loadDailyRecipe() {
+            daily in
+            self.dailyRecipe = daily
+            self.dailyIsPresent = true
+            
+            if self.tableView.numberOfSections() == 1 {
+                // There isn't a daily section yet, so let's add it.
+                self.tableView.beginUpdates()
+                self.tableView.insertSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
+                self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Fade)
+                self.tableView.endUpdates()
+            }
+            
+            self.tableView.reloadData()
+        }
+    }
     
     
     func loadSavedRecipes() -> [Recipe] {
@@ -116,58 +135,45 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
     }
     
     
-    func reloadRecipes() {
-        // Reload the saved recipes:
-        savedRecipes = loadSavedRecipes()
-        
-        // Reload the daily recipe:
-        dailyIsPresent = false
-        loadDailyRecipe() {
-            daily in
-            self.dailyRecipe = daily
-            self.dailyIsPresent = true
-            
-            // We'll also add the row to the table, because by now cellForRowAtIndexPath has probably already been called.
-//            self.tableView.beginUpdates()
-            self.tableView.insertSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
-            self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Fade)
-//            self.tableView.endUpdates()
-            
-        }
-        
-        tableView.reloadData()
-    }
-    
-    
     func loadDailyRecipe(completion: (daily: Recipe) -> Void) {
         // Load the daily recipe, if current, elsewise pull down a new one from CK.
         
-        println("RECIPEPICKERVC: Time to figure out if our daily recipe is current.")
+        println("RECIPEPICKER: Time to figure out if our daily recipe is current.")
         
         if !LoadSave.sharedInstance.savedDailyIsCurrent() {
             
-            println("RECIPEPICKERVC: Daily recipe is NOT current, attempting to load from the cloud.")
+            println("RECIPEPICKER: Daily recipe is NOT current, attempting to load from the cloud.")
             
             LoadSave.sharedInstance.loadDaily() {
                 dailyRecipe in
                 
-                println("RECIPEPICKERVC: Successfully loaded from cloud! Returning.")
-                                
+                println("RECIPEPICKER: Successfully loaded from cloud! Returning.")
+                
                 completion(daily: dailyRecipe)
             }
             
         } else {
-            
-            println("RECIPEPICKERVC: Daily recipe IS current, returning...")
+            println("RECIPEPICKER: Daily recipe IS current, returning...")
             dailyIsPresent = true
             completion(daily: LoadSave.sharedInstance.loadRecipe("SavedDaily"))
-//            return LoadSave.sharedInstance.loadRecipe("SavedDaily")
-            
         }
     }
     
     
+    
     // MARK: Editing controls.
+    
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        self.dailyIsPresent = false
+        loadAndAddDaily()
+        refreshControl.endRefreshing()
+    }
+    
+    
+    @IBAction func restoreDefaultsButton(sender: AnyObject) {
+        LoadSave.sharedInstance.deletePlist("SavedRecipes")
+        reloadSavedRecipes()
+    }
     
 
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -185,7 +191,8 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
         
         // First let's make our actions.
         
-        // Save action:
+        
+        // SAVE ACTION
         var saveAction = UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: "Save") {
             Void in
             
@@ -215,10 +222,14 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
             
             // And insert a cell into the appropriate section:
             self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: self.savedRecipes.count-1, inSection: targetSection)], withRowAnimation: UITableViewRowAnimation.Top)
+            
+            // Finally, let's leave the editing mode:
+            self.setEditing(false, animated: true)
         }
         saveAction.backgroundColor = UIColor.greenColor()
         
-        // Delete action:
+        
+        // DELETE ACTION
         var deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete") {
             Void in
             
@@ -226,7 +237,8 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
                 // Delete the daily saved in local storage.
                 LoadSave.sharedInstance.deletePlist("SavedDaily")
                 self.dailyIsPresent = false
-                tableView.deleteSections(NSIndexSet(index: 0), withRowAnimation: .Fade)
+                self.tableView.deleteSections(NSIndexSet(index: 0), withRowAnimation: .Fade)
+//                self.tableView.reloadData()
                 
             } else {
                 // Identify the recipe to delete.
@@ -239,10 +251,12 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
                 LoadSave.sharedInstance.deleteRecipe(recipeToDelete, inPlistNamed: "SavedRecipes")
                 
                 // Then delete the row from the table:
-                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+//                self.tableView.reloadData()
             }
             
         }
+        
         
         // Next, return the actions:
         if dailyIsPresent == true && indexPath.section == 0 {
@@ -253,12 +267,12 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
     }
     
     
-    // Override to support editing the table view.
+    // Allow editing the table view:
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     }
 
     
-    // Override to support rearranging the table view.
+    // Allow rearranging the table view:
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
         
         // Get the moved recipe's data from the array...
@@ -273,6 +287,7 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
     }
     
     
+    // Restrict rearranging by section:
     override func tableView(tableView: UITableView, targetIndexPathForMoveFromRowAtIndexPath sourceIndexPath: NSIndexPath, toProposedIndexPath proposedDestinationIndexPath: NSIndexPath) -> NSIndexPath {
         
         if sourceIndexPath.section != proposedDestinationIndexPath.section {
@@ -289,7 +304,7 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
     }
 
     
-    // Override to support conditional rearranging.
+    // Restrict rearranging by section number:
     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         
         // Let's make sure the daily recipe isn't rearrangeable.
@@ -299,18 +314,20 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
             return true
         }
     }
-
     
-    /*
+    
+    
     // MARK: Navigation
 
     
+    /*
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
     }
     */
+    
     
     
     // MARK: UISplitViewControllerDelegate
