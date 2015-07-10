@@ -136,10 +136,10 @@
             </objects>
             <point key="canvasLocation" x="88" y="-660"/>
         </scene>
-        <!--Split View Controller-->
+        <!--Recipe Split View Controller-->
         <scene sceneID="P8i-6K-JbX">
             <objects>
-                <splitViewController id="q4i-BC-P9F" sceneMemberID="viewController">
+                <splitViewController id="q4i-BC-P9F" customClass="RecipeSplitViewController" customModule="Impressive" customModuleProvider="target" sceneMemberID="viewController">
                     <connections>
                         <segue destination="6B0-l0-qLU" kind="relationship" relationship="masterViewController" id="nu6-5S-5pR"/>
                         <segue destination="T8v-lu-BqD" kind="relationship" relationship="detailViewController" id="vMq-i4-SBq"/>

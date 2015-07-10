@@ -23,10 +23,11 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.refreshControl?.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
         splitViewController?.delegate = self
-        self.navigationItem.rightBarButtonItem = self.editButtonItem()
 
+        self.refreshControl?.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
         // First, let's get our recipes loaded in.
         // The daily recipe is handled async, so here's a function that runs that and sets the variable:
         loadAndAddDaily(){}

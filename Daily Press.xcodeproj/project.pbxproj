@@ -25,6 +25,7 @@
 		4917E94B1AAD446000F984FD /* DefaultSavedRecipes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4959BBCA1AA28BC600CAA075 /* DefaultSavedRecipes.plist */; };
 		492D7B3B1B4B954A0088A8E4 /* RecipePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492D7B3A1B4B954A0088A8E4 /* RecipePickerViewController.swift */; };
 		492D7B3D1B4BA6A50088A8E4 /* RecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492D7B3C1B4BA6A50088A8E4 /* RecipeCell.swift */; };
+		492D7B3F1B4FB4690088A8E4 /* RecipeSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492D7B3E1B4FB4690088A8E4 /* RecipeSplitViewController.swift */; };
 		493DACA51B33715A00B635BF /* DefaultSpecialRecipe.plist in Resources */ = {isa = PBXBuildFile; fileRef = 493DACA41B33715A00B635BF /* DefaultSpecialRecipe.plist */; };
 		4964AF221AC23595005688F9 /* CKLoadSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4964AF211AC23595005688F9 /* CKLoadSave.swift */; };
 		49663A7C1A9E6D1300AC244A /* SpecialTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49663A7B1A9E6D1300AC244A /* SpecialTableRowController.swift */; };
@@ -147,6 +148,7 @@
 		4917E93C1AAD3A3C00F984FD /* TestFramework.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestFramework.swift; sourceTree = "<group>"; };
 		492D7B3A1B4B954A0088A8E4 /* RecipePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipePickerViewController.swift; sourceTree = "<group>"; };
 		492D7B3C1B4BA6A50088A8E4 /* RecipeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeCell.swift; sourceTree = "<group>"; };
+		492D7B3E1B4FB4690088A8E4 /* RecipeSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeSplitViewController.swift; sourceTree = "<group>"; };
 		493DACA41B33715A00B635BF /* DefaultSpecialRecipe.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultSpecialRecipe.plist; sourceTree = "<group>"; };
 		4959BBCA1AA28BC600CAA075 /* DefaultSavedRecipes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultSavedRecipes.plist; sourceTree = "<group>"; };
 		496180E91A9D78500077A6F8 /* Impressive.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Impressive.entitlements; sourceTree = "<group>"; };
@@ -361,6 +363,7 @@
 				4995D3951A94084400FA30A3 /* AppDelegate.swift */,
 				4995D3991A94084400FA30A3 /* Main.storyboard */,
 				492D7B3A1B4B954A0088A8E4 /* RecipePickerViewController.swift */,
+				492D7B3E1B4FB4690088A8E4 /* RecipeSplitViewController.swift */,
 				492D7B3C1B4BA6A50088A8E4 /* RecipeCell.swift */,
 				4995D39C1A94084400FA30A3 /* Images.xcassets */,
 				4995D39E1A94084400FA30A3 /* LaunchScreen.xib */,
@@ -569,7 +572,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4995D38B1A94084300FA30A3 /* Build configuration list for PBXProject "Impressive" */;
+			buildConfigurationList = 4995D38B1A94084300FA30A3 /* Build configuration list for PBXProject "Daily Press" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -700,6 +703,7 @@
 			files = (
 				492D7B3B1B4B954A0088A8E4 /* RecipePickerViewController.swift in Sources */,
 				4995D3961A94084400FA30A3 /* AppDelegate.swift in Sources */,
+				492D7B3F1B4FB4690088A8E4 /* RecipeSplitViewController.swift in Sources */,
 				492D7B3D1B4BA6A50088A8E4 /* RecipeCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1105,7 +1109,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4995D38B1A94084300FA30A3 /* Build configuration list for PBXProject "Impressive" */ = {
+		4995D38B1A94084300FA30A3 /* Build configuration list for PBXProject "Daily Press" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4995D3AD1A94084400FA30A3 /* Debug */,
