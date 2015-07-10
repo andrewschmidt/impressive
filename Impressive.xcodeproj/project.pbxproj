@@ -47,7 +47,6 @@
 		49951C1D1B23DA9E00634ADE /* GrindStepController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49951C1C1B23DA9E00634ADE /* GrindStepController.swift */; };
 		49951C1F1B2419FB00634ADE /* InvertStepController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49951C1E1B2419FB00634ADE /* InvertStepController.swift */; };
 		4995D3961A94084400FA30A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4995D3951A94084400FA30A3 /* AppDelegate.swift */; };
-		4995D3981A94084400FA30A3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4995D3971A94084400FA30A3 /* ViewController.swift */; };
 		4995D39B1A94084400FA30A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4995D3991A94084400FA30A3 /* Main.storyboard */; };
 		4995D39D1A94084400FA30A3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4995D39C1A94084400FA30A3 /* Images.xcassets */; };
 		4995D3A01A94084400FA30A3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4995D39E1A94084400FA30A3 /* LaunchScreen.xib */; };
@@ -176,7 +175,6 @@
 		4995D3901A94084400FA30A3 /* Impressive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Impressive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4995D3941A94084400FA30A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4995D3951A94084400FA30A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4995D3971A94084400FA30A3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4995D39A1A94084400FA30A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4995D39C1A94084400FA30A3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4995D39F1A94084400FA30A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -361,7 +359,6 @@
 			children = (
 				496180E91A9D78500077A6F8 /* Impressive.entitlements */,
 				4995D3951A94084400FA30A3 /* AppDelegate.swift */,
-				4995D3971A94084400FA30A3 /* ViewController.swift */,
 				4995D3991A94084400FA30A3 /* Main.storyboard */,
 				492D7B3A1B4B954A0088A8E4 /* RecipePickerViewController.swift */,
 				492D7B3C1B4BA6A50088A8E4 /* RecipeCell.swift */,
@@ -702,7 +699,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				492D7B3B1B4B954A0088A8E4 /* RecipePickerViewController.swift in Sources */,
-				4995D3981A94084400FA30A3 /* ViewController.swift in Sources */,
 				4995D3961A94084400FA30A3 /* AppDelegate.swift in Sources */,
 				492D7B3D1B4BA6A50088A8E4 /* RecipeCell.swift in Sources */,
 			);

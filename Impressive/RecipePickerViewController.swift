@@ -226,10 +226,7 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
                 // Delete the daily saved in local storage.
                 LoadSave.sharedInstance.deletePlist("SavedDaily")
                 self.dailyIsPresent = false
-                
-//                tableView.beginUpdates()
                 tableView.deleteSections(NSIndexSet(index: 0), withRowAnimation: .Fade)
-//                tableView.endUpdates()
                 
             } else {
                 // Identify the recipe to delete.
