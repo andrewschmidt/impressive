@@ -112,6 +112,9 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
     func loadAndAddDaily(completion: () -> ()) {
         loadDailyRecipe() {
             daily in
+            
+            self.tableView.beginUpdates()
+            
             self.dailyRecipe = daily
             self.dailyIsPresent = true
             
@@ -119,11 +122,12 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
                 // There isn't a daily section yet, so let's add it.
                 println("RECIPEPICKER: Adding a section & row for the daily recipe.")
                 
-                self.tableView.beginUpdates()
                 self.tableView.insertSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
                 self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Fade)
-                self.tableView.endUpdates()
             }
+            
+            self.tableView.endUpdates()
+            
             completion()
         }
     }
@@ -215,6 +219,8 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
                 targetSection = 0
             }
             
+            self.tableView.beginUpdates()
+            
             // Save it to local storage:
             LoadSave.sharedInstance.saveRecipe(recipeToSave, inPlistNamed: "SavedRecipes")
             
@@ -222,13 +228,9 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
             self.savedRecipes.append(recipeToSave)
             
             // And insert a cell into the appropriate section:
-            self.tableView.beginUpdates()
             self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: self.savedRecipes.count-1, inSection: targetSection)], withRowAnimation: UITableViewRowAnimation.Top)
-            self.tableView.endUpdates()
 
-            
-            // I'm not sure if we need to reload data or not.
-//            self.tableView.reloadData()
+            self.tableView.endUpdates()
             
             // Finally, let's leave the editing mode:
             self.tableView.setEditing(false, animated: true)
@@ -241,14 +243,22 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
             Void in
             
             if self.dailyIsPresent && indexPath.section == 0 {
+                
+                self.tableView.beginUpdates()
+                
                 self.dailyIsPresent = false
+                
                 // Delete the daily saved in local storage.
                 LoadSave.sharedInstance.deletePlist("SavedDaily")
-                self.tableView.beginUpdates()
+                
                 self.tableView.deleteSections(NSIndexSet(index: 0), withRowAnimation: .Fade)
+                
                 self.tableView.endUpdates()
                 
             } else {
+                
+                self.tableView.beginUpdates()
+                
                 // Identify the recipe to delete.
                 let recipeToDelete = self.savedRecipes[indexPath.row]
                 
@@ -259,12 +269,11 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
                 LoadSave.sharedInstance.deleteRecipe(recipeToDelete, inPlistNamed: "SavedRecipes")
                 
                 // Then delete the row from the table:
-                self.tableView.beginUpdates()
                 self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                
                 self.tableView.endUpdates()
 
             }
-//            self.tableView.reloadData()
         }
         
         
