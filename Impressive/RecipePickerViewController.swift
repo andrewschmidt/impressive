@@ -78,7 +78,7 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
         var cell: RecipeCell
         var cellRecipe: Recipe
         
-        if dailyIsPresent == true && indexPath.section == 0 {
+        if dailyIsPresent && indexPath.section == 0 {
             cell = tableView.dequeueReusableCellWithIdentifier("RecipeCell", forIndexPath: indexPath) as! RecipeCell
             cellRecipe = dailyRecipe
             cell.nameLabel.text = cellRecipe.name + ", today's special!"
@@ -113,21 +113,24 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
         loadDailyRecipe() {
             daily in
             
-            self.tableView.beginUpdates()
-            
-            self.dailyRecipe = daily
-            self.dailyIsPresent = true
-            
-            if self.tableView.numberOfSections() == 1 {
-                // There isn't a daily section yet, so let's add it.
-                println("RECIPEPICKER: Adding a section & row for the daily recipe.")
-                
-                self.tableView.insertSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
-                self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Fade)
+            if self.dailyIsPresent {
+                self.tableView.beginUpdates()
+                self.dailyRecipe = daily
+                self.tableView.endUpdates()
+            } else {
+                println("RECIPEPICKER: Adding a section for the daily recipe.")
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.tableView.beginUpdates()
+                    
+                    self.tableView.insertSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
+                    
+                    self.dailyRecipe = daily
+                    self.dailyIsPresent = true
+                    
+                    self.tableView.endUpdates()
+                }
             }
-            
-            self.tableView.endUpdates()
-            
+
             completion()
         }
     }
@@ -169,8 +172,8 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
     
     func handleRefresh(refreshControl: UIRefreshControl) {
         self.dailyIsPresent = false
-        loadAndAddDaily(){
-            refreshControl.endRefreshing()
+        self.loadAndAddDaily() {
+            self.refreshControl!.endRefreshing()
         }
     }
     
