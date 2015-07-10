@@ -26,79 +26,104 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]?, reply: (([NSObject : AnyObject]!) -> Void)!) {
         // Handle requests from the watch.
         
-//        let priority = DISPATCH_QUEUE_PRIORITY_HIGH
-//        dispatch_async(dispatch_get_global_queue(priority, 0)) {
-        
-        
-//        let completionBlock: () -> Void = {
-//            reply(["success": "PARENTAPP: Did something right!"])
-//            UIApplication.sharedApplication().endBackgroundTask(self.loadDailyRecipeTask!)
-//        }
-        
-        
         println("APPDELEGATE: Awoken by Watch!")
-        
+
         for (key, value) in userInfo! {
             switch key {
-                
-            case "loadDaily":
-                
-                LoadSave.sharedInstance.loadDaily() {
-                    dailyRecipe in
-                    
-                    reply(["success": "PARENTAPP: Found a daily recipe and saved it to the shared app group."])
-                    self.endBackgroundTask()
-                }
-                registerBackgroundTask()
-                
-            case "fetchPersonalRecipes":
-                
-                if value as! String == "overwrite" {
-                    CKLoadSave.sharedInstance.fetchPersonalRecipes() {
-                        recipes in
+                case "loadDaily":
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
                         
-                        LoadSave.sharedInstance.overwriteRecipesInPlist("SavedRecipes", withRecipes: recipes)
+                        let taskID = self.beginBackgroundUpdateTask()
                         
-                        reply(["success": "PARENTAPP: Overwrote the saved recipes with personal recipes from the cloud."])
-                    }
-                } else {
-                    CKLoadSave.sharedInstance.fetchPersonalRecipes() {
-                        recipes in
-                        
-                        for recipe in recipes {
-                            LoadSave.sharedInstance.saveRecipe(recipe, inPlistNamed: "SavedRecipes")
+                        LoadSave.sharedInstance.loadDaily() {
+                            dailyRecipe in
+                            
+                            reply(["success": "PARENTAPP: Found a daily recipe and saved it to the shared app group."])
+                            self.endBackgroundUpdateTask(taskID)
                         }
                         
-                        reply(["success": "PARENTAPP: Added personal recipes from the cloud to saved recipes."])
-                    }
+                    })
+                    
+                default:
+                    println("APPDELEGATE: Something broke.")
                 }
-                
-            default:
-                reply(["error": "APPDELEGATE: Error - received nonsensical command from Watch: \(value)"])
-            }
         }
-            
+    }
+    
+        func beginBackgroundUpdateTask() -> UIBackgroundTaskIdentifier {
+            return UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler({})
+        }
+        
+        func endBackgroundUpdateTask(taskID: UIBackgroundTaskIdentifier) {
+            UIApplication.sharedApplication().endBackgroundTask(taskID)
+        }
+    
+        
+// BELOW
+// Is the old code.
+// It was working, but not great.
+        
+//        for (key, value) in userInfo! {
+//            switch key {
+//                
+//            case "loadDaily":
+//                
+//                LoadSave.sharedInstance.loadDaily() {
+//                    dailyRecipe in
+//                    
+//                    reply(["success": "PARENTAPP: Found a daily recipe and saved it to the shared app group."])
+//                    self.endBackgroundTask()
+//                }
+//                registerBackgroundTask()
+//                
+//            case "fetchPersonalRecipes":
+//                
+//                if value as! String == "overwrite" {
+//                    CKLoadSave.sharedInstance.fetchPersonalRecipes() {
+//                        recipes in
+//                        
+//                        LoadSave.sharedInstance.overwriteRecipesInPlist("SavedRecipes", withRecipes: recipes)
+//                        
+//                        reply(["success": "PARENTAPP: Overwrote the saved recipes with personal recipes from the cloud."])
+//                    }
+//                } else {
+//                    CKLoadSave.sharedInstance.fetchPersonalRecipes() {
+//                        recipes in
+//                        
+//                        for recipe in recipes {
+//                            LoadSave.sharedInstance.saveRecipe(recipe, inPlistNamed: "SavedRecipes")
+//                        }
+//                        
+//                        reply(["success": "PARENTAPP: Added personal recipes from the cloud to saved recipes."])
+//                    }
+//                }
+//                
+//            default:
+//                reply(["error": "APPDELEGATE: Error - received nonsensical command from Watch: \(value)"])
+//            }
 //        }
-    }
-    
-    
-    func registerBackgroundTask() {
-        println("APPDELEGATE: Registering background task.")
-
-        backgroundTask = UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler() {
+//            
+////        }
+//    }
+//    
+//    
+//    func registerBackgroundTask() {
+//        println("APPDELEGATE: Registering background task.")
+//
+//        backgroundTask = UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler() {
 //            [unowned self] in
-            self.endBackgroundTask()
-        }
-        assert(backgroundTask != UIBackgroundTaskInvalid)
-    }
-    
-    func endBackgroundTask() {
-        println("APPDELEGATE: Background task ended.")
-        
-        UIApplication.sharedApplication().endBackgroundTask(backgroundTask)
-        
-        backgroundTask = UIBackgroundTaskInvalid
-    }
+//            self.endBackgroundTask()
+//        }
+//        assert(backgroundTask != UIBackgroundTaskInvalid)
+//    }
+//    
+//    func endBackgroundTask() {
+//        println("APPDELEGATE: Background task ended.")
+//        
+//        UIApplication.sharedApplication().endBackgroundTask(backgroundTask)
+//        
+//        backgroundTask = UIBackgroundTaskInvalid
+//    }
     
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
