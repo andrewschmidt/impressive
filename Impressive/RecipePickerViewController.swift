@@ -24,7 +24,9 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
         super.viewDidLoad()
         
         splitViewController?.delegate = self
-
+        
+        self.clearsSelectionOnViewWillAppear = false
+        
         self.refreshControl?.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
@@ -35,6 +37,15 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
         // The saved recipes are local and much simpler:
         savedRecipes = loadSavedRecipes()
         
+    }
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let indexPath = self.tableView.indexPathForSelectedRow() {
+            self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        }
     }
 
     
@@ -75,7 +86,6 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
         var cell: RecipeCell
         var cellRecipe: Recipe
         
@@ -145,7 +155,6 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
     
     func loadDailyRecipe(completion: (daily: Recipe) -> Void) {
         // Load the daily recipe, if current, elsewise pull down a new one from CK.
-        
         println("RECIPEPICKER: Time to figure out if our daily recipe is current.")
         
         if !LoadSave.sharedInstance.savedDailyIsCurrent() {
@@ -184,22 +193,9 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
         reloadSavedRecipes()
     }
     
-
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        
-        // In case I ever want to disable edit actions on the daily recipe.
-        if indexPath.section == 0 && dailyIsPresent {
-            return true
-        } else {
-            return true
-        }
-    }
-    
     
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
-        
         // First let's make our actions.
-        
         
         // SAVE ACTION
         var saveAction = UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: "Save") {
@@ -241,7 +237,6 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
         }
         saveAction.backgroundColor = UIColor.greenColor()
         
-        
         // DELETE ACTION
         var deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete") {
             Void in
@@ -280,7 +275,6 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
             }
         }
         
-        
         // Next, return the actions:
         if dailyIsPresent == true && indexPath.section == 0 {
             return [saveAction, deleteAction]
@@ -293,11 +287,20 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
     // Allow editing the table view:
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     }
-
     
+    // Restrict editing by section:
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        // In case I ever want to disable edit actions on the daily recipe.
+        if indexPath.section == 0 && dailyIsPresent {
+            return true
+        } else {
+            return true
+        }
+    }
+    
+
     // Allow rearranging the table view:
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-        
         // Get the moved recipe's data from the array...
         let movedRecipe = savedRecipes[fromIndexPath.row]
         
@@ -314,11 +317,12 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
     override func tableView(tableView: UITableView, targetIndexPathForMoveFromRowAtIndexPath sourceIndexPath: NSIndexPath, toProposedIndexPath proposedDestinationIndexPath: NSIndexPath) -> NSIndexPath {
         
         if sourceIndexPath.section != proposedDestinationIndexPath.section {
-            
             var row = 0
+            
             if sourceIndexPath.section < proposedDestinationIndexPath.section {
                 row = tableView.numberOfRowsInSection(sourceIndexPath.section) - 1
             }
+            
             return NSIndexPath(forRow: row, inSection: sourceIndexPath.section)
             
         } else {
@@ -343,14 +347,28 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
     // MARK: Navigation
 
     
-    /*
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+        // Handle segues.
+        
+        // First, for selecting a recipe:
+        if segue.identifier == "viewRecipe" {
+            
+            var recipevc = segue.destinationViewController.topViewController as! RecipeViewController
+            
+            if let selectedIndex = tableView.indexPathForSelectedRow() {
+            
+                if dailyIsPresent && selectedIndex.section == 0 {
+                    println("RECIPEPICKER: Daily recipe selected, sending it on over to the recipe view.")
+                    recipevc.recipe = dailyRecipe
+                
+                } else {
+                    println("RECIPEPICKER: A saved recipe was selected, sending it on over to the recipe view.")
+                    recipevc.recipe = savedRecipes[selectedIndex.row]
+                }
+            }
+        }
     }
-    */
-    
+
     
     
     // MARK: UISplitViewControllerDelegate
