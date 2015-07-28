@@ -26,7 +26,7 @@ class RecipeViewController: UITableViewController {
     
     
     override func viewDidLayoutSubviews() {
-        self.gradientView.gradientWithColors(UIColor.whiteColor(), UIColor.orangeColor())
+        self.gradientView.withColors(UIColor.whiteColor(), UIColor.orangeColor())
     }
 
     

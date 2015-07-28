@@ -15,7 +15,7 @@ class GradientView: UIView {
         return CAGradientLayer.self
     }
     
-    func gradientWithColors(topColor: UIColor, _ bottomColor: UIColor) {
+    func withColors(topColor: UIColor, _ bottomColor: UIColor) {
         
         let deviceScale = UIScreen.mainScreen().scale
         let gradientLayer = CAGradientLayer()

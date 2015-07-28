@@ -44,7 +44,7 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
     
     
     override func viewDidLayoutSubviews() {
-        self.gradientView.gradientWithColors(UIColor.whiteColor(), UIColor.blueColor())
+        self.gradientView.withColors(UIColor.whiteColor(), UIColor.blueColor())
     }
     
     
