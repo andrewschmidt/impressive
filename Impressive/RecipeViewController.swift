@@ -12,12 +12,21 @@ import ImpData
 class RecipeViewController: UITableViewController {
     
     
+    @IBOutlet var gradientView: GradientView!
+    
     var recipe: Recipe!
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.tableView.backgroundView = gradientView
+        
+    }
+    
+    
+    override func viewDidLayoutSubviews() {
+        self.gradientView.gradientWithColors(UIColor.whiteColor(), UIColor.orangeColor())
     }
 
     

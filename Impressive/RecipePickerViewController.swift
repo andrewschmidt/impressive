@@ -11,9 +11,9 @@ import ImpData
 
 class RecipePickerViewController: UITableViewController, UISplitViewControllerDelegate {
     
+    @IBOutlet var gradientView: GradientView!
     
     private var collapseRecipeViewController = true
-    
     
     var dailyRecipe: Recipe!
     var dailyIsPresent = false
@@ -25,10 +25,13 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
         
         splitViewController?.delegate = self
         
+        self.tableView.backgroundView = gradientView
+        
         self.clearsSelectionOnViewWillAppear = false
         
         self.refreshControl?.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
         
         // First, let's get our recipes loaded in.
         // The daily recipe is handled async, so here's a function that runs that and sets the variable:
@@ -37,6 +40,11 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
         // The saved recipes are local and much simpler:
         savedRecipes = loadSavedRecipes()
         
+    }
+    
+    
+    override func viewDidLayoutSubviews() {
+        self.gradientView.gradientWithColors(UIColor.whiteColor(), UIColor.blueColor())
     }
     
     
