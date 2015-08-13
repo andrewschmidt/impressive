@@ -11,7 +11,7 @@ import ImpData
 
 class RecipePickerViewController: UITableViewController, UISplitViewControllerDelegate {
     
-    @IBOutlet var gradientView: GradientView!
+    
     
     private var collapseRecipeViewController = true
     
@@ -20,19 +20,16 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
     var savedRecipes = [Recipe]()
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         splitViewController?.delegate = self
         
-        self.tableView.backgroundColor = .clearColor()
-        self.tableView.backgroundView = gradientView
-        
         self.clearsSelectionOnViewWillAppear = false
         
         self.refreshControl?.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
         
         // First, let's get our recipes loaded in.
         // The daily recipe is handled async, so here's a function that runs that and sets the variable:
@@ -40,16 +37,6 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
         
         // The saved recipes are local and much simpler:
         savedRecipes = loadSavedRecipes()
-        
-        // Is it okay to layout gradients here? I've heard they need to be called in viewDidLayoutSubviews, but that gets called multiple times and really fucks with everything.
-        gradientView.withColors(UIColor.whiteColor(), UIColor.blueColor())
-    }
-    
-    
-    override func viewDidLayoutSubviews() {
-//        println("RECIPEPICKER: viewDidLayoutSubviews called.")
-//        gradientView.withColors(UIColor.whiteColor(), UIColor.blueColor())
-        
     }
     
     
@@ -111,8 +98,6 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
             cellRecipe = savedRecipes[indexPath.row]
             cell.nameLabel.text = cellRecipe.name
         }
-        
-        cell.backgroundColor = .clearColor()
         
         println("RECIPEPICKER: Creating a cell with name " + cellRecipe.name + ".")
         
@@ -302,6 +287,7 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
     // Allow editing the table view:
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     }
+    
     
     // Restrict editing by section:
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

@@ -12,27 +12,18 @@ import ImpData
 class RecipeViewController: UITableViewController {
     
     
-    @IBOutlet var gradientView: GradientView!
     
     var recipe: Recipe!
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.tableView.backgroundColor = .clearColor()
-        self.tableView.backgroundView = gradientView
-        
+                
         if recipe == nil {
             let savedRecipes = LoadSave.sharedInstance.loadRecipes("SavedRecipes")
             recipe = savedRecipes[0]
         }
-        
-    }
-    
-    
-    override func viewDidLayoutSubviews() {
-        self.gradientView.withColors(UIColor.whiteColor(), UIColor.orangeColor())
         
     }
 
@@ -69,7 +60,6 @@ class RecipeViewController: UITableViewController {
             // Configure the recipe info cell.
             let cell = tableView.dequeueReusableCellWithIdentifier("recipeInfoCell", forIndexPath: indexPath) as! RecipeInfoCell
             
-            cell.backgroundColor = .clearColor()
             cell.recipeNameLabel.text = recipe.name
             cell.authorLabel.text = recipe.author
             cell.brewerLabel.text = recipe.brewer
@@ -82,7 +72,6 @@ class RecipeViewController: UITableViewController {
             let step = recipe.steps[indexPath.row]
             let value = step.value
             
-            cell.backgroundColor = .clearColor()
             cell.stepTypeLabel.text = step.type
             cell.stepValueLabel.text = String(format:"%.f", value)
             

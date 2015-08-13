@@ -11,7 +11,6 @@
 		490B601C1B040698003AC07A /* PourStepController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490B601B1B040698003AC07A /* PourStepController.swift */; };
 		490B601E1B0409C2003AC07A /* StirStepController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490B601D1B0409C2003AC07A /* StirStepController.swift */; };
 		490B60201B040A24003AC07A /* PressStepController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490B601F1B040A24003AC07A /* PressStepController.swift */; };
-		49109E691B6704CA00D6F0C0 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49109E681B6704CA00D6F0C0 /* GradientView.swift */; };
 		4917E91B1AAD382A00F984FD /* ImpData.h in Headers */ = {isa = PBXBuildFile; fileRef = 4917E91A1AAD382A00F984FD /* ImpData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4917E9211AAD382A00F984FD /* ImpData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4917E9161AAD382A00F984FD /* ImpData.framework */; };
 		4917E92A1AAD382B00F984FD /* ImpDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4917E9291AAD382B00F984FD /* ImpDataTests.swift */; };
@@ -143,7 +142,6 @@
 		490B601B1B040698003AC07A /* PourStepController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PourStepController.swift; sourceTree = "<group>"; };
 		490B601D1B0409C2003AC07A /* StirStepController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StirStepController.swift; sourceTree = "<group>"; };
 		490B601F1B040A24003AC07A /* PressStepController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PressStepController.swift; sourceTree = "<group>"; };
-		49109E681B6704CA00D6F0C0 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		4917E9161AAD382A00F984FD /* ImpData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ImpData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4917E9191AAD382A00F984FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4917E91A1AAD382A00F984FD /* ImpData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImpData.h; sourceTree = "<group>"; };
@@ -376,7 +374,6 @@
 				492D7B401B50B2140088A8E4 /* RecipeViewController.swift */,
 				492D7B421B50B7730088A8E4 /* RecipeInfoCell.swift */,
 				492D7B441B50B7A30088A8E4 /* RecipeStepCell.swift */,
-				49109E681B6704CA00D6F0C0 /* GradientView.swift */,
 				4995D39C1A94084400FA30A3 /* Images.xcassets */,
 				4995D39E1A94084400FA30A3 /* LaunchScreen.xib */,
 				4995D3931A94084400FA30A3 /* Supporting Files */,
@@ -720,7 +717,6 @@
 				492D7B3F1B4FB4690088A8E4 /* RecipeSplitViewController.swift in Sources */,
 				492D7B3D1B4BA6A50088A8E4 /* RecipeCell.swift in Sources */,
 				492D7B411B50B2140088A8E4 /* RecipeViewController.swift in Sources */,
-				49109E691B6704CA00D6F0C0 /* GradientView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,9 +12,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="9Uy-sp-7sL">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <color key="separatorColor" red="0.054901960780000002" green="0.27058823529999998" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="recipeInfoCell" rowHeight="166" id="nhX-gv-wJg" userLabel="RecipeInfoCell" customClass="RecipeInfoCell" customModule="Impressive" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -87,7 +85,6 @@
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="authorLabel" destination="msB-gp-Ukl" id="1n4-al-9FI"/>
                                     <outlet property="brewerLabel" destination="1oj-8K-11v" id="wyi-ys-gi4"/>
@@ -128,7 +125,6 @@
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="stepTypeLabel" destination="L1a-Zr-DfL" id="WeR-WV-aDq"/>
                                     <outlet property="stepValueLabel" destination="Akd-1Y-fOs" id="rrU-rx-McM"/>
@@ -141,16 +137,8 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="IHw-ZR-BdF"/>
-                    <connections>
-                        <outlet property="gradientView" destination="7OT-ti-JwB" id="W3j-fR-xOy"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pkB-q6-JHz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="7OT-ti-JwB" customClass="GradientView" customModule="Impressive" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
             </objects>
             <point key="canvasLocation" x="906" y="89"/>
         </scene>
@@ -158,32 +146,34 @@
         <scene sceneID="wdd-6b-kzc">
             <objects>
                 <tableViewController title="Recipe Picker" clearsSelectionOnViewWillAppear="NO" id="mES-XE-BXo" userLabel="Recipe Picker" customClass="RecipePickerViewController" customModule="Impressive" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="gN2-6k-ufw">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="22" sectionFooterHeight="22" id="gN2-6k-ufw">
                         <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <color key="separatorColor" red="0.98861938709999997" green="0.71836388110000005" blue="0.3232594728" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeCell" id="kVG-X0-z8C" userLabel="RecipeCell" customClass="RecipeCell" customModule="Impressive" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeCell" rowHeight="75" id="kVG-X0-z8C" userLabel="RecipeCell" customClass="RecipeCell" customModule="Impressive" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kVG-X0-z8C" id="HcL-4A-a01">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Rh-cU-6os">
-                                            <rect key="frame" x="8" y="14" width="104" height="21"/>
+                                            <rect key="frame" x="8" y="26" width="104" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="8Rh-cU-6os" firstAttribute="leading" secondItem="HcL-4A-a01" secondAttribute="leadingMargin" id="9ZK-sc-WAw"/>
-                                        <constraint firstItem="8Rh-cU-6os" firstAttribute="bottom" secondItem="HcL-4A-a01" secondAttribute="bottomMargin" id="aKo-j8-oNQ"/>
+                                        <constraint firstAttribute="centerY" secondItem="8Rh-cU-6os" secondAttribute="centerY" id="FuA-4X-x42"/>
+                                        <constraint firstItem="8Rh-cU-6os" firstAttribute="bottom" secondItem="HcL-4A-a01" secondAttribute="bottomMargin" constant="-19" id="aKo-j8-oNQ"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="aKo-j8-oNQ"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="NameLabel" destination="8Rh-cU-6os" id="PC6-ra-jBI"/>
                                     <outlet property="nameLabel" destination="8Rh-cU-6os" id="D8R-HH-rg5"/>
@@ -214,16 +204,8 @@
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="1OP-ii-bB0">
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
-                    <connections>
-                        <outlet property="gradientView" destination="DWw-8I-sMi" id="eCc-gR-qj6"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pcZ-nc-9j5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="DWw-8I-sMi" customClass="GradientView" customModule="Impressive" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
             </objects>
             <point key="canvasLocation" x="906" y="-658"/>
         </scene>
@@ -276,6 +258,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="DOO-Wl-SYh"/>
+        <segue reference="vMq-i4-SBq"/>
     </inferredMetricsTieBreakers>
 </document>
