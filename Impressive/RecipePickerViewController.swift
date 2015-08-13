@@ -25,6 +25,7 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
         
         splitViewController?.delegate = self
         
+        self.tableView.backgroundColor = .clearColor()
         self.tableView.backgroundView = gradientView
         
         self.clearsSelectionOnViewWillAppear = false
@@ -40,11 +41,15 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
         // The saved recipes are local and much simpler:
         savedRecipes = loadSavedRecipes()
         
+        // Is it okay to layout gradients here? I've heard they need to be called in viewDidLayoutSubviews, but that gets called multiple times and really fucks with everything.
+        gradientView.withColors(UIColor.whiteColor(), UIColor.blueColor())
     }
     
     
     override func viewDidLayoutSubviews() {
-        self.gradientView.withColors(UIColor.whiteColor(), UIColor.blueColor())
+//        println("RECIPEPICKER: viewDidLayoutSubviews called.")
+//        gradientView.withColors(UIColor.whiteColor(), UIColor.blueColor())
+        
     }
     
     
@@ -106,6 +111,8 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
             cellRecipe = savedRecipes[indexPath.row]
             cell.nameLabel.text = cellRecipe.name
         }
+        
+        cell.backgroundColor = .clearColor()
         
         println("RECIPEPICKER: Creating a cell with name " + cellRecipe.name + ".")
         
