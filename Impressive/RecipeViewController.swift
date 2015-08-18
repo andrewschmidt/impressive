@@ -56,27 +56,51 @@ class RecipeViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
+        let screenWidth = UIScreen.mainScreen().bounds.width
+        var originFrame: CGRect!
+        
+        var cell: UITableViewCell!
+        
         if indexPath.section == 0 {
             // Configure the recipe info cell.
-            let cell = tableView.dequeueReusableCellWithIdentifier("recipeInfoCell", forIndexPath: indexPath) as! RecipeInfoCell
+            var infoCell = tableView.dequeueReusableCellWithIdentifier("recipeInfoCell", forIndexPath: indexPath) as! RecipeInfoCell
             
-            cell.recipeNameLabel.text = recipe.name
-            cell.authorLabel.text = recipe.author
-            cell.brewerLabel.text = recipe.brewer
+            infoCell.recipeNameLabel.text = recipe.name
+            infoCell.authorLabel.text = recipe.author
+            infoCell.brewerLabel.text = recipe.brewer
             
-            return cell
-
+            cell = infoCell
+            
+            originFrame = cell.frame
+            
         } else {
             // Configure each step's cell.
-            let cell = tableView.dequeueReusableCellWithIdentifier("recipeStepCell", forIndexPath: indexPath) as! RecipeStepCell
+            var stepCell = tableView.dequeueReusableCellWithIdentifier("recipeStepCell", forIndexPath: indexPath) as! RecipeStepCell
             let step = recipe.steps[indexPath.row]
             let value = step.value
             
-            cell.stepTypeLabel.text = step.type
-            cell.stepValueLabel.text = String(format:"%.f", value)
+            stepCell.stepTypeLabel.text = step.type
+            stepCell.stepValueLabel.text = String(format:"%.f", value)
             
-            return cell
+            cell = stepCell
+            
+            originFrame = CGRect(x: cell.frame.origin.x + screenWidth, y: cell.frame.origin.y, width: cell.frame.width, height: cell.frame.height)
         }
+        
+        // Animate it in:
+        let destination = cell.frame
+        cell.frame = originFrame
+        cell.alpha = 0.0
+        
+        let delay: NSTimeInterval = NSTimeInterval(300 + arc4random_uniform(200)) / 1000
+        
+        UIView.animateWithDuration(0.8, delay: delay, usingSpringWithDamping: 0.8, initialSpringVelocity: 1.0, options: .CurveEaseInOut, animations: {
+            cell.frame = destination
+            cell.alpha = 1.0
+        }, completion: nil)
+
+        
+        return cell
     }
     
     

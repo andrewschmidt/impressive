@@ -9,33 +9,34 @@
 import UIKit
 
 class RecipeSplitViewController: UISplitViewController {
-
+    
+    
+    let animateIn = false
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.preferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible
-        
-        // Set animation start points here.
-        
-//        self.view.alpha = 0.0
-        
-//        let screenSize = UIScreen.mainScreen().bounds
-//        let startSize = CGRectMake(0.0, 0.0, screenSize.width-100, screenSize.height*0.75)
-        
-//        self.view.transform = CGAffineTransformMakeScale(0.5, 0.5)
-//        self.view.frame = CGRectMake(self.view.frame.x*0.5, self.view.frame.y*0.5, self.view.frame.width, self.view.frame.height)
-        
     }
     
     override func viewWillAppear(animated: Bool) {
-//        UIView.animateWithDuration(1.5) {
-//            // Put animations here.
-//            
-////            self.view.alpha = 1.0
-////            self.view.transform = CGAffineTransformMakeScale(1, 1)
-//            
-//            
-//        }
+        
+        if animateIn {
+            // Set animation start points here:
+            
+            self.view.alpha = 0.0
+            self.view.transform = CGAffineTransformMakeScale(0.85, 0.85)
+            self.view.center = CGPointMake(UIScreen.mainScreen().bounds.width/2, UIScreen.mainScreen().bounds.height/2)
+            
+            UIView.animateWithDuration(0.15, delay: 0.3, options: .CurveEaseOut, animations: {
+                // Put animation end points here:
+                
+                self.view.alpha = 1.0
+                self.view.transform = CGAffineTransformMakeScale(1, 1)
+                
+                }, completion: nil)
+        }
     }
 
     override func didReceiveMemoryWarning() {

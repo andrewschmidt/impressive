@@ -67,6 +67,7 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
         }
     }
     
+    
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if dailyIsPresent && section == 0 {
             return "Pick of the Day"
@@ -87,19 +88,40 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: RecipeCell
-        var cellRecipe: Recipe
+        var recipe: Recipe
         
+        let screenWidth = UIScreen.mainScreen().bounds.width
+        var offscreen: CGRect!
+        
+        // Figure out which type of cell it is:
         if dailyIsPresent && indexPath.section == 0 {
+            
             cell = tableView.dequeueReusableCellWithIdentifier("RecipeCell", forIndexPath: indexPath) as! RecipeCell
-            cellRecipe = dailyRecipe
-            cell.nameLabel.text = cellRecipe.name + ", today's special!"
+            recipe = dailyRecipe
+            cell.nameLabel.text = recipe.name + ", today's special!"
+            
+            offscreen = CGRect(x: cell.frame.origin.x + screenWidth, y: cell.frame.origin.y, width: cell.frame.width, height: cell.frame.height)
+        
         } else {
+            
             cell = tableView.dequeueReusableCellWithIdentifier("RecipeCell", forIndexPath: indexPath) as! RecipeCell
-            cellRecipe = savedRecipes[indexPath.row]
-            cell.nameLabel.text = cellRecipe.name
+            recipe = savedRecipes[indexPath.row]
+            cell.nameLabel.text = recipe.name
+            
+            offscreen = CGRect(x: cell.frame.origin.x - screenWidth, y: cell.frame.origin.y, width: cell.frame.width, height: cell.frame.height)
         }
         
-        println("RECIPEPICKER: Creating a cell with name " + cellRecipe.name + ".")
+        // Animate it in:
+        let destination = cell.frame
+        cell.frame = offscreen
+        cell.alpha = 0.0
+        
+        let delay: NSTimeInterval = NSTimeInterval(350 + arc4random_uniform(200)) / 1000
+        
+        UIView.animateWithDuration(0.8, delay: delay, usingSpringWithDamping: 0.8, initialSpringVelocity: 1.0, options: .CurveEaseInOut, animations: {
+            cell.frame = destination
+            cell.alpha = 1.0
+        }, completion: nil)
         
         return cell
     }
