@@ -19,11 +19,19 @@ class RecipeViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
         if recipe == nil {
             let savedRecipes = LoadSave.sharedInstance.loadRecipes("SavedRecipes")
             recipe = savedRecipes[0]
         }
+        
+    }
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         
     }
 
@@ -71,7 +79,7 @@ class RecipeViewController: UITableViewController {
             
             cell = infoCell
             
-            originFrame = cell.frame
+            originFrame = CGRect(x: cell.frame.origin.x, y: cell.frame.origin.y+10, width: cell.frame.width, height: cell.frame.height)
             
         } else {
             // Configure each step's cell.
@@ -84,7 +92,7 @@ class RecipeViewController: UITableViewController {
             
             cell = stepCell
             
-            originFrame = CGRect(x: cell.frame.origin.x + screenWidth, y: cell.frame.origin.y, width: cell.frame.width, height: cell.frame.height)
+            originFrame = CGRect(x: cell.frame.origin.x + screenWidth/5, y: cell.frame.origin.y, width: cell.frame.width, height: cell.frame.height)
         }
         
         // Animate it in:
@@ -92,9 +100,9 @@ class RecipeViewController: UITableViewController {
         cell.frame = originFrame
         cell.alpha = 0.0
         
-        let delay: NSTimeInterval = NSTimeInterval(300 + arc4random_uniform(200)) / 1000
+        let delay: NSTimeInterval = NSTimeInterval(200 + arc4random_uniform(100)) / 1000
         
-        UIView.animateWithDuration(0.8, delay: delay, usingSpringWithDamping: 0.8, initialSpringVelocity: 1.0, options: .CurveEaseInOut, animations: {
+        UIView.animateWithDuration(1.0, delay: delay, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.3, options: .CurveEaseInOut, animations: {
             cell.frame = destination
             cell.alpha = 1.0
         }, completion: nil)

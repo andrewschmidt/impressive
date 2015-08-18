@@ -128,6 +128,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        self.window?.tintColor = UIColor.grayColor()
+        
+        // Below is from http://stackoverflow.com/questions/18969248/how-to-draw-a-transparent-uitoolbar-or-uinavigationbar-in-ios7
+        let navigationBarAppearance = UINavigationBar.appearance()
+        navigationBarAppearance.backgroundColor = .clearColor()
+        navigationBarAppearance.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        navigationBarAppearance.shadowImage = UIImage()
+        
         return true
     }
     
