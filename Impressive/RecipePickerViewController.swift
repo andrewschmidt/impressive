@@ -18,7 +18,7 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
     var dailyRecipe: Recipe!
     var dailyIsPresent = false
     var savedRecipes = [Recipe]()
-    
+    var cellHasAppearedAt = [[Bool]]()
     
     
     override func viewDidLoad() {
@@ -38,13 +38,18 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
         
         // The saved recipes are local and much simpler:
         savedRecipes = loadSavedRecipes()
+        
+        cellHasAppearedAt.append([])
+        for i in 0 ..< savedRecipes.count {
+            cellHasAppearedAt[0].append(false)
+        }
     }
     
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         
         if let indexPath = self.tableView.indexPathForSelectedRow() {
             self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -64,8 +69,16 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         if dailyIsPresent == true {
+            if cellHasAppearedAt.count < 2 {
+                cellHasAppearedAt.insert([false], atIndex: 0)
+                println(cellHasAppearedAt)
+            }
             return 2
         } else {
+            if cellHasAppearedAt.count > 1 {
+                cellHasAppearedAt.removeAtIndex(0)
+                println(cellHasAppearedAt)
+            }
             return 1
         }
     }
@@ -106,7 +119,7 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
             
             damping = 0.7
             offscreen = CGRect(x: cell.frame.origin.x + screenWidth/2, y: cell.frame.origin.y, width: cell.frame.width, height: cell.frame.height)
-        
+            
         } else {
             
             cell = tableView.dequeueReusableCellWithIdentifier("RecipeCell", forIndexPath: indexPath) as! RecipeCell
@@ -117,25 +130,29 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
             offscreen = CGRect(x: cell.frame.origin.x - screenWidth/2, y: cell.frame.origin.y, width: cell.frame.width, height: cell.frame.height)
         }
         
-        // Animate it.
-        // Set starting parameters:
-        let destination = cell.frame
-        cell.frame = offscreen
-        cell.alpha = 0.0
-//        cell.transform = CGAffineTransformMakeScale(0.75, 1)
-        
-        // Randomize the delay:
-        let delay: NSTimeInterval = NSTimeInterval(350 + arc4random_uniform(200)) / 1000
-        
-        // Animations:
-        UIView.animateWithDuration(0.9, delay: delay, usingSpringWithDamping: damping, initialSpringVelocity: 0.65, options: .CurveEaseInOut, animations: {
-            cell.frame = destination
-//            cell.transform = CGAffineTransformMakeScale(1, 1)
-        }, completion: nil)
-        
-        UIView.animateWithDuration(0.85, delay: delay, options: .CurveLinear, animations: {
-            cell.alpha = 1.0
-        }, completion: nil)
+        if !cellHasAppearedAt[indexPath.section][indexPath.row] {
+            // Animate it.
+            // Set starting parameters:
+            let destination = cell.frame
+            cell.frame = offscreen
+            cell.alpha = 0.0
+    //        cell.transform = CGAffineTransformMakeScale(0.75, 1)
+            
+            // Randomize the delay:
+            let delay: NSTimeInterval = NSTimeInterval(350 + arc4random_uniform(200)) / 1000
+            
+            // Animations:
+            UIView.animateWithDuration(0.9, delay: delay, usingSpringWithDamping: damping, initialSpringVelocity: 0.65, options: .CurveEaseInOut, animations: {
+                cell.frame = destination
+    //            cell.transform = CGAffineTransformMakeScale(1, 1)
+            }, completion: nil)
+            
+            UIView.animateWithDuration(0.85, delay: delay, options: .CurveLinear, animations: {
+                cell.alpha = 1.0
+            }, completion: nil)
+            
+            cellHasAppearedAt[indexPath.section][indexPath.row] = true
+        }
         
         return cell
     }

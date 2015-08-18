@@ -202,7 +202,7 @@
         <!--Navigation Controller-->
         <scene sceneID="MIJ-0k-kz1">
             <objects>
-                <navigationController navigationBarHidden="YES" id="6B0-l0-qLU" sceneMemberID="viewController">
+                <navigationController id="6B0-l0-qLU" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="EbL-lF-J0H">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
