@@ -71,13 +71,11 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
         if dailyIsPresent == true {
             if cellHasAppearedAt.count < 2 {
                 cellHasAppearedAt.insert([false], atIndex: 0)
-                println(cellHasAppearedAt)
             }
             return 2
         } else {
             if cellHasAppearedAt.count > 1 {
                 cellHasAppearedAt.removeAtIndex(0)
-                println(cellHasAppearedAt)
             }
             return 1
         }
@@ -280,6 +278,9 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
             // Add it to our saved recipes array:
             self.savedRecipes.append(recipeToSave)
             
+            // Don't forget to keep track of its animation:
+            self.cellHasAppearedAt[targetSection].append(false)
+            
             // And insert a cell into the appropriate section:
             self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: self.savedRecipes.count-1, inSection: targetSection)], withRowAnimation: UITableViewRowAnimation.Top)
 
@@ -307,6 +308,9 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
                 
                 self.tableView.endUpdates()
                 
+                // Don't forget to remove it from the index of cells that have animated:
+                self.cellHasAppearedAt.removeAtIndex(0)
+                
             } else {
                 
                 self.tableView.beginUpdates()
@@ -324,6 +328,9 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
                 self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
                 
                 self.tableView.endUpdates()
+                
+                // Don't forget to remove it from the index of cells that have animated:
+                self.cellHasAppearedAt[indexPath.section].removeAtIndex(indexPath.row)
 
             }
         }

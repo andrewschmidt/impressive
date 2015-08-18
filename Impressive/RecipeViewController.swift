@@ -14,6 +14,7 @@ class RecipeViewController: UITableViewController {
     
     
     var recipe: Recipe!
+    var cellHasAppearedAt = [[Bool]]()
     
     
     
@@ -25,6 +26,11 @@ class RecipeViewController: UITableViewController {
             recipe = savedRecipes[0]
         }
         
+        cellHasAppearedAt.append([false])
+        cellHasAppearedAt.append([])
+        for i in 0 ..< recipe.steps.count {
+            cellHasAppearedAt[1].append(false)
+        }
     }
     
     
@@ -95,18 +101,21 @@ class RecipeViewController: UITableViewController {
             originFrame = CGRect(x: cell.frame.origin.x + screenWidth/5, y: cell.frame.origin.y, width: cell.frame.width, height: cell.frame.height)
         }
         
-        // Animate it in:
-        let destination = cell.frame
-        cell.frame = originFrame
-        cell.alpha = 0.0
-        
-        let delay: NSTimeInterval = NSTimeInterval(200 + arc4random_uniform(100)) / 1000
-        
-        UIView.animateWithDuration(1.0, delay: delay, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.3, options: .CurveEaseInOut, animations: {
-            cell.frame = destination
-            cell.alpha = 1.0
-        }, completion: nil)
-
+        if !cellHasAppearedAt[indexPath.section][indexPath.row] {
+            // Animate it in:
+            let destination = cell.frame
+            cell.frame = originFrame
+            cell.alpha = 0.0
+            
+            let delay: NSTimeInterval = NSTimeInterval(200 + arc4random_uniform(100)) / 1000
+            
+            UIView.animateWithDuration(1.0, delay: delay, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.3, options: .CurveEaseInOut, animations: {
+                cell.frame = destination
+                cell.alpha = 1.0
+            }, completion: nil)
+            
+            cellHasAppearedAt[indexPath.section][indexPath.row] = true
+        }
         
         return cell
     }
