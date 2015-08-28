@@ -142,17 +142,26 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
             // Animations:
             UIView.animateWithDuration(0.9, delay: delay, usingSpringWithDamping: damping, initialSpringVelocity: 0.65, options: .CurveEaseInOut, animations: {
                 cell.frame = destination
+                cell.alpha = 1.0
     //            cell.transform = CGAffineTransformMakeScale(1, 1)
             }, completion: nil)
             
-            UIView.animateWithDuration(0.85, delay: delay, options: .CurveLinear, animations: {
-                cell.alpha = 1.0
-            }, completion: nil)
+//            UIView.animateWithDuration(0.85, delay: delay, options: .CurveLinear, animations: {
+//            }, completion: nil)
             
             cellHasAppearedAt[indexPath.section][indexPath.row] = true
         }
         
         return cell
+    }
+    
+    
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+//        for cell in tableView.visibleCells() as! [UITableViewCell] {
+//            var point = tableView.convertPoint(cell.center, toView: tableView.superview)
+//            cell.alpha = ((point.y * 100) / tableView.bounds.maxY) / 100
+//        }
     }
     
     
