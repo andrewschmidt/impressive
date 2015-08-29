@@ -1,16 +1,24 @@
 //
-//  DailyRecipeCell.swift
+//  RecipeCell.swift
 //  Daily Press
 //
-//  Created by Andrew Schmidt on 8/28/15.
+//  Created by Andrew Schmidt on 8/29/15.
 //  Copyright (c) 2015 Andrew Schmidt. All rights reserved.
 //
 
 import UIKit
 import ImpData
 
-class DailyRecipeCell: UITableViewCell, RecipeCell {
 
+
+protocol RecipeCell {
+    var recipe: Recipe { get set }
+}
+
+
+
+class DailyRecipeCell: UITableViewCell, RecipeCell {
+    
     
     @IBOutlet weak var pickOfTheDayLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
@@ -46,7 +54,48 @@ class DailyRecipeCell: UITableViewCell, RecipeCell {
         UIView.animateWithDuration(0.9, delay: delay, usingSpringWithDamping: damping, initialSpringVelocity: 0.65, options: .CurveEaseInOut, animations: {
             self.pickOfTheDayLabel.frame = pickOfTheDayDestination
             self.nameLabel.transform = CGAffineTransformMakeScale(1, 1)
-        }, completion: nil)
+            }, completion: nil)
     }
-
+    
 }
+
+
+
+class SavedRecipeCell: UITableViewCell, RecipeCell {
+    
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    
+    
+    var _recipe: Recipe!
+    var recipe: Recipe {
+        get {
+            return _recipe
+        }
+        set(newVal) {
+            _recipe = newVal
+            self.nameLabel.text = newVal.name
+        }
+    }
+    
+    
+    override func animateIn(delay: NSTimeInterval) {
+        super.animateIn(delay) // This takes care of the fade-in.
+        
+        var damping: CGFloat = 0.7
+        
+        let screenWidth = self.superview!.bounds.width
+        let endFrame: CGRect = nameLabel.frame
+        var startFrame = CGRect(x: nameLabel.frame.origin.x - screenWidth/2, y: nameLabel.frame.origin.y, width: nameLabel.frame.width, height: nameLabel.frame.height)
+        
+        // Set starting values:
+        nameLabel.frame = startFrame
+        
+        // Animations:
+        UIView.animateWithDuration(0.9, delay: delay, usingSpringWithDamping: damping, initialSpringVelocity: 0.65, options: .CurveEaseInOut, animations: {
+            self.nameLabel.frame = endFrame
+            }, completion: nil)
+    }
+    
+}
+
