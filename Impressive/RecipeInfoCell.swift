@@ -16,15 +16,24 @@ class RecipeInfoCell: UITableViewCell {
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var brewerLabel: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    override func animateIn(delay: NSTimeInterval) {
+        super.animateIn(delay)
+        
+        var damping: CGFloat = 0.8
+        var velocity: CGFloat = 0.3
+        
+        let screenWidth = self.superview!.bounds.width
+        let endFrame: CGRect = self.frame
+        var startFrame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y+10, width: self.frame.width, height: self.frame.height)
+        
+        // Set starting values:
+        self.frame = startFrame
+        
+        // Animations:
+        UIView.animateWithDuration(0.9, delay: delay, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: .CurveEaseInOut, animations: {
+            self.frame = endFrame
+        }, completion: nil)
     }
 
 }

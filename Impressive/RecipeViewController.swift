@@ -70,12 +70,10 @@ class RecipeViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let screenWidth = UIScreen.mainScreen().bounds.width
-        var originFrame: CGRect!
-        
         var cell: UITableViewCell!
         
         if indexPath.section == 0 {
+    
             // Configure the recipe info cell.
             var infoCell = tableView.dequeueReusableCellWithIdentifier("recipeInfoCell", forIndexPath: indexPath) as! RecipeInfoCell
             
@@ -85,9 +83,8 @@ class RecipeViewController: UITableViewController {
             
             cell = infoCell
             
-            originFrame = CGRect(x: cell.frame.origin.x, y: cell.frame.origin.y+10, width: cell.frame.width, height: cell.frame.height)
-            
         } else {
+    
             // Configure each step's cell.
             var stepCell = tableView.dequeueReusableCellWithIdentifier("recipeStepCell", forIndexPath: indexPath) as! RecipeStepCell
             let step = recipe.steps[indexPath.row]
@@ -98,22 +95,12 @@ class RecipeViewController: UITableViewController {
             
             cell = stepCell
             
-            originFrame = CGRect(x: cell.frame.origin.x + screenWidth/5, y: cell.frame.origin.y, width: cell.frame.width, height: cell.frame.height)
         }
         
         if !cellHasAppearedAt[indexPath.section][indexPath.row] {
             // Animate it in:
-            let destination = cell.frame
-            cell.frame = originFrame
-            cell.alpha = 0.0
-            
             let delay: NSTimeInterval = NSTimeInterval(200 + arc4random_uniform(100)) / 1000
-            
-            UIView.animateWithDuration(1.0, delay: delay, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.3, options: .CurveEaseInOut, animations: {
-                cell.frame = destination
-                cell.alpha = 1.0
-            }, completion: nil)
-            
+            cell.animateIn(delay)
             cellHasAppearedAt[indexPath.section][indexPath.row] = true
         }
         

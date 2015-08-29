@@ -10,17 +10,26 @@ import UIKit
 
 class RecipeCell: UITableViewCell {
 
+    
     @IBOutlet weak var nameLabel: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    override func animateIn(delay: NSTimeInterval) {
+        super.animateIn(delay)
+        
+        var damping: CGFloat = 0.7
+        
+        let screenWidth = self.superview!.bounds.width
+        let endFrame: CGRect = nameLabel.frame
+        var startFrame = CGRect(x: nameLabel.frame.origin.x - screenWidth/2, y: nameLabel.frame.origin.y, width: nameLabel.frame.width, height: nameLabel.frame.height)
+        
+        // Set starting values:
+        nameLabel.frame = startFrame
+        
+        // Animations:
+        UIView.animateWithDuration(0.9, delay: delay, usingSpringWithDamping: damping, initialSpringVelocity: 0.65, options: .CurveEaseInOut, animations: {
+            self.nameLabel.frame = endFrame
+        }, completion: nil)
     }
     
 }

@@ -153,6 +153,46 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DailyRecipeCell" rowHeight="150" id="slR-7x-hxH" userLabel="DailyRecipeCell" customClass="DailyRecipeCell" customModule="Impressive" customModuleProvider="target">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="slR-7x-hxH" id="azd-ME-Tr0">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick of the day:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jMO-q0-T9L">
+                                            <rect key="frame" x="196" y="44" width="107" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Recipe Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NeC-LY-2tN">
+                                            <rect key="frame" x="220" y="64" width="160" height="33"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="centerY" secondItem="NeC-LY-2tN" secondAttribute="centerY" constant="-6" id="Jlp-Fp-KzB"/>
+                                        <constraint firstItem="NeC-LY-2tN" firstAttribute="leading" secondItem="jMO-q0-T9L" secondAttribute="trailing" constant="-83" id="buM-XP-5pN"/>
+                                        <constraint firstItem="NeC-LY-2tN" firstAttribute="top" secondItem="azd-ME-Tr0" secondAttribute="topMargin" constant="32" id="fdr-9K-uJx"/>
+                                        <constraint firstItem="NeC-LY-2tN" firstAttribute="bottom" secondItem="azd-ME-Tr0" secondAttribute="bottomMargin" constant="-19" id="jbb-yI-1Ak"/>
+                                        <constraint firstAttribute="centerX" secondItem="NeC-LY-2tN" secondAttribute="centerX" id="lB7-tz-qIV"/>
+                                        <constraint firstItem="NeC-LY-2tN" firstAttribute="top" secondItem="jMO-q0-T9L" secondAttribute="bottom" constant="2" id="spp-VA-Tfc"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="fdr-9K-uJx"/>
+                                            <exclude reference="jbb-yI-1Ak"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="NameLabel" destination="NeC-LY-2tN" id="8UD-XW-JUk"/>
+                                    <outlet property="nameLabel" destination="NeC-LY-2tN" id="p6D-wR-qgQ"/>
+                                    <outlet property="pickOfTheDayLabel" destination="jMO-q0-T9L" id="t84-Sb-Gvg"/>
+                                    <segue destination="T8v-lu-BqD" kind="showDetail" identifier="viewRecipe" id="maX-Db-UJh"/>
+                                </connections>
+                            </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeCell" rowHeight="75" id="kVG-X0-z8C" userLabel="RecipeCell" customClass="RecipeCell" customModule="Impressive" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kVG-X0-z8C" id="HcL-4A-a01">
@@ -203,7 +243,7 @@
         <scene sceneID="MIJ-0k-kz1">
             <objects>
                 <navigationController id="6B0-l0-qLU" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EbL-lF-J0H">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EbL-lF-J0H" customClass="TallNavigationBar" customModule="Impressive" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -248,6 +288,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="DOO-Wl-SYh"/>
+        <segue reference="maX-Db-UJh"/>
     </inferredMetricsTieBreakers>
 </document>

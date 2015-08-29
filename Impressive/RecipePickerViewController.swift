@@ -30,7 +30,7 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
         self.title = " "
         
         self.refreshControl?.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
-        self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.navigationItem.leftBarButtonItem = self.editButtonItem()
         
         // First, let's get our recipes loaded in.
         // The daily recipe is handled async, so here's a function that runs that and sets the variable:
@@ -84,7 +84,7 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if dailyIsPresent && section == 0 {
-            return "Pick of the Day"
+            return ""
         } else {
             return "Saved Recipes"
         }
@@ -101,58 +101,40 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: RecipeCell
-        var recipe: Recipe
         
-        let screenWidth = self.view.bounds.width
-        var offscreen: CGRect!
-        var damping: CGFloat!
+        var cell: UITableViewCell!
         
-        // Figure out which type of cell it is:
         if dailyIsPresent && indexPath.section == 0 {
             
-            cell = tableView.dequeueReusableCellWithIdentifier("RecipeCell", forIndexPath: indexPath) as! RecipeCell
-            recipe = dailyRecipe
-            cell.nameLabel.text = recipe.name + ", today's special!"
-            
-            damping = 0.7
-            offscreen = CGRect(x: cell.frame.origin.x + screenWidth/2, y: cell.frame.origin.y, width: cell.frame.width, height: cell.frame.height)
+            var dailyCell = tableView.dequeueReusableCellWithIdentifier("DailyRecipeCell", forIndexPath: indexPath) as! DailyRecipeCell
+            dailyCell.nameLabel.text = dailyRecipe.name
+            cell = dailyCell
             
         } else {
             
-            cell = tableView.dequeueReusableCellWithIdentifier("RecipeCell", forIndexPath: indexPath) as! RecipeCell
-            recipe = savedRecipes[indexPath.row]
-            cell.nameLabel.text = recipe.name
+            var recipeCell = tableView.dequeueReusableCellWithIdentifier("RecipeCell", forIndexPath: indexPath) as! RecipeCell
+            recipeCell.nameLabel.text = savedRecipes[indexPath.row].name
+            cell = recipeCell
             
-            damping = 0.7
-            offscreen = CGRect(x: cell.frame.origin.x - screenWidth/2, y: cell.frame.origin.y, width: cell.frame.width, height: cell.frame.height)
         }
         
         if !cellHasAppearedAt[indexPath.section][indexPath.row] {
-            // Animate it.
-            // Set starting parameters:
-            let destination = cell.frame
-            cell.frame = offscreen
-            cell.alpha = 0.0
-    //        cell.transform = CGAffineTransformMakeScale(0.75, 1)
-            
-            // Randomize the delay:
+            //Animate it in:
             let delay: NSTimeInterval = NSTimeInterval(350 + arc4random_uniform(200)) / 1000
-            
-            // Animations:
-            UIView.animateWithDuration(0.9, delay: delay, usingSpringWithDamping: damping, initialSpringVelocity: 0.65, options: .CurveEaseInOut, animations: {
-                cell.frame = destination
-                cell.alpha = 1.0
-    //            cell.transform = CGAffineTransformMakeScale(1, 1)
-            }, completion: nil)
-            
-//            UIView.animateWithDuration(0.85, delay: delay, options: .CurveLinear, animations: {
-//            }, completion: nil)
-            
+            cell.animateIn(delay)
             cellHasAppearedAt[indexPath.section][indexPath.row] = true
         }
         
         return cell
+    }
+    
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if dailyIsPresent && indexPath.section == 0 {
+            return 166
+        } else {
+            return 75
+        }
     }
     
     
@@ -422,6 +404,8 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
         
         // First, for selecting a recipe:
         if segue.identifier == "viewRecipe" {
+            
+            println("RECIPEPICKER: viewRecipe segue fired!")
             
             var recipevc = segue.destinationViewController.topViewController as! RecipeViewController
             
