@@ -167,6 +167,11 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         collapseRecipeViewController = false
+        
+        // Only the daily recipe's prototype cell is hooked up to a segue in IB, so let's make sure the other recipe cells also fire it:
+        if let cell = tableView.cellForRowAtIndexPath(indexPath) as? SavedRecipeCell {
+            performSegueWithIdentifier("viewRecipe", sender: nil)
+        }
     }
 
     

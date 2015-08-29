@@ -213,7 +213,6 @@
                                 <connections>
                                     <outlet property="NameLabel" destination="4bc-ee-cfz" id="xVd-XY-4yf"/>
                                     <outlet property="nameLabel" destination="4bc-ee-cfz" id="GKw-lE-XAn"/>
-                                    <segue destination="T8v-lu-BqD" kind="showDetail" identifier="viewRecipe" id="4El-Ue-LA5"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -302,6 +301,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="4El-Ue-LA5"/>
+        <segue reference="maX-Db-UJh"/>
     </inferredMetricsTieBreakers>
 </document>
