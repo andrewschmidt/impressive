@@ -13,6 +13,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="separatorColor" red="0.19215686269999999" green="0.090196078430000007" blue="0.074509803920000006" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="recipeInfoCell" rowHeight="150" id="nhX-gv-wJg" userLabel="RecipeInfoCell" customClass="RecipeInfoCell" customModule="Impressive" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -22,31 +23,31 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddX-ha-bEs">
                                             <rect key="frame" x="213" y="8" width="175" height="36"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="30"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.19215686274509802" green="0.090196078431372548" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="keG-KI-GQF">
                                             <rect key="frame" x="186" y="67" width="19" height="21"/>
                                             <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.19215686274509802" green="0.090196078431372548" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="authorLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="msB-gp-Ukl">
                                             <rect key="frame" x="213" y="67" width="89" height="20"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.19215686274509802" green="0.090196078431372548" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="for the" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2qc-5z-meo">
                                             <rect key="frame" x="154" y="95" width="50" height="21"/>
                                             <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.19215686274509802" green="0.090196078431372548" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="brewerLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1oj-8K-11v">
                                             <rect key="frame" x="212" y="95" width="92" height="20"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.19215686274509802" green="0.090196078431372548" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -102,13 +103,13 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step Type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L1a-Zr-DfL">
                                             <rect key="frame" x="8" y="18" width="74" height="21"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.19215686274509802" green="0.090196078431372548" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="value" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Akd-1Y-fOs">
                                             <rect key="frame" x="90" y="17" width="118" height="64"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="53"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.19215686274509802" green="0.090196078431372548" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -148,43 +149,36 @@
         <scene sceneID="wdd-6b-kzc">
             <objects>
                 <tableViewController title="Recipe Picker" clearsSelectionOnViewWillAppear="NO" id="mES-XE-BXo" userLabel="Recipe Picker" customClass="RecipePickerViewController" customModule="Impressive" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="22" sectionFooterHeight="22" id="gN2-6k-ufw">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="64" sectionFooterHeight="22" id="gN2-6k-ufw">
                         <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="separatorColor" red="0.19215686269999999" green="0.090196078430000007" blue="0.074509803920000006" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DailyRecipeCell" rowHeight="150" id="slR-7x-hxH" userLabel="DailyRecipeCell" customClass="DailyRecipeCell" customModule="Impressive" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DailyRecipeCell" rowHeight="230" id="slR-7x-hxH" userLabel="DailyRecipeCell" customClass="DailyRecipeCell" customModule="Impressive" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="slR-7x-hxH" id="azd-ME-Tr0">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick of the day:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jMO-q0-T9L">
-                                            <rect key="frame" x="196" y="44" width="107" height="18"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Recipe Names" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NeC-LY-2tN">
+                                            <rect key="frame" x="203" y="103" width="196" height="37"/>
+                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="31"/>
+                                            <color key="textColor" red="0.19215686274509802" green="0.090196078431372548" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Recipe Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NeC-LY-2tN">
-                                            <rect key="frame" x="220" y="64" width="160" height="33"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick of the day:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jMO-q0-T9L">
+                                            <rect key="frame" x="189" y="88" width="94" height="16"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" red="0.19215686269999999" green="0.090196078430000007" blue="0.074509803920000006" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="centerY" secondItem="NeC-LY-2tN" secondAttribute="centerY" constant="-6" id="Jlp-Fp-KzB"/>
-                                        <constraint firstItem="NeC-LY-2tN" firstAttribute="leading" secondItem="jMO-q0-T9L" secondAttribute="trailing" constant="-83" id="buM-XP-5pN"/>
-                                        <constraint firstItem="NeC-LY-2tN" firstAttribute="top" secondItem="azd-ME-Tr0" secondAttribute="topMargin" constant="32" id="fdr-9K-uJx"/>
-                                        <constraint firstItem="NeC-LY-2tN" firstAttribute="bottom" secondItem="azd-ME-Tr0" secondAttribute="bottomMargin" constant="-19" id="jbb-yI-1Ak"/>
-                                        <constraint firstAttribute="centerX" secondItem="NeC-LY-2tN" secondAttribute="centerX" id="lB7-tz-qIV"/>
-                                        <constraint firstItem="NeC-LY-2tN" firstAttribute="top" secondItem="jMO-q0-T9L" secondAttribute="bottom" constant="2" id="spp-VA-Tfc"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="NeC-LY-2tN" secondAttribute="bottom" constant="81" id="Nml-q4-UhA"/>
+                                        <constraint firstItem="NeC-LY-2tN" firstAttribute="leading" secondItem="jMO-q0-T9L" secondAttribute="trailing" constant="-80" id="cvr-wP-fbL"/>
+                                        <constraint firstItem="NeC-LY-2tN" firstAttribute="top" secondItem="jMO-q0-T9L" secondAttribute="bottom" constant="-1" id="eBZ-g4-Yem"/>
+                                        <constraint firstAttribute="centerX" secondItem="NeC-LY-2tN" secondAttribute="centerX" constant="-0.5" id="gkl-11-uhY"/>
                                     </constraints>
-                                    <variation key="default">
-                                        <mask key="constraints">
-                                            <exclude reference="fdr-9K-uJx"/>
-                                            <exclude reference="jbb-yI-1Ak"/>
-                                        </mask>
-                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="NameLabel" destination="NeC-LY-2tN" id="8UD-XW-JUk"/>
@@ -201,7 +195,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Rh-cU-6os">
                                             <rect key="frame" x="8" y="26" width="104" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.19215686269999999" green="0.090196078430000007" blue="0.074509803920000006" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -242,7 +236,7 @@
         <!--Navigation Controller-->
         <scene sceneID="MIJ-0k-kz1">
             <objects>
-                <navigationController id="6B0-l0-qLU" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="6B0-l0-qLU" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="EbL-lF-J0H" customClass="TallNavigationBar" customModule="Impressive" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

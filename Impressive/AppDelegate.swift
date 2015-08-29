@@ -132,7 +132,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         application.statusBarHidden = true
         
-        self.window?.tintColor = UIColor.grayColor()
+        self.window?.tintColor = UIColor(red:0.192, green:0.09, blue:0.075, alpha:1)
         
         // Below is from http://stackoverflow.com/questions/18969248/how-to-draw-a-transparent-uitoolbar-or-uinavigationbar-in-ios7
         let navigationBarAppearance = UINavigationBar.appearance()

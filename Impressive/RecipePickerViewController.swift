@@ -49,7 +49,9 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController!.setNavigationBarHidden(true, animated: true)
+        
+        tableView.frame.origin.y = 0
         
         if let indexPath = self.tableView.indexPathForSelectedRow() {
             self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -86,7 +88,7 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
         if dailyIsPresent && section == 0 {
             return ""
         } else {
-            return "Saved Recipes"
+            return "☀️"
         }
     }
 
@@ -129,9 +131,17 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
     }
     
     
+//    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderCell
+//        headerCell.backgroundColor = UIColor.cyanColor()
+//        
+//        return headerCell
+//    }
+    
+    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if dailyIsPresent && indexPath.section == 0 {
-            return 166
+            return 230
         } else {
             return 75
         }
@@ -287,7 +297,7 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
             Void in
             
             if self.dailyIsPresent && indexPath.section == 0 {
-                
+
                 self.tableView.beginUpdates()
                 
                 self.dailyIsPresent = false
@@ -298,9 +308,6 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
                 self.tableView.deleteSections(NSIndexSet(index: 0), withRowAnimation: .Fade)
                 
                 self.tableView.endUpdates()
-                
-                // Don't forget to remove it from the index of cells that have animated:
-                self.cellHasAppearedAt.removeAtIndex(0)
                 
             } else {
                 
@@ -404,8 +411,6 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
         
         // First, for selecting a recipe:
         if segue.identifier == "viewRecipe" {
-            
-            println("RECIPEPICKER: viewRecipe segue fired!")
             
             var recipevc = segue.destinationViewController.topViewController as! RecipeViewController
             

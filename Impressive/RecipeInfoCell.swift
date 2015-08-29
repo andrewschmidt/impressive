@@ -18,7 +18,7 @@ class RecipeInfoCell: UITableViewCell {
     
     
     override func animateIn(delay: NSTimeInterval) {
-        super.animateIn(delay)
+        super.animateIn(delay) // This takes care of the fade-in.
         
         var damping: CGFloat = 0.8
         var velocity: CGFloat = 0.3
