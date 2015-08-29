@@ -107,18 +107,13 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
         var cell: UITableViewCell!
         
         if dailyIsPresent && indexPath.section == 0 {
-            
-            var dailyCell = tableView.dequeueReusableCellWithIdentifier("DailyRecipeCell", forIndexPath: indexPath) as! DailyRecipeCell
-            dailyCell.nameLabel.text = dailyRecipe.name
-            cell = dailyCell
-            
+            let dailyRecipeCell = tableView.dequeueReusableCellWithIdentifier("DailyRecipeCell", forIndexPath: indexPath) as! DailyRecipeCell
+            dailyRecipeCell.recipe = dailyRecipe
+            cell = dailyRecipeCell
         } else {
-            
-            var savedRecipeCell = tableView.dequeueReusableCellWithIdentifier("SavedRecipeCell", forIndexPath: indexPath) as! SavedRecipeCell
-//            recipeCell.nameLabel.text = savedRecipes[indexPath.row].name
+            let savedRecipeCell = tableView.dequeueReusableCellWithIdentifier("SavedRecipeCell", forIndexPath: indexPath) as! SavedRecipeCell
             savedRecipeCell.recipe = savedRecipes[indexPath.row]
             cell = savedRecipeCell
-            
         }
         
         if !cellHasAppearedAt[indexPath.section][indexPath.row] {
@@ -413,20 +408,13 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
         // First, for selecting a recipe:
         if segue.identifier == "viewRecipe" {
             
+            // Create a recipe view to go to:
             var recipeVC = segue.destinationViewController.topViewController as! RecipeViewController
             
-            if let selectedIndex = tableView.indexPathForSelectedRow() {
-            
-                if dailyIsPresent && selectedIndex.section == 0 {
-                    println("RECIPEPICKER: Daily recipe selected, sending it on over to the recipe view.")
-                    recipeVC.recipe = dailyRecipe
-                
-                } else {
-                    println("RECIPEPICKER: A saved recipe was selected, sending it on over to the recipe view.")
-//                    recipevc.recipe = savedRecipes[selectedIndex.row]
-                    let selectedCell = tableView.cellForRowAtIndexPath(selectedIndex) as! RecipeCell
-                    recipeVC.recipe = selectedCell.recipe
-                }
+            // Pass a recipe to it:
+            if let selectedIndex = tableView.indexPathForSelectedRow() {                
+                let selectedCell = tableView.cellForRowAtIndexPath(selectedIndex) as! RecipeCell
+                recipeVC.recipe = selectedCell.recipe
             }
         }
     }

@@ -9,11 +9,23 @@
 import UIKit
 import ImpData
 
-class DailyRecipeCell: UITableViewCell {
+class DailyRecipeCell: UITableViewCell, RecipeCell {
 
-    var recipe: Recipe!
+    
     @IBOutlet weak var pickOfTheDayLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
+    
+    
+    var _recipe: Recipe!
+    var recipe: Recipe {
+        get {
+            return _recipe
+        }
+        set(newVal) {
+            _recipe = newVal
+            self.nameLabel.text = newVal.name
+        }
+    }
     
     
     override func animateIn(delay: NSTimeInterval) {
@@ -24,7 +36,7 @@ class DailyRecipeCell: UITableViewCell {
         let screenWidth = self.superview!.bounds.width
         
         let pickOfTheDayDestination = pickOfTheDayLabel.frame
-        let pickOfTheDayStart = CGRect(x: pickOfTheDayLabel.frame.origin.x, y: nameLabel.frame.origin.y + 2, width: pickOfTheDayLabel.frame.width, height: pickOfTheDayLabel.frame.height)
+        let pickOfTheDayStart = CGRect(x: pickOfTheDayLabel.frame.origin.x, y: nameLabel.frame.origin.y - 2, width: pickOfTheDayLabel.frame.width, height: pickOfTheDayLabel.frame.height)
         
         // Set starting values:
         pickOfTheDayLabel.frame = pickOfTheDayStart

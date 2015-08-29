@@ -14,6 +14,7 @@ class SavedRecipeCell: UITableViewCell, RecipeCell {
     
     @IBOutlet weak var nameLabel: UILabel!
     
+    
     var _recipe: Recipe!
     var recipe: Recipe {
         get {
