@@ -12,6 +12,8 @@ import ImpData
 class RecipePickerViewController: UITableViewController, UISplitViewControllerDelegate {
     
     
+    @IBOutlet var sunSeparator: SunSeparator!
+    
     
     private var collapseRecipeViewController = true
     
@@ -84,15 +86,6 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
     }
     
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if dailyIsPresent && section == 0 {
-            return ""
-        } else {
-            return "☀️"
-        }
-    }
-
-    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if dailyIsPresent && section == 0 {
             return 1
@@ -127,12 +120,31 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
     }
     
     
-//    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderCell
-//        headerCell.backgroundColor = UIColor.cyanColor()
-//        
-//        return headerCell
+//    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        if dailyIsPresent && section == 0 {
+//            return ""
+//        } else {
+//            return "☀️"
+//        }
 //    }
+    
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if dailyIsPresent && section == 0 {
+            return 0
+        } else {
+            return 64
+        }
+    }
+    
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if dailyIsPresent && section == 0 {
+            return nil
+        } else {
+            return sunSeparator
+        }
+    }
     
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

@@ -99,3 +99,8 @@ class SavedRecipeCell: UITableViewCell, RecipeCell {
     
 }
 
+
+
+class SunSeparator: UIView {
+    
+}

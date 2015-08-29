@@ -187,12 +187,12 @@
                                     <segue destination="T8v-lu-BqD" kind="showDetail" identifier="viewRecipe" id="maX-Db-UJh"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SavedRecipeCell" rowHeight="75" id="kVG-X0-z8C" customClass="SavedRecipeCell" customModule="Impressive" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SavedRecipeCell" rowHeight="75" id="oIy-pN-uSE" customClass="SavedRecipeCell" customModule="Impressive" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kVG-X0-z8C" id="HcL-4A-a01">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oIy-pN-uSE" id="OUn-Q2-hzN">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Rh-cU-6os">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4bc-ee-cfz">
                                             <rect key="frame" x="8" y="26" width="104" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.19215686269999999" green="0.090196078430000007" blue="0.074509803920000006" alpha="1" colorSpace="calibratedRGB"/>
@@ -200,20 +200,20 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="8Rh-cU-6os" firstAttribute="leading" secondItem="HcL-4A-a01" secondAttribute="leadingMargin" id="9ZK-sc-WAw"/>
-                                        <constraint firstAttribute="centerY" secondItem="8Rh-cU-6os" secondAttribute="centerY" id="FuA-4X-x42"/>
-                                        <constraint firstItem="8Rh-cU-6os" firstAttribute="bottom" secondItem="HcL-4A-a01" secondAttribute="bottomMargin" constant="-19" id="aKo-j8-oNQ"/>
+                                        <constraint firstItem="4bc-ee-cfz" firstAttribute="bottom" secondItem="OUn-Q2-hzN" secondAttribute="bottomMargin" constant="-19" id="8rD-Fk-oe3"/>
+                                        <constraint firstItem="4bc-ee-cfz" firstAttribute="leading" secondItem="OUn-Q2-hzN" secondAttribute="leadingMargin" id="9iY-c9-wES"/>
+                                        <constraint firstAttribute="centerY" secondItem="4bc-ee-cfz" secondAttribute="centerY" id="y5z-c4-UGj"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
-                                            <exclude reference="aKo-j8-oNQ"/>
+                                            <exclude reference="8rD-Fk-oe3"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="NameLabel" destination="8Rh-cU-6os" id="PC6-ra-jBI"/>
-                                    <outlet property="nameLabel" destination="8Rh-cU-6os" id="D8R-HH-rg5"/>
-                                    <segue destination="T8v-lu-BqD" kind="showDetail" identifier="viewRecipe" id="DOO-Wl-SYh"/>
+                                    <outlet property="NameLabel" destination="4bc-ee-cfz" id="xVd-XY-4yf"/>
+                                    <outlet property="nameLabel" destination="4bc-ee-cfz" id="GKw-lE-XAn"/>
+                                    <segue destination="T8v-lu-BqD" kind="showDetail" identifier="viewRecipe" id="4El-Ue-LA5"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -228,8 +228,28 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <attributedString key="attributedTitle"/>
                     </refreshControl>
+                    <connections>
+                        <outlet property="sunSeparator" destination="Idb-hX-iWe" id="uDD-wI-cgs"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pcZ-nc-9j5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="Idb-hX-iWe" customClass="SunSeparator" customModule="Impressive" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="☀️" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z5X-fT-dLv">
+                            <rect key="frame" x="280" y="8" width="40" height="48"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="centerX" secondItem="z5X-fT-dLv" secondAttribute="centerX" id="Bed-sn-Yva"/>
+                        <constraint firstAttribute="centerY" secondItem="z5X-fT-dLv" secondAttribute="centerY" id="d9I-nR-vEq"/>
+                    </constraints>
+                </view>
             </objects>
             <point key="canvasLocation" x="906" y="-658"/>
         </scene>
@@ -282,6 +302,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="maX-Db-UJh"/>
+        <segue reference="4El-Ue-LA5"/>
     </inferredMetricsTieBreakers>
 </document>
