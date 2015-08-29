@@ -187,7 +187,7 @@
                                     <segue destination="T8v-lu-BqD" kind="showDetail" identifier="viewRecipe" id="maX-Db-UJh"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeCell" rowHeight="75" id="kVG-X0-z8C" userLabel="RecipeCell" customClass="RecipeCell" customModule="Impressive" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SavedRecipeCell" rowHeight="75" id="kVG-X0-z8C" customClass="SavedRecipeCell" customModule="Impressive" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kVG-X0-z8C" id="HcL-4A-a01">
                                     <autoresizingMask key="autoresizingMask"/>

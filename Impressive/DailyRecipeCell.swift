@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import ImpData
 
 class DailyRecipeCell: UITableViewCell {
 
-    
+    var recipe: Recipe!
     @IBOutlet weak var pickOfTheDayLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     

@@ -114,9 +114,10 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
             
         } else {
             
-            var recipeCell = tableView.dequeueReusableCellWithIdentifier("RecipeCell", forIndexPath: indexPath) as! RecipeCell
-            recipeCell.nameLabel.text = savedRecipes[indexPath.row].name
-            cell = recipeCell
+            var savedRecipeCell = tableView.dequeueReusableCellWithIdentifier("SavedRecipeCell", forIndexPath: indexPath) as! SavedRecipeCell
+//            recipeCell.nameLabel.text = savedRecipes[indexPath.row].name
+            savedRecipeCell.recipe = savedRecipes[indexPath.row]
+            cell = savedRecipeCell
             
         }
         
@@ -412,17 +413,19 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
         // First, for selecting a recipe:
         if segue.identifier == "viewRecipe" {
             
-            var recipevc = segue.destinationViewController.topViewController as! RecipeViewController
+            var recipeVC = segue.destinationViewController.topViewController as! RecipeViewController
             
             if let selectedIndex = tableView.indexPathForSelectedRow() {
             
                 if dailyIsPresent && selectedIndex.section == 0 {
                     println("RECIPEPICKER: Daily recipe selected, sending it on over to the recipe view.")
-                    recipevc.recipe = dailyRecipe
+                    recipeVC.recipe = dailyRecipe
                 
                 } else {
                     println("RECIPEPICKER: A saved recipe was selected, sending it on over to the recipe view.")
-                    recipevc.recipe = savedRecipes[selectedIndex.row]
+//                    recipevc.recipe = savedRecipes[selectedIndex.row]
+                    let selectedCell = tableView.cellForRowAtIndexPath(selectedIndex) as! RecipeCell
+                    recipeVC.recipe = selectedCell.recipe
                 }
             }
         }
