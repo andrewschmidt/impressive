@@ -413,8 +413,9 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
             
             // Pass a recipe to it:
             if let selectedIndex = tableView.indexPathForSelectedRow() {                
-                let selectedCell = tableView.cellForRowAtIndexPath(selectedIndex) as! RecipeCell
-                recipeVC.recipe = selectedCell.recipe
+                if let selectedCell = tableView.cellForRowAtIndexPath(selectedIndex) as? RecipeCell {
+                    recipeVC.recipe = selectedCell.recipe
+                }
             }
         }
     }
