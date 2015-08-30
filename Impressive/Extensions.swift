@@ -20,3 +20,11 @@ extension UITableViewCell {
         }, completion: nil)
     }
 }
+
+
+extension UIColor {
+    
+    class func coffeeColor() -> UIColor {
+        return UIColor(red:0.192, green:0.09, blue:0.075, alpha:1)
+    }
+}

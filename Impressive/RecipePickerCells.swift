@@ -103,4 +103,23 @@ class SavedRecipeCell: UITableViewCell, RecipeCell {
 
 class SunSeparator: UIView {
     
+    @IBOutlet weak var sun: UIImageView!
+    
+//    override init(frame: CGRect) {
+//        super.init(frame: frame)
+//        self.setup()
+//    }
+//    
+//    required init(coder aDecoder: NSCoder) {
+//        super.init(coder: aDecoder)
+//        self.setup()
+//    }
+//    
+//    func setup() {
+//        self.backgroundColor = UIColor.redColor()
+//        
+//        sun.image = sun.image?.imageWithRenderingMode(.AlwaysTemplate)
+//        sun.tintColor = UIColor.redColor() // self.superview?.tintColor
+//    }
+    
 }

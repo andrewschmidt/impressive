@@ -142,6 +142,10 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
         if dailyIsPresent && section == 0 {
             return nil
         } else {
+            
+            sunSeparator.sun.image = sunSeparator.sun.image?.imageWithRenderingMode(.AlwaysTemplate)
+            sunSeparator.sun.tintColor = UIColor.coffeeColor()
+            
             return sunSeparator
         }
     }

@@ -236,18 +236,18 @@
                     <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="☀️" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z5X-fT-dLv">
-                            <rect key="frame" x="280" y="8" width="40" height="48"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Sun" translatesAutoresizingMaskIntoConstraints="NO" id="8aF-ys-3kO">
+                            <rect key="frame" x="273" y="3" width="54" height="58"/>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="centerX" secondItem="z5X-fT-dLv" secondAttribute="centerX" id="Bed-sn-Yva"/>
-                        <constraint firstAttribute="centerY" secondItem="z5X-fT-dLv" secondAttribute="centerY" id="d9I-nR-vEq"/>
+                        <constraint firstAttribute="centerY" secondItem="8aF-ys-3kO" secondAttribute="centerY" id="0vm-QB-ltd"/>
+                        <constraint firstAttribute="centerX" secondItem="8aF-ys-3kO" secondAttribute="centerX" id="ZBg-40-Rnh"/>
                     </constraints>
+                    <connections>
+                        <outlet property="sun" destination="8aF-ys-3kO" id="6TX-yP-5fB"/>
+                    </connections>
                 </view>
             </objects>
             <point key="canvasLocation" x="906" y="-658"/>
@@ -300,6 +300,9 @@
             <point key="canvasLocation" x="88" y="89"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Sun" width="55" height="55"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="maX-Db-UJh"/>
     </inferredMetricsTieBreakers>
