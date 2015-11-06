@@ -10,7 +10,7 @@
 
 import Foundation
 
-extension NSDate: Equatable {}
+// extension NSDate: Equatable {} // Started throwing a "redundant conformance" error in Swift 2.
 extension NSDate: Comparable {}
 
 public func ==(lhs: NSDate, rhs: NSDate) -> Bool {

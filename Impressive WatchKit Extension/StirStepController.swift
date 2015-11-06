@@ -146,8 +146,8 @@ class StirStepController: WKInterfaceController {
     }
     
     func secondsFromDouble(value: Double) -> NSDate {
-        var now = NSDate()
-        var seconds: NSDate = now.dateByAddingTimeInterval(NSTimeInterval(value))
+        let now = NSDate()
+        let seconds: NSDate = now.dateByAddingTimeInterval(NSTimeInterval(value))
         return seconds
     }
     

@@ -55,7 +55,7 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
         
         tableView.frame.origin.y = 0
         
-        if let indexPath = self.tableView.indexPathForSelectedRow() {
+        if let indexPath = self.tableView.indexPathForSelectedRow {
             self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }
     }
@@ -198,7 +198,7 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
                 self.dailyRecipe = daily
                 self.tableView.endUpdates()
             } else {
-                println("RECIPEPICKER: Adding a section for the daily recipe.")
+                print("RECIPEPICKER: Adding a section for the daily recipe.")
                 dispatch_async(dispatch_get_main_queue()) {
                     self.tableView.beginUpdates()
                     
@@ -224,22 +224,22 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
     
     func loadDailyRecipe(completion: (daily: Recipe) -> Void) {
         // Load the daily recipe, if current, elsewise pull down a new one from CK.
-        println("RECIPEPICKER: Time to figure out if our daily recipe is current.")
+        print("RECIPEPICKER: Time to figure out if our daily recipe is current.")
         
         if !LoadSave.sharedInstance.savedDailyIsCurrent() {
             
-            println("RECIPEPICKER: Daily recipe is NOT current, attempting to load from the cloud.")
+            print("RECIPEPICKER: Daily recipe is NOT current, attempting to load from the cloud.")
             
             LoadSave.sharedInstance.loadDaily() {
                 dailyRecipe in
                 
-                println("RECIPEPICKER: Successfully loaded from cloud! Returning.")
+                print("RECIPEPICKER: Successfully loaded from cloud! Returning.")
                 
                 completion(daily: dailyRecipe)
             }
             
         } else {
-            println("RECIPEPICKER: Daily recipe IS current, returning...")
+            print("RECIPEPICKER: Daily recipe IS current, returning...")
             dailyIsPresent = true
             completion(daily: LoadSave.sharedInstance.loadRecipe("SavedDaily"))
         }
@@ -263,7 +263,7 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
     }
     
     
-    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         // First let's make our actions.
         
         // SAVE ACTION
@@ -433,7 +433,7 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
             var recipeVC = segue.destinationViewController.topViewController as! RecipeViewController
             
             // Pass a recipe to it:
-            if let selectedIndex = tableView.indexPathForSelectedRow() {                
+            if let selectedIndex = tableView.indexPathForSelectedRow {                
                 if let selectedCell = tableView.cellForRowAtIndexPath(selectedIndex) as? RecipeCell {
                     recipeVC.recipe = selectedCell.recipe
                 }
@@ -446,7 +446,7 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
     // MARK: UISplitViewControllerDelegate
     
     
-    func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController: UIViewController!, ontoPrimaryViewController primaryViewController: UIViewController!) -> Bool {
+    func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController: UIViewController, ontoPrimaryViewController primaryViewController: UIViewController) -> Bool {
         return collapseRecipeViewController
     }
 

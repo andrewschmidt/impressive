@@ -28,8 +28,8 @@ class MenuInterfaceController: WKInterfaceController {
         // Not sure if this is really the right view to do this in, but it's worth a shot!
         
         if !LoadSave.sharedInstance.savedDailyIsCurrent() {
-            println("\rMENUIC: The saved daily recipe is not current.")
-            println("MENUIC: Attempting to contact the parent app to load a daily recipe.")
+            print("\rMENUIC: The saved daily recipe is not current.")
+            print("MENUIC: Attempting to contact the parent app to load a daily recipe.")
             
             let request = ["loadDaily":""]
             
@@ -37,9 +37,9 @@ class MenuInterfaceController: WKInterfaceController {
                 (reply, error) -> Void in
                 
                 if error != nil {
-                    println(error)
+                    print(error)
                 } else {
-                    println(reply["success"]!)
+                    print(reply["success"]!)
                     self.loadTableData()
                 }
             }
@@ -89,7 +89,7 @@ class MenuInterfaceController: WKInterfaceController {
         
         
         // And set the labels of the saved recipes:
-        for (index, currentRecipe) in enumerate(savedRecipes) {
+        for (index, currentRecipe) in (savedRecipes).enumerate() {
             
             // We need to adjust the index number, because the first row is already taken care of:
             let adjustedIndex = index+1

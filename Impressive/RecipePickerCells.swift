@@ -39,7 +39,7 @@ class DailyRecipeCell: UITableViewCell, RecipeCell {
     override func animateIn(delay: NSTimeInterval) {
         super.animateIn(delay) // This takes care of the fade-in.
         
-        var damping: CGFloat = 0.7
+        let damping: CGFloat = 0.7
         
         let screenWidth = self.superview!.bounds.width
         
@@ -82,11 +82,11 @@ class SavedRecipeCell: UITableViewCell, RecipeCell {
     override func animateIn(delay: NSTimeInterval) {
         super.animateIn(delay) // This takes care of the fade-in.
         
-        var damping: CGFloat = 0.7
+        let damping: CGFloat = 0.7
         
         let screenWidth = self.superview!.bounds.width
         let endFrame: CGRect = nameLabel.frame
-        var startFrame = CGRect(x: nameLabel.frame.origin.x - screenWidth/2, y: nameLabel.frame.origin.y, width: nameLabel.frame.width, height: nameLabel.frame.height)
+        let startFrame = CGRect(x: nameLabel.frame.origin.x - screenWidth/2, y: nameLabel.frame.origin.y, width: nameLabel.frame.width, height: nameLabel.frame.height)
         
         // Set starting values:
         nameLabel.frame = startFrame

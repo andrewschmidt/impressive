@@ -24,10 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //    }
     
     
-    func application(application: UIApplication, handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]?, reply: (([NSObject : AnyObject]!) -> Void)!) {
+    func application(application: UIApplication, handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]?, reply: (([NSObject : AnyObject]?) -> Void)) {
         // Handle requests from the watch.
         
-        println("APPDELEGATE: Awoken by Watch!")
+        print("APPDELEGATE: Awoken by Watch!")
 
         for (key, value) in userInfo! {
             switch key {
@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     })
                     
                 default:
-                    println("APPDELEGATE: Something broke.")
+                    print("APPDELEGATE: Something broke.")
                 }
         }
     }

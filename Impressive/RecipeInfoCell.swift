@@ -20,12 +20,12 @@ class RecipeInfoCell: UITableViewCell {
     override func animateIn(delay: NSTimeInterval) {
         super.animateIn(delay) // This takes care of the fade-in.
         
-        var damping: CGFloat = 0.8
-        var velocity: CGFloat = 0.3
+        let damping: CGFloat = 0.8
+        let velocity: CGFloat = 0.3
         
         let screenWidth = self.superview!.bounds.width
         let endFrame: CGRect = self.frame
-        var startFrame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y+10, width: self.frame.width, height: self.frame.height)
+        let startFrame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y+10, width: self.frame.width, height: self.frame.height)
         
         // Set starting values:
         self.frame = startFrame

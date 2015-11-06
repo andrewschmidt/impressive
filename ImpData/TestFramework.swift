@@ -15,9 +15,9 @@ public class Test: NSObject {
     public init(_ x: Bool) {
         self.x = x
         if self.x {
-            println("Framework is accessible!")
+            print("Framework is accessible!")
         } else {
-            println("Framework is accessible!")
+            print("Framework is accessible!")
         }
     }
 }

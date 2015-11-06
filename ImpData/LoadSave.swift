@@ -37,7 +37,7 @@ public class LoadSave: NSObject {
         // 1. Check if the "SavedDaily" is current. If so, load it and return it.
         if let dateModified = getDateModified("SavedDaily") where dateIsCurrent(dateModified) == true {
             
-            println("\rLOADSAVE: The recipe in SavedDaily is current, loading it.")
+            print("\rLOADSAVE: The recipe in SavedDaily is current, loading it.")
             
             let dailyRecipe = loadRecipe("SavedDaily")
             completion(daily: dailyRecipe)
@@ -47,7 +47,7 @@ public class LoadSave: NSObject {
             // 2. Check to see if there's a Daily recipe in "NextDaily". If so, save it into SavedDaily, clear it from NextDaily, load it and return it.
             if let dateModified = getDateModified("NextDaily") where dateIsCurrent(dateModified) {
                 
-                println("\rLOADSAVE: The recipe saved in NextDaily is current, moving it to SavedDaily and loading it.")
+                print("\rLOADSAVE: The recipe saved in NextDaily is current, moving it to SavedDaily and loading it.")
                 
                 let nextDailyRecipe = loadRecipe("NextDaily")
                 
@@ -59,10 +59,10 @@ public class LoadSave: NSObject {
             } else {
             
                 // 3. Run fetchDaily(). Save the result into SavedDaily. Load it and return it.
-                println("\rLOADSAVE: Didn't have a usable daily recipe in storage, attempting to fetch one...")
+                print("\rLOADSAVE: Didn't have a usable daily recipe in storage, attempting to fetch one...")
                 CKLoadSave.sharedInstance.fetchDaily() {
                     dailyRecipe in
-                    println("\rLOADSAVE: Received a daily recipe from the network! Saving it and re-running loadDaily().")
+                    print("\rLOADSAVE: Received a daily recipe from the network! Saving it and re-running loadDaily().")
                     
                     self.overwriteRecipesInPlist("SavedDaily", withRecipes: [dailyRecipe])
                     
@@ -79,8 +79,8 @@ public class LoadSave: NSObject {
     func dateIsCurrent(date: NSDate) -> Bool {
         let calendar = NSCalendar.currentCalendar() // or = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
         let today = NSDate()
-        let startDate = calendar.dateBySettingHour(0, minute: 0, second: 0, ofDate: today, options: NSCalendarOptions(0))!
-        let endDate = calendar.dateBySettingHour(23, minute: 59, second: 59, ofDate: today, options: NSCalendarOptions(0))!
+        let startDate = calendar.dateBySettingHour(0, minute: 0, second: 0, ofDate: today, options: NSCalendarOptions(rawValue: 0))!
+        let endDate = calendar.dateBySettingHour(23, minute: 59, second: 59, ofDate: today, options: NSCalendarOptions(rawValue: 0))!
         
         if date > startDate && date < endDate {
             return true
@@ -99,7 +99,7 @@ public class LoadSave: NSObject {
             return nil
         } else {
             // If it does, return the date.
-            let attributes: NSDictionary = fileManager.attributesOfItemAtPath(file.path!, error: nil)!
+            let attributes: NSDictionary = try! fileManager.attributesOfItemAtPath(file.path!)
             let creationDate = attributes.fileCreationDate()
             return creationDate
         }
@@ -116,7 +116,7 @@ public class LoadSave: NSObject {
             return nil
         } else {
             // If it does, return the date.
-            let attributes: NSDictionary = fileManager.attributesOfItemAtPath(file.path!, error: nil)!
+            let attributes: NSDictionary = try! fileManager.attributesOfItemAtPath(file.path!)
             let modifiedDate = attributes.fileModificationDate()
             return modifiedDate
         }
@@ -163,7 +163,7 @@ public class LoadSave: NSObject {
             
             if name == oldRecipeName {
                 savedRecipes[i] = newRecipe
-                println("LOADSAVE: Replacing recipe named \"\(name)\" with \"\(newRecipe.name).\"")
+                print("LOADSAVE: Replacing recipe named \"\(name)\" with \"\(newRecipe.name).\"")
                 foundRecipe = true
             }
         }
@@ -171,7 +171,7 @@ public class LoadSave: NSObject {
         if foundRecipe {
             overwriteRecipesInPlist(plistName, withRecipes: savedRecipes)
         } else {
-            println("LOADSAVE: Overwrite failed! Couldn't find a recipe named \"\(oldRecipeName)\" in \(plistName).plist.")
+            print("LOADSAVE: Overwrite failed! Couldn't find a recipe named \"\(oldRecipeName)\" in \(plistName).plist.")
         }
     }
     
@@ -203,7 +203,7 @@ public class LoadSave: NSObject {
         
         // First let's load the plist of saved recipes.
         // The loadPlist function is smart enough to fill in the default recipes if there aren't any saved ones.
-        var savedRecipesPlistAsArray = loadPlist(plistName) as Array
+        let savedRecipesPlistAsArray = loadPlist(plistName) as Array
         
         // Next we need to convert each of the NSDictionaries in the plist to Recipes.
         var savedRecipes = [Recipe]()
@@ -226,8 +226,11 @@ public class LoadSave: NSObject {
         // Check if file exists:
         if fileManager.fileExistsAtPath(file.path!) == true {
             // If it does, delete it.
-            println("LOADSAVE: Deleting file at path: \(file.path!)")
-            fileManager.removeItemAtPath(file.path!, error: nil)
+            print("LOADSAVE: Deleting file at path: \(file.path!)")
+            do {
+                try fileManager.removeItemAtPath(file.path!)
+            } catch _ {
+            }
         }
     }
     
@@ -241,17 +244,17 @@ public class LoadSave: NSObject {
         // Check if file exists:
         if !fileManager.fileExistsAtPath(file.path!) {
             // If it doesn't, copy it from the default file in the Resources folder:
-            println("LOADSAVE: No existing data found, copying Default\(list).plist to the device.")
+            print("LOADSAVE: No existing data found, copying Default\(list).plist to the device.")
             let bundle = NSBundle.mainBundle().pathForResource("Default\(list)", ofType: "plist")
-            if (fileManager.copyItemAtPath(bundle!, toPath: file.path!, error: nil)) {
-                println("LOADSAVE: Copied the file to \(file.path!).")
-            }
-            else {
-                println("LOADSAVE: Failed to copy.")
+            do {
+                try fileManager.copyItemAtPath(bundle!, toPath: file.path!)
+                print("LOADSAVE: Copied the file to \(file.path!).")
+            } catch _ {
+                print("LOADSAVE: Failed to copy.")
             }
         }
         
-        var data = NSArray(contentsOfFile: file.path!)
+        let data = NSArray(contentsOfFile: file.path!)
         return data!
         
     }
@@ -264,7 +267,7 @@ public class LoadSave: NSObject {
         let file = url!.URLByAppendingPathComponent("\(name).plist")
         
         array.writeToFile(file.path!, atomically: true)
-        println("LOADSAVE: Saved the array to \(file.path!)")
+        print("LOADSAVE: Saved the array to \(file.path!)")
         
     }
 

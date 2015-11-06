@@ -50,7 +50,7 @@ public class CKLoadSave: NSObject {
         // 2. If not, check if there's a daily recipe saved for tomorrow - possibly downloaded via subscription.
         // 3. If not, run fetchDaily().
         
-        println("\rCKLOADSAVE: Attempting to fetch the Daily record for today...")
+        print("\rCKLOADSAVE: Attempting to fetch the Daily record for today...")
         
         // First we need a time range covering the entire day:
         let calendar = NSCalendar.currentCalendar() // or = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
@@ -72,7 +72,7 @@ public class CKLoadSave: NSObject {
             
             if records.count != 0 {
                 
-                println("CKLOADSAVE: Found a Daily record. Getting the recipe it references...")
+                print("CKLOADSAVE: Found a Daily record. Getting the recipe it references...")
                 
                 // Get the recipe record referenced by the daily record...
                 let dailyRecord = records[0]
@@ -85,8 +85,8 @@ public class CKLoadSave: NSObject {
                     // Convert the referenced Recipe record into a Recipe object:
                     let dailyRecipe = self.createRecipeFromRecord(dailyRecipeRecord)
                     
-                    println("CKLOADSAVE: Here's the daily recipe!")
-                    println(dailyRecipe)
+                    print("CKLOADSAVE: Here's the daily recipe!")
+                    print(dailyRecipe)
                     
                     // And return it to the function caller:
                     completion(dailyRecipe: dailyRecipe)
@@ -94,9 +94,9 @@ public class CKLoadSave: NSObject {
                 
             } else {
                 
-                println("\rCKLOADSAVE: No Daily records returned. Time to make our own!")
-                println("\r********************************")
-                println("\rCKLOADSAVE: Getting the previous Daily record...")
+                print("\rCKLOADSAVE: No Daily records returned. Time to make our own!")
+                print("\r********************************")
+                print("\rCKLOADSAVE: Getting the previous Daily record...")
                 
                 // Get the previous daily record.
                 let previousDailiesPredicate = NSPredicate(format: "creationDate < %@", startDate)
@@ -109,9 +109,9 @@ public class CKLoadSave: NSObject {
                     
                     if previousDailyRecords.count != 0 {
                         
-                        println("CKLOADSAVE: Successfully fetched the previous Daily record. This was it:")
-                        println(previousDailyRecords[0])
-                        println("\rCKLOADSAVE: Now getting the Recipe record it references...")
+                        print("CKLOADSAVE: Successfully fetched the previous Daily record. This was it:")
+                        print(previousDailyRecords[0])
+                        print("\rCKLOADSAVE: Now getting the Recipe record it references...")
                         
                         // Now we need to get the Recipe record referenced by that previous Daily record.
                         let previousDailyRecord = previousDailyRecords[0]
@@ -121,9 +121,9 @@ public class CKLoadSave: NSObject {
                         self.fetchRecordForID(previousDailyRecipeID, recordType: "Recipe", database: "public") {
                             previousDailyRecipeRecord in
                             
-                            println("CKLOADSAVE: Successfully got the previous daily Recipe record. Here it is:")
-                            println(previousDailyRecipeRecord)
-                            println("\rCKLOADSAVE: Now querying for the next Recipe record, chronologically.")
+                            print("CKLOADSAVE: Successfully got the previous daily Recipe record. Here it is:")
+                            print(previousDailyRecipeRecord)
+                            print("\rCKLOADSAVE: Now querying for the next Recipe record, chronologically.")
                             
                             // We need the creation date of that previous Recipe record...
                             let previousCreationDate = previousDailyRecipeRecord.objectForKey("creationDate") as! NSDate
@@ -141,10 +141,10 @@ public class CKLoadSave: NSObject {
                                     
                                     let nextRecipeRecord = nextRecipeRecords[0]
                                     
-                                    println("CKLOADSAVE: The next Recipe record, chronologically, is:")
-                                    println(nextRecipeRecord)
-                                    println("\r")
-                                    println("CKLOADSAVE: Time to save that as the new Daily recipe, and retry the fetch. \r")
+                                    print("CKLOADSAVE: The next Recipe record, chronologically, is:")
+                                    print(nextRecipeRecord)
+                                    print("\r")
+                                    print("CKLOADSAVE: Time to save that as the new Daily recipe, and retry the fetch. \r")
                                     
                                     
                                     // And make a Daily record that points to that next Recipe record:
@@ -159,8 +159,8 @@ public class CKLoadSave: NSObject {
                                     // The rare occurence when there are no newer Recipe records.
                                     // Reset the loop back to the oldest Recipe record.
                                     
-                                    println("CKLOADSAVE: There aren't any newer recipes to use for the pick of the day!")
-                                    println("CKLOADSAVE: Querying for the oldest recipe...")
+                                    print("CKLOADSAVE: There aren't any newer recipes to use for the pick of the day!")
+                                    print("CKLOADSAVE: Querying for the oldest recipe...")
                                     
                                     let allRecords = NSPredicate(value: true)
                                     let oldestToNewest = NSSortDescriptor(key: "creationDate", ascending: true)
@@ -171,7 +171,7 @@ public class CKLoadSave: NSObject {
                                         records in
                                         let oldestRecipeRecord = records[0]
                                         
-                                        println("CKLOADSAVE: Resetting the loop by pointing a new daily record at the oldest recipe.")
+                                        print("CKLOADSAVE: Resetting the loop by pointing a new daily record at the oldest recipe.")
                                         
                                         self.saveDaily(oldestRecipeRecord) {
                                             success in
@@ -186,9 +186,9 @@ public class CKLoadSave: NSObject {
                         
                     } else {
                         // The rare occassion when there are NO existing daily records.
-                        println("\rCKLOADSAVE: No existing Daily records found.")
+                        print("\rCKLOADSAVE: No existing Daily records found.")
                         // Try making a daily record referencing the oldest Recipe record.
-                        println("CKLOADSAVE: Querying for oldest Recipe...")
+                        print("CKLOADSAVE: Querying for oldest Recipe...")
                         
                         var recipeRecord: CKRecord!
                         
@@ -203,13 +203,13 @@ public class CKLoadSave: NSObject {
                             if records.count != 0 {
                                 
                                 // We found the oldest Recipe, now let's create a Daily record referencing it.
-                                println("\rCKLOADSAVE: Creating a first Daily record with the oldest Recipe record.")
+                                print("\rCKLOADSAVE: Creating a first Daily record with the oldest Recipe record.")
 
                                 recipeRecord = records[0]
                                 self.saveDaily(recipeRecord) {
                                     success in
                                     if success == true {
-                                        println("CKLOADSAVE: Successfully created the first Daily record.")
+                                        print("CKLOADSAVE: Successfully created the first Daily record.")
                                         self.retryFetchDaily(){recipe in completion(dailyRecipe: recipe)}
                                     }
                                 }
@@ -217,7 +217,7 @@ public class CKLoadSave: NSObject {
                             } else {
                                 
                                 // If there are no Recipe records, upload a default starter recipe and use it.
-                                println("CKLOADSAVE: No Recipe records found! Uploading the default...")
+                                print("CKLOADSAVE: No Recipe records found! Uploading the default...")
                                 
                                 let defaultDailyRecipe = LoadSave.sharedInstance.loadRecipe("SpecialRecipe")
                                 self.saveRecipe(defaultDailyRecipe, toDatabase: "public"){
@@ -227,7 +227,7 @@ public class CKLoadSave: NSObject {
                                     let delay = 3.0 * Double(NSEC_PER_SEC) //Carefully tuned: 5 seconds was enough, 1.5 too little.
                                     let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
                                     dispatch_after(time, dispatch_get_main_queue()) {
-                                        println("CKLOADSAVE: Now attempting to use the default.")
+                                        print("CKLOADSAVE: Now attempting to use the default.")
                                         
                                         self.fetchRecords(query, fromDatabase: "public") {
                                             records in
@@ -236,7 +236,7 @@ public class CKLoadSave: NSObject {
                                             self.saveDaily(recipeRecord) {
                                                 success in
                                                 if success == true {
-                                                    println("CKLOADSAVE: Successfully created the first Daily record.")
+                                                    print("CKLOADSAVE: Successfully created the first Daily record.")
                                                     self.retryFetchDaily(){recipe in completion(dailyRecipe: recipe)}
                                                 }
                                             }
@@ -254,7 +254,7 @@ public class CKLoadSave: NSObject {
     
     
     func retryFetchDaily(completion: (dailyRecipe: Recipe) -> Void) {
-        println("\rCKLOADSAVE: Retrying the fetch of the daily recipe.\r")
+        print("\rCKLOADSAVE: Retrying the fetch of the daily recipe.\r")
         
         // With a bit of a delay to give the database time to realize it has a new Daily record:
         let delay = 3.0 * Double(NSEC_PER_SEC) //Carefully tuned: 5 seconds was enough, 1.5 too little.
@@ -310,9 +310,9 @@ public class CKLoadSave: NSObject {
         saveRecord(daily, toDatabase: "public"){
             success in
             if success == true {
-                println("\rCKLOADSAVE: Successfully saved a Daily record:")
-                println(daily)
-                println("\r")
+                print("\rCKLOADSAVE: Successfully saved a Daily record:")
+                print(daily)
+                print("\r")
                 // Clean-up: let's delete any older Daily records that reference the same recipe.
                 // This way the Daily records function more like a batting order, or a playlist on repeat.
                 let sameButOlder = NSPredicate(format: "(creationDate < %@) AND (recipe == %@)", startSaveTime, referencedRecipe) //Toldya.
@@ -324,9 +324,9 @@ public class CKLoadSave: NSObject {
                         let id = record.objectForKey("recordID") as! CKRecordID
                         self.publicDatabase.deleteRecordWithID(id) {
                             record, error in
-                            println("CKLOADSAVE: Deleted similar Daily record:")
-                            println(record)
-                            println("\r")
+                            print("CKLOADSAVE: Deleted similar Daily record:")
+                            print(record)
+                            print("\r")
                         }
                     }
                 }
@@ -378,7 +378,7 @@ public class CKLoadSave: NSObject {
                 databaseToQuery = privateDatabase
             
             default:
-                println("CKLOADSAVE: Database '\(database)' not found. Defaulting to 'Public'.\r")
+                print("CKLOADSAVE: Database '\(database)' not found. Defaulting to 'Public'.\r")
                 databaseToQuery = publicDatabase
         }
         
@@ -388,17 +388,17 @@ public class CKLoadSave: NSObject {
             
             // Need to expand this to handle different errors in different ways. Below is really what should happen only if there's a connection issue. Maybe a switch statement, based on the different errors that can be returned?
             if error != nil {
-                println("CKLOADSAVE: Error fetching records from the \(database) database.")
+                print("CKLOADSAVE: Error fetching records from the \(database) database.")
                 
                 switch error.code {
                     
                     case CKErrorCode.UnknownItem.rawValue:
-                        println("CKLOADSAVE: Caught an UnknownItem error.")
+                        print("CKLOADSAVE: Caught an UnknownItem error.")
                     
                     default:
-                        println("CKLOADSAVE: Error outside the defined cases, trying to fetch again. The error is:")
-                        println(error)
-                        println("\r")
+                        print("CKLOADSAVE: Error outside the defined cases, trying to fetch again. The error is:")
+                        print(error)
+                        print("\r")
 
                         self.retryFetchRecords(query, fromDatabase: database) {
                             records in
@@ -422,7 +422,7 @@ public class CKLoadSave: NSObject {
     // Here's a TOTALLY UNTESTED retry method:
     func retryFetchRecords(query: CKQuery, fromDatabase database: String, completion: (returnRecords: [CKRecord]) -> Void) {
         
-        println("CLOUDSAVE: Retrying failed fetch.\r")
+        print("CLOUDSAVE: Retrying failed fetch.\r")
         
         dispatch_sync(queue) { // Should I introduce a time delay here?
             self.fetchRecords(query, fromDatabase: database) {
@@ -528,9 +528,9 @@ public class CKLoadSave: NSObject {
     
     func saveRecord(record: CKRecord, toDatabase database: String, completion: (success: Bool) -> Void) {
         
-        println("\rCKLOADSAVE: The CKRecord we're trying to save is: ")
-        println(record)
-        println("\r")
+        print("\rCKLOADSAVE: The CKRecord we're trying to save is: ")
+        print(record)
+        print("\r")
         
         switch database {
             case "public":
@@ -539,14 +539,14 @@ public class CKLoadSave: NSObject {
                     
                     if let err = error {
                         // Operation failed:
-                        println("CKLOADSAVE: Failed to save record to public database.")
-                        println(err)
-                        println("\r")
+                        print("CKLOADSAVE: Failed to save record to public database.")
+                        print(err)
+                        print("\r")
                         self.retrySaveRecord(record, toDatabase: database)
                         
                     } else {
                         // Operation succeeded:
-                        println("CKLOADSAVE: Saved record to public database.\r")
+                        print("CKLOADSAVE: Saved record to public database.\r")
                         completion(success: true)
                     }
             }
@@ -557,28 +557,28 @@ public class CKLoadSave: NSObject {
                     
                     if error != nil {
                         // Operation failed:
-                        println("CKLOADSAVE: Failed to save record to private database.")
-                        println(error)
-                        println("\r")
+                        print("CKLOADSAVE: Failed to save record to private database.")
+                        print(error)
+                        print("\r")
                         
                         self.retrySaveRecord(record, toDatabase: database)
                         
                     } else {
                         // Operation succeeded:
-                        println("CKLOADSAVE: Saved record to private database.\r")
+                        print("CKLOADSAVE: Saved record to private database.\r")
                         completion(success: true)
                     }
             }
             
             default:
-                println("CKLOADSAVE: No database specified for save operation.\r")
+                print("CKLOADSAVE: No database specified for save operation.\r")
         }
     }
     
     
     func retrySaveRecord(record: CKRecord, toDatabase database: String) {
         
-        println("CLOUDSAVE: Retrying failed save.\r")
+        print("CLOUDSAVE: Retrying failed save.\r")
         dispatch_sync(queue) {
             self.saveRecord(record, toDatabase: database){success in} // Should I introduce a time delay here?
         }
@@ -620,8 +620,8 @@ public class CKLoadSave: NSObject {
                         message = "could not access user's iCloud account information."
                         
                     }
-                    println("\r")
-                    println(title + message + "\r")
+                    print("\r")
+                    print(title + message + "\r")
                 }
                 
             })
