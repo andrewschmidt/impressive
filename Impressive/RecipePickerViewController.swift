@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ImpData
 
 class RecipePickerViewController: UITableViewController, UISplitViewControllerDelegate {
     
