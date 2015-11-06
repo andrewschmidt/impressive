@@ -28,7 +28,7 @@ class RecipeViewController: UITableViewController {
         
         cellHasAppearedAt.append([false])
         cellHasAppearedAt.append([])
-        for i in 0 ..< recipe.steps.count {
+        for _ in 0 ..< recipe.steps.count {
             cellHasAppearedAt[1].append(false)
         }
     }
@@ -75,7 +75,7 @@ class RecipeViewController: UITableViewController {
         if indexPath.section == 0 {
     
             // Configure the recipe info cell.
-            var infoCell = tableView.dequeueReusableCellWithIdentifier("recipeInfoCell", forIndexPath: indexPath) as! RecipeInfoCell
+            let infoCell = tableView.dequeueReusableCellWithIdentifier("recipeInfoCell", forIndexPath: indexPath) as! RecipeInfoCell
             
             infoCell.recipeNameLabel.text = recipe.name
             infoCell.authorLabel.text = recipe.author
@@ -86,7 +86,7 @@ class RecipeViewController: UITableViewController {
         } else {
     
             // Configure each step's cell.
-            var stepCell = tableView.dequeueReusableCellWithIdentifier("recipeStepCell", forIndexPath: indexPath) as! RecipeStepCell
+            let stepCell = tableView.dequeueReusableCellWithIdentifier("recipeStepCell", forIndexPath: indexPath) as! RecipeStepCell
             let step = recipe.steps[indexPath.row]
             let value = step.value
             

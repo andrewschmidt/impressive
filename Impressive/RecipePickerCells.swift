@@ -41,7 +41,7 @@ class DailyRecipeCell: UITableViewCell, RecipeCell {
         
         let damping: CGFloat = 0.7
         
-        let screenWidth = self.superview!.bounds.width
+        _ = self.superview!.bounds.width
         
         let pickOfTheDayDestination = pickOfTheDayLabel.frame
         let pickOfTheDayStart = CGRect(x: pickOfTheDayLabel.frame.origin.x, y: nameLabel.frame.origin.y - 2, width: pickOfTheDayLabel.frame.width, height: pickOfTheDayLabel.frame.height)

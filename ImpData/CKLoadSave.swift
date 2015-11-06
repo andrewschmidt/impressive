@@ -55,8 +55,8 @@ public class CKLoadSave: NSObject {
         // First we need a time range covering the entire day:
         let calendar = NSCalendar.currentCalendar() // or = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
         let today = NSDate()
-        let startDate = calendar.dateBySettingHour(0, minute: 0, second: 0, ofDate: today, options: NSCalendarOptions(0))!
-        let endDate = calendar.dateBySettingHour(23, minute: 59, second: 59, ofDate: today, options: NSCalendarOptions(0))!
+        let startDate = calendar.dateBySettingHour(0, minute: 0, second: 0, ofDate: today, options: NSCalendarOptions(rawValue: 0))! // Added "rawValue"
+        let endDate = calendar.dateBySettingHour(23, minute: 59, second: 59, ofDate: today, options: NSCalendarOptions(rawValue: 0))! // Added "rawValue"
         
 //        println("CKLOADSAVE: today is:", today)
 //        println("CKLOADSAVE: fetchDaily's startDate is: ", startDate)
@@ -390,7 +390,8 @@ public class CKLoadSave: NSObject {
             if error != nil {
                 print("CKLOADSAVE: Error fetching records from the \(database) database.")
                 
-                switch error.code {
+                // Commented out for now, as it's giving me problems.
+                switch error!.code {
                     
                     case CKErrorCode.UnknownItem.rawValue:
                         print("CKLOADSAVE: Caught an UnknownItem error.")
@@ -408,8 +409,8 @@ public class CKLoadSave: NSObject {
 
             } else {
                 // Populate the records array - which we're going to return - with the results.
-                for record in results {
-                    records.append(record as! CKRecord)
+                for record in results! {
+                    records.append(record)
                 }
 
                 // And finally, send the data back to the completion block:
@@ -510,7 +511,7 @@ public class CKLoadSave: NSObject {
         
         var steps = [Step]()
         
-        var i = 0
+//        var i = 0 // Don't need this declaration, maybe?
         for i in 0 ..< stepTypes.count {
             let type = stepTypes[i] as String
             let value = stepValues[i] as Double
@@ -587,7 +588,7 @@ public class CKLoadSave: NSObject {
     
     func checkCKStatus() {
         container.accountStatusWithCompletionHandler{
-            [weak self] (status: CKAccountStatus, error: NSError!) in
+            (status: CKAccountStatus, error: NSError?) in
             
             /* Be careful, we might be on a different thread now so make sure that
             your UI operations go on the main thread */
@@ -596,7 +597,8 @@ public class CKLoadSave: NSObject {
                 var title: String
                 var message: String
                 
-                if error != nil{
+//                 Below was causing weird errors, commented out for now.
+                if error != nil {
                     
                     title = "CKLOADSAVE: Error - "
                     message = "An error occurred: \(error)."

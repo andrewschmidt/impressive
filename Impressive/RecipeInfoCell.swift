@@ -23,7 +23,7 @@ class RecipeInfoCell: UITableViewCell {
         let damping: CGFloat = 0.8
         let velocity: CGFloat = 0.3
         
-        let screenWidth = self.superview!.bounds.width
+        _ = self.superview!.bounds.width
         let endFrame: CGRect = self.frame
         let startFrame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y+10, width: self.frame.width, height: self.frame.height)
         

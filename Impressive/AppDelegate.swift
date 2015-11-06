@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         print("APPDELEGATE: Awoken by Watch!")
 
-        for (key, value) in userInfo! {
+        for (key, _) in userInfo! {
             switch key {
                 case "loadDaily":
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {

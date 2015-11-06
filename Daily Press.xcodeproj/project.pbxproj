@@ -28,6 +28,7 @@
 		492D7B411B50B2140088A8E4 /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492D7B401B50B2140088A8E4 /* RecipeViewController.swift */; };
 		492D7B431B50B7730088A8E4 /* RecipeInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492D7B421B50B7730088A8E4 /* RecipeInfoCell.swift */; };
 		492D7B451B50B7A30088A8E4 /* RecipeStepCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492D7B441B50B7A30088A8E4 /* RecipeStepCell.swift */; };
+		493BA10F1BEC3A3300AE9688 /* Impressive WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4972BE6F1A9BE92C007B013D /* Impressive WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		493DACA51B33715A00B635BF /* DefaultSpecialRecipe.plist in Resources */ = {isa = PBXBuildFile; fileRef = 493DACA41B33715A00B635BF /* DefaultSpecialRecipe.plist */; };
 		4964AF221AC23595005688F9 /* CKLoadSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4964AF211AC23595005688F9 /* CKLoadSave.swift */; };
 		49663A7C1A9E6D1300AC244A /* SpecialTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49663A7B1A9E6D1300AC244A /* SpecialTableRowController.swift */; };
@@ -35,10 +36,8 @@
 		4972BE771A9BE92C007B013D /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4972BE761A9BE92C007B013D /* NotificationController.swift */; };
 		4972BE791A9BE92C007B013D /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4972BE781A9BE92C007B013D /* GlanceController.swift */; };
 		4972BE7B1A9BE92C007B013D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4972BE7A1A9BE92C007B013D /* Images.xcassets */; };
-		4972BE7F1A9BE92C007B013D /* Impressive WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = 4972BE7E1A9BE92C007B013D /* Impressive WatchKit App.app */; };
 		4972BE871A9BE92C007B013D /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4972BE851A9BE92C007B013D /* Interface.storyboard */; };
 		4972BE891A9BE92C007B013D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4972BE881A9BE92C007B013D /* Images.xcassets */; };
-		4972BE8C1A9BE92C007B013D /* Impressive WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4972BE6F1A9BE92C007B013D /* Impressive WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4972BE9B1A9C09D9007B013D /* MenuTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4972BE9A1A9C09D9007B013D /* MenuTableRowController.swift */; };
 		4981542E1B0E62360022092A /* DefaultNextDaily.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4981542D1B0E62360022092A /* DefaultNextDaily.plist */; };
 		498154301B0E62430022092A /* DefaultSavedDaily.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4981542F1B0E62430022092A /* DefaultSavedDaily.plist */; };
@@ -82,14 +81,7 @@
 			remoteGlobalIDString = 4917E9151AAD382A00F984FD;
 			remoteInfo = ImpData;
 		};
-		4972BE801A9BE92C007B013D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4995D3881A94084300FA30A3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4972BE7D1A9BE92C007B013D;
-			remoteInfo = "Impressive WatchKit App";
-		};
-		4972BE8A1A9BE92C007B013D /* PBXContainerItemProxy */ = {
+		493BA10D1BEC3A3300AE9688 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4995D3881A94084300FA30A3 /* Project object */;
 			proxyType = 1;
@@ -126,15 +118,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4972BE931A9BE92C007B013D /* Embed App Extensions */ = {
+		493BA1131BEC3A3400AE9688 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				4972BE8C1A9BE92C007B013D /* Impressive WatchKit Extension.appex in Embed App Extensions */,
+				493BA10F1BEC3A3300AE9688 /* Impressive WatchKit Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		493BA1141BEC3A3400AE9688 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -490,27 +492,28 @@
 			buildRules = (
 			);
 			dependencies = (
-				4972BE811A9BE92C007B013D /* PBXTargetDependency */,
 			);
 			name = "Impressive WatchKit Extension";
 			productName = "Impressive WatchKit Extension";
 			productReference = 4972BE6F1A9BE92C007B013D /* Impressive WatchKit Extension.appex */;
-			productType = "com.apple.product-type.watchkit-extension";
+			productType = "com.apple.product-type.watchkit2-extension";
 		};
 		4972BE7D1A9BE92C007B013D /* Impressive WatchKit App */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4972BE911A9BE92C007B013D /* Build configuration list for PBXNativeTarget "Impressive WatchKit App" */;
 			buildPhases = (
 				4972BE7C1A9BE92C007B013D /* Resources */,
+				493BA1131BEC3A3400AE9688 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				493BA10E1BEC3A3300AE9688 /* PBXTargetDependency */,
 			);
 			name = "Impressive WatchKit App";
 			productName = "Impressive WatchKit App";
 			productReference = 4972BE7E1A9BE92C007B013D /* Impressive WatchKit App.app */;
-			productType = "com.apple.product-type.application.watchapp";
+			productType = "com.apple.product-type.application.watchapp2";
 		};
 		4995D38F1A94084300FA30A3 /* Impressive */ = {
 			isa = PBXNativeTarget;
@@ -519,14 +522,13 @@
 				4995D38C1A94084300FA30A3 /* Sources */,
 				4995D38D1A94084300FA30A3 /* Frameworks */,
 				4995D38E1A94084300FA30A3 /* Resources */,
-				4972BE931A9BE92C007B013D /* Embed App Extensions */,
 				4917E9341AAD382B00F984FD /* Embed Frameworks */,
 				4917E9431AAD3D8900F984FD /* CopyFiles */,
+				493BA1141BEC3A3400AE9688 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				4972BE8B1A9BE92C007B013D /* PBXTargetDependency */,
 				4917E92C1AAD382B00F984FD /* PBXTargetDependency */,
 			);
 			name = Impressive;
@@ -560,7 +562,7 @@
 			attributes = {
 				LastSwiftMigration = 0710;
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0620;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Andrew Schmidt";
 				TargetAttributes = {
 					4917E9151AAD382A00F984FD = {
@@ -652,7 +654,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4972BE7B1A9BE92C007B013D /* Images.xcassets in Resources */,
-				4972BE7F1A9BE92C007B013D /* Impressive WatchKit App.app in Resources */,
 				498154331B0E70580022092A /* DefaultSavedDaily.plist in Resources */,
 				498154351B0E705F0022092A /* DefaultNextDaily.plist in Resources */,
 				4917E94B1AAD446000F984FD /* DefaultSavedRecipes.plist in Resources */,
@@ -772,15 +773,10 @@
 			target = 4917E9151AAD382A00F984FD /* ImpData */;
 			targetProxy = 4917E92B1AAD382B00F984FD /* PBXContainerItemProxy */;
 		};
-		4972BE811A9BE92C007B013D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4972BE7D1A9BE92C007B013D /* Impressive WatchKit App */;
-			targetProxy = 4972BE801A9BE92C007B013D /* PBXContainerItemProxy */;
-		};
-		4972BE8B1A9BE92C007B013D /* PBXTargetDependency */ = {
+		493BA10E1BEC3A3300AE9688 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 4972BE6E1A9BE92C007B013D /* Impressive WatchKit Extension */;
-			targetProxy = 4972BE8A1A9BE92C007B013D /* PBXContainerItemProxy */;
+			targetProxy = 493BA10D1BEC3A3300AE9688 /* PBXContainerItemProxy */;
 		};
 		4995D3A71A94084400FA30A3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -835,6 +831,7 @@
 				INFOPLIST_FILE = ImpData/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.AndrewSchmidt.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -856,6 +853,7 @@
 				INFOPLIST_FILE = ImpData/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.AndrewSchmidt.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -876,6 +874,7 @@
 				);
 				INFOPLIST_FILE = ImpDataTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.AndrewSchmidt.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Impressive.app/Impressive";
 			};
@@ -890,6 +889,7 @@
 				);
 				INFOPLIST_FILE = ImpDataTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.AndrewSchmidt.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Impressive.app/Impressive";
 			};
@@ -907,9 +907,13 @@
 				);
 				INFOPLIST_FILE = "Impressive WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.AndrewSchmidt.Impressive.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE = "";
+				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
 		};
@@ -921,9 +925,13 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Impressive WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.AndrewSchmidt.Impressive.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE = "";
+				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};
@@ -933,18 +941,20 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				IBSC_MODULE = Impressive_WatchKit_Extension;
 				INFOPLIST_FILE = "Impressive WatchKit App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.AndrewSchmidt.Impressive.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos;
+				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
-				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
 		};
@@ -954,14 +964,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				IBSC_MODULE = Impressive_WatchKit_Extension;
 				INFOPLIST_FILE = "Impressive WatchKit App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.AndrewSchmidt.Impressive.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos;
+				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
-				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};
@@ -985,6 +997,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1054,6 +1067,7 @@
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Impressive/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.AndrewSchmidt.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1069,6 +1083,7 @@
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Impressive/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.AndrewSchmidt.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1088,6 +1103,7 @@
 				);
 				INFOPLIST_FILE = ImpressiveTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.AndrewSchmidt.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Impressive.app/Impressive";
 			};
@@ -1103,6 +1119,7 @@
 				);
 				INFOPLIST_FILE = ImpressiveTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.AndrewSchmidt.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Impressive.app/Impressive";
 			};

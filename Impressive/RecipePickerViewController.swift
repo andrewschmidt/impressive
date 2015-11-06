@@ -42,7 +42,7 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
         savedRecipes = loadSavedRecipes()
         
         cellHasAppearedAt.append([])
-        for i in 0 ..< savedRecipes.count {
+        for _ in 0 ..< savedRecipes.count {
             cellHasAppearedAt[0].append(false)
         }
     }
@@ -173,7 +173,7 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
         collapseRecipeViewController = false
         
         // Only the daily recipe's prototype cell is hooked up to a segue in IB, so let's make sure the other recipe cells also fire it:
-        if let cell = tableView.cellForRowAtIndexPath(indexPath) as? SavedRecipeCell {
+        if let _ = tableView.cellForRowAtIndexPath(indexPath) as? SavedRecipeCell {
             performSegueWithIdentifier("viewRecipe", sender: nil)
         }
     }
@@ -267,7 +267,7 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
         // First let's make our actions.
         
         // SAVE ACTION
-        var saveAction = UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: "Save") {
+        let saveAction = UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: "Save") {
             Void in
             
             // Figure out which recipe to save:
@@ -310,7 +310,7 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
         saveAction.backgroundColor = UIColor.greenColor()
         
         // DELETE ACTION
-        var deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete") {
+        let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete") {
             Void in
             
             if self.dailyIsPresent && indexPath.section == 0 {
@@ -430,7 +430,7 @@ class RecipePickerViewController: UITableViewController, UISplitViewControllerDe
         if segue.identifier == "viewRecipe" {
             
             // Create a recipe view to go to:
-            var recipeVC = segue.destinationViewController.topViewController as! RecipeViewController
+            let recipeVC = (segue.destinationViewController as! UINavigationController).topViewController as! RecipeViewController
             
             // Pass a recipe to it:
             if let selectedIndex = tableView.indexPathForSelectedRow {                
