@@ -20,6 +20,7 @@ class RecipeSplitViewController: UISplitViewController {
         self.preferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible
     }
     
+    
     override func viewWillAppear(animated: Bool) {
         
         if animateIn {
@@ -39,6 +40,7 @@ class RecipeSplitViewController: UISplitViewController {
         }
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
