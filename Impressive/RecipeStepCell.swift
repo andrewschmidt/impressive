@@ -14,6 +14,18 @@ class RecipeStepCell: UITableViewCell {
     @IBOutlet weak var stepTypeLabel: UILabel!
     @IBOutlet weak var stepValueLabel: UILabel!
     
+    private var _step: Step!
+    var step: Step {
+        get {
+            return _step
+        }
+        set(newValue) {
+            _step = newValue
+            configureCell()
+        }
+    }
+    
+    
     override func animateIn(delay: NSTimeInterval) {
         super.animateIn(delay) // This takes care of the fade-in.
         
@@ -32,5 +44,11 @@ class RecipeStepCell: UITableViewCell {
             self.frame = endFrame
             }, completion: nil)
     }
-
+    
+    
+    func configureCell() {
+        // Configure the cell according to the Step type:
+        stepTypeLabel.text = step.type
+        stepValueLabel.text = String(format:"%.f", step.value)
+    }
 }

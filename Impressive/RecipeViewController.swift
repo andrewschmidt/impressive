@@ -25,10 +25,28 @@ class RecipeViewController: UITableViewController {
             recipe = savedRecipes[0]
         }
         
-        cellHasAppearedAt.append([false])
+        startAnimationTracker()
+    }
+    
+    
+    func startAnimationTracker() {
+        // This sets up the array for tracking which cells have appeared, 
+        // and starts a timer for the animation window during which their appearance should be animated.
+        
+        cellHasAppearedAt.append([false]) // This is the boolean for the title cell.
         cellHasAppearedAt.append([])
         for _ in 0 ..< recipe.steps.count {
-            cellHasAppearedAt[1].append(false)
+            cellHasAppearedAt[1].append(false)  // These will be the booleans for the rest.
+        }
+        
+        _ = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("stopAnimations"), userInfo: nil, repeats: false)
+    }
+    
+    
+    func stopAnimations() {
+        // Once enough time has passed that we're confident all the cells on screen have started animating, let's close the animation window:
+        for i in 0 ..< recipe.steps.count {
+            cellHasAppearedAt[1][i] = true
         }
     }
     
@@ -37,9 +55,8 @@ class RecipeViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        
     }
-
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -72,28 +89,16 @@ class RecipeViewController: UITableViewController {
         var cell: UITableViewCell!
         
         if indexPath.section == 0 {
-    
-            // Configure the recipe info cell.
+            // Return the recipe info cell.
             let infoCell = tableView.dequeueReusableCellWithIdentifier("recipeInfoCell", forIndexPath: indexPath) as! RecipeInfoCell
-            
-            infoCell.recipeNameLabel.text = recipe.name
-            infoCell.authorLabel.text = recipe.author
-            infoCell.brewerLabel.text = recipe.brewer
-            
+            infoCell.recipe = recipe
             cell = infoCell
             
         } else {
-    
-            // Configure each step's cell.
+            // Return a step cell.
             let stepCell = tableView.dequeueReusableCellWithIdentifier("recipeStepCell", forIndexPath: indexPath) as! RecipeStepCell
-            let step = recipe.steps[indexPath.row]
-            let value = step.value
-            
-            stepCell.stepTypeLabel.text = step.type
-            stepCell.stepValueLabel.text = String(format:"%.f", value)
-            
+            stepCell.step = recipe.steps[indexPath.row]
             cell = stepCell
-            
         }
         
         if !cellHasAppearedAt[indexPath.section][indexPath.row] {
@@ -123,6 +128,7 @@ class RecipeViewController: UITableViewController {
             return "Steps"
         }
     }
+    
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {

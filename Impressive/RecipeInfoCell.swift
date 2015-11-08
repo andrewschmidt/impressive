@@ -15,6 +15,17 @@ class RecipeInfoCell: UITableViewCell {
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var brewerLabel: UILabel!
     
+    private var _recipe: Recipe!
+    var recipe: Recipe {
+        get {
+            return _recipe
+        }
+        set(newValue) {
+            _recipe = newValue
+            configureCell()
+        }
+    }
+    
     
     override func animateIn(delay: NSTimeInterval) {
         super.animateIn(delay) // This takes care of the fade-in.
@@ -34,5 +45,12 @@ class RecipeInfoCell: UITableViewCell {
             self.frame = endFrame
         }, completion: nil)
     }
+    
 
+    func configureCell() {
+        // Set up our cell:
+        self.recipeNameLabel.text = recipe.name
+        self.authorLabel.text = recipe.author
+        self.brewerLabel.text = recipe.brewer
+    }
 }
