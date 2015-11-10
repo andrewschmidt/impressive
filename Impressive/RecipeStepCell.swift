@@ -8,6 +8,13 @@
 
 import UIKit
 
+
+//protocol StepCell {
+//    var step: Step { get set }
+//}
+
+
+
 class RecipeStepCell: UITableViewCell {
 
     

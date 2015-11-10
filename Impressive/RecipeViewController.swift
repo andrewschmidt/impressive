@@ -69,8 +69,6 @@ class RecipeViewController: UITableViewController {
 
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
         return 2
     }
 

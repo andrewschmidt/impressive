@@ -28,9 +28,9 @@ class DailyRecipeCell: UITableViewCell, RecipeCell {
         get {
             return _recipe
         }
-        set(newVal) {
-            _recipe = newVal
-            self.nameLabel.text = newVal.name
+        set(newValue) {
+            _recipe = newValue
+            self.nameLabel.text = newValue.name
         }
     }
     
@@ -103,17 +103,7 @@ class SavedRecipeCell: UITableViewCell, RecipeCell {
 class SunSeparator: UIView {
     
     @IBOutlet weak var sun: UIImageView!
-    
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//        self.setup()
-//    }
-//    
-//    required init(coder aDecoder: NSCoder) {
-//        super.init(coder: aDecoder)
-//        self.setup()
-//    }
-//    
+  
 //    func setup() {
 //        self.backgroundColor = UIColor.redColor()
 //        

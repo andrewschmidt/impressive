@@ -69,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Below is from http://stackoverflow.com/questions/18969248/how-to-draw-a-transparent-uitoolbar-or-uinavigationbar-in-ios7
         let navigationBarAppearance = UINavigationBar.appearance()
-        navigationBarAppearance.backgroundColor = .clearColor()
+        navigationBarAppearance.backgroundColor = .whiteColor() // Formerly: .clearColor()
         navigationBarAppearance.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navigationBarAppearance.shadowImage = UIImage()
         
