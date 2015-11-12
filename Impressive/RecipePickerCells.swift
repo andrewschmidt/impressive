@@ -31,6 +31,7 @@ class DailyRecipeCell: UITableViewCell, RecipeCell {
         set(newValue) {
             _recipe = newValue
             self.nameLabel.text = newValue.name
+            print("Set a new recipe, named", newValue.name)
         }
     }
     
